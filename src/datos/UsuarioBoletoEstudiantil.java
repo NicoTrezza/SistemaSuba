@@ -1,5 +1,6 @@
 package datos;
 import java.util.GregorianCalendar;
+import funciones.Funciones;
 
 public class UsuarioBoletoEstudiantil {
 	protected int idUsuarioBoletoEstudiantil;
@@ -49,7 +50,7 @@ public class UsuarioBoletoEstudiantil {
 	@Override
 	public String toString() {
 		return "UsuarioBoletoEstudiantil [idUsuarioBoletoEstudiantil=" + idUsuarioBoletoEstudiantil
-				+ ", fechaVencimiento=" + fechaVencimiento + ", usuario=" + usuario + ", boletoEstudiantil="
+				+ ", fechaVencimiento=" + Funciones.traerFechaCorta(fechaVencimiento) + ", usuario=" + usuario + ", boletoEstudiantil="
 				+ boletoEstudiantil + "]";
 	}
 }
