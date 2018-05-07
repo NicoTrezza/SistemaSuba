@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.BoletoEstudiantil" table="BoletoEstudiantil">
+		<id column="idBoletoEstudiantil" name="idBoletoEstudiantil">
+			<generator class="identity"/>
+		</id>
+		<property name="nivelEducativo" column="nivelEducativo" type="string"/>
+		<property name="cantViajesGratis" column="cantViajesGratis" type="int"/>
+		<property name="limiteDiario" column="limiteDiario" type="int"/>
+		<property name="horaInicial" column="horaInicial" type="int"/>
+		<property name="horaFinal" column="horaFinal" type="int"/>
+		<property name="diaInicial" column="diaInicial" type="int"/>
+		<property name="diaFinal" column="diaFinal" type="int"/>
+				
+	</class>
+</hibernate-mapping>
