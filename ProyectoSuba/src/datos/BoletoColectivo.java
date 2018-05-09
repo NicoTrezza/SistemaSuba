@@ -5,6 +5,8 @@ public class BoletoColectivo {
 	private int seccion;
 	private float valor;
 	
+	public BoletoColectivo() {}
+	
 	public BoletoColectivo(int seccion, float valor) {
 		this.seccion = seccion;
 		this.valor = valor;

@@ -8,7 +8,6 @@
 			<generator class="identity"/>
 		</id>
 		<property name="seccion" column="seccion" type="int"/>
-		<property name="valor" column="valor" type="float"/>
-				
+		<property name="valor" column="valor" type="float"/>		
 	</class>
 </hibernate-mapping>

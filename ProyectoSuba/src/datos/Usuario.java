@@ -1,7 +1,8 @@
 package datos;
+import java.util.Set;
 
 public class Usuario {
-	protected long idUsuario;
+	protected int idUsuario;
 	private String nombre;
 	private String apellido;
 	private char sexo;
@@ -13,12 +14,13 @@ public class Usuario {
 	private TipoIdentificacion identificacion;
 	private Permiso permiso;
 	private TarifaSocial tarifaSocial;
+	private Set<Tarjeta> lstTarjetas;
 	
 	public Usuario() {}
-	
+
 	public Usuario(String nombre, String apellido, char sexo, int nroIdentificacion, int clave,
 			String email, long movil, long fijo, TipoIdentificacion identificacion, Permiso permiso,
-			TarifaSocial tarifaSocial) {
+			TarifaSocial tarifaSocial, Set<Tarjeta> lstTarjetas) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.sexo = sexo;
@@ -30,13 +32,14 @@ public class Usuario {
 		this.identificacion = identificacion;
 		this.permiso = permiso;
 		this.tarifaSocial = tarifaSocial;
+		this.lstTarjetas = lstTarjetas;
 	}
 
-	public long getIdUsuario() {
+	public int getIdUsuario() {
 		return idUsuario;
 	}
 
-	protected void setIdUsuario(long idUsuario) {
+	protected void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
@@ -126,5 +129,13 @@ public class Usuario {
 
 	public void setTarifaSocial(TarifaSocial tarifaSocial) {
 		this.tarifaSocial = tarifaSocial;
+	}
+
+	public Set<Tarjeta> getLstTarjetas() {
+		return lstTarjetas;
+	}
+
+	public void setLstTarjetas(Set<Tarjeta> lstTarjetas) {
+		this.lstTarjetas = lstTarjetas;
 	}
 }

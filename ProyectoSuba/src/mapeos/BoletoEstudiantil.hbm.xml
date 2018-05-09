@@ -14,6 +14,6 @@
 		<property name="horaFinal" column="horaFinal" type="int"/>
 		<property name="diaInicial" column="diaInicial" type="int"/>
 		<property name="diaFinal" column="diaFinal" type="int"/>
-				
+		
 	</class>
 </hibernate-mapping>

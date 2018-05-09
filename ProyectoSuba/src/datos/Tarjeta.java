@@ -5,7 +5,6 @@ public class Tarjeta {
 	private int nroTarjeta;
 	private float saldo;
 	private boolean activa;
-	private Usuario usuario;
 	
 	public Tarjeta() {}
 	
@@ -13,7 +12,6 @@ public class Tarjeta {
 		this.nroTarjeta = nroTarjeta;
 		this.saldo = saldo;
 		this.activa = activa;
-		this.usuario = usuario;
 	}
 
 	public int getIdTarjeta() {
@@ -48,17 +46,9 @@ public class Tarjeta {
 		this.activa = activa;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-
 	@Override
 	public String toString() {
 		return "Tarjeta [idTarjeta=" + idTarjeta + ", nroTarjeta=" + nroTarjeta + ", saldo=" + saldo + ", activa="
-				+ activa + ", usuario=" + usuario + "]";
+				+ activa + "]";
 	}
 }

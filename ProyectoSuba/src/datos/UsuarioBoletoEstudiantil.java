@@ -1,11 +1,14 @@
 package datos;
 import java.util.GregorianCalendar;
+import funciones.Funciones;
 
 public class UsuarioBoletoEstudiantil {
 	protected int idUsuarioBoletoEstudiantil;
 	private GregorianCalendar fechaVencimiento;
 	private Usuario usuario;
 	private BoletoEstudiantil boletoEstudiantil;
+	
+	public UsuarioBoletoEstudiantil() {}
 	
 	public UsuarioBoletoEstudiantil(GregorianCalendar fechaVencimiento, Usuario usuario,
 			BoletoEstudiantil boletoEstudiantil) {
@@ -49,7 +52,7 @@ public class UsuarioBoletoEstudiantil {
 	@Override
 	public String toString() {
 		return "UsuarioBoletoEstudiantil [idUsuarioBoletoEstudiantil=" + idUsuarioBoletoEstudiantil
-				+ ", fechaVencimiento=" + fechaVencimiento + ", usuario=" + usuario + ", boletoEstudiantil="
+				+ ", fechaVencimiento=" + Funciones.traerFechaCorta(fechaVencimiento) + ", usuario=" + usuario + ", boletoEstudiantil="
 				+ boletoEstudiantil + "]";
 	}
 }

@@ -1,39 +1,34 @@
 package datos;
-import test.SubeVirtual;
 
 public class MaquinaColectivo extends Maquina {
-	private InternoColectivo internoColectivo;
-	private BoletoColectivo boleto;
+	private int numInterno;
+	private LineaColectivo lineaColectivo;
 	
 	public MaquinaColectivo() {}
 	
-	public MaquinaColectivo(InternoColectivo internoColectivo, BoletoColectivo boleto) {
-		this.internoColectivo = internoColectivo;
-		this.boleto = boleto;
-	}
-
-	public InternoColectivo getInternoColectivo() {
-		return internoColectivo;
-	}
-
-	public void setInternoColectivo(InternoColectivo internoColectivo) {
-		this.internoColectivo = internoColectivo;
-	}
-
-	public BoletoColectivo getBoleto() {
-		return boleto;
-	}
-
-	public void setBoleto(BoletoColectivo boleto) {
-		this.boleto = boleto;
-	}
-
-	@Override
-	public String toString() {
-		return "MaquinaColectivo [idMaquina=" + idMaquina + ", internoColectivo=" + internoColectivo + ", boleto=" + boleto + "]";
+	public MaquinaColectivo(int numInterno, LineaColectivo lineaColectivo) {
+		this.numInterno = numInterno;
+		this.lineaColectivo = lineaColectivo;
 	}
 	
+	public int getNumInterno() {
+		return numInterno;
+	}
+
+	public void setNumInterno(int numInterno) {
+		this.numInterno = numInterno;
+	}
+
+	public LineaColectivo getLineaColectivo() {
+		return lineaColectivo;
+	}
+
+	public void setLineaColectivo(LineaColectivo lineaColectivo) {
+		this.lineaColectivo = lineaColectivo;
+	}
+
 	public void Cobrar(SubeVirtual tarjeta) {
-		tarjeta.setSaldo(tarjeta.getSaldo() - boleto.getValor());
+		BoletoColectivo boleto;
+		//tarjeta.setSaldo(tarjeta.getSaldo() - boleto.getValor());
 	}
 }

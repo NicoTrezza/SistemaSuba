@@ -8,6 +8,5 @@
 			<generator class="identity"/>
 		</id>
 		<property name="linea" column="linea" type="string"/>
-				
 	</class>
 </hibernate-mapping>

@@ -1,16 +1,12 @@
 package datos;
 
-import test.SubeVirtual;
-
 public class MaquinaTren extends Maquina {
 	private Estacion estacion;
-	private BoletoTren boleto;
 	
 	public MaquinaTren() {}
 	
-	public MaquinaTren(Estacion estacion, BoletoTren boleto) {
+	public MaquinaTren(Estacion estacion) {
 		this.estacion = estacion;
-		this.boleto = boleto;
 	}
 
 	public Estacion getEstacion() {
@@ -21,22 +17,15 @@ public class MaquinaTren extends Maquina {
 		this.estacion = estacion;
 	}
 
-	public BoletoTren getBoleto() {
-		return boleto;
-	}
-
-	public void setBoleto(BoletoTren boleto) {
-		this.boleto = boleto;
-	}
-
 	@Override
 	public String toString() {
-		return "MaquinaTren [estacion=" + estacion + ", boleto=" + boleto + "]";
+		return "MaquinaTren [estacion=" + estacion + "]";
 	}
 	
 	public void Cobrar(SubeVirtual tarjeta) {
 		float importe;
+		/*BoletoTren boleto;
 		importe = boleto.getValor();
-		tarjeta.setSaldo(tarjeta.getSaldo() - importe);
+		tarjeta.setSaldo(tarjeta.getSaldo() - importe);*/
 	}
 }

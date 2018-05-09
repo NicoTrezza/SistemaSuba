@@ -15,6 +15,16 @@
 		<property name="email" column="email" type="string"/>
 		<property name="movil" column="movil" type="string"/>
 		<property name="fijo" column="fijo" type="string"/>
-				
+		<many-to-one name = "identificacion" class = "datos.TipoIdentificacion"
+		column = "idTipoIdentificacion" not-null = "true"/>
+		<many-to-one name = "permiso" class = "datos.Permiso"
+		column = "idPermiso" not-null = "true"/>
+		<many-to-one name = "tarifaSocial" class = "datos.TarifaSocial"
+		column = "idTarifaSocial" not-null = "true"/>
+		<set name = "lstTarjetas" table = "Tarjeta" order-by = "idTarjeta asc"
+		inverse = "true" lazy = "true" fetch = "select">
+			<key column = "idUsuario" not-null = "true"/>
+			<one-to-many class = "datos.Tarjeta"/>
+		</set>
 	</class>
 </hibernate-mapping>
