@@ -1,0 +1,77 @@
+body {
+	margin: 100px;
+	padding: 0;
+	/*background: url(tren.jpg) no-repeat center fixed;*/
+	background: url(suba.png) no-repeat center fixed;
+	background-size: 100% 100%;
+	font-family: sans-serif;
+}
+
+.ingreso {
+	width: 300px;
+margin-left:-180px;
+	height: 330px;
+margin-top:-205px;
+	color: #fff;
+	top: 75%;
+	left: 25%;
+	/*top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);*/
+	box-sizing: border-box;
+	position: absolute;
+	background: rgba(0, 0, 0, 0.2);
+	padding: 10px 35px;
+	border-radius: 20px;
+}
+
+h1 {
+	text-align: center;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+	font-weight: bold;
+	display: block;
+}
+
+input {
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+input[type="text"],
+input[type="password"] {
+	border: none;
+	border-bottom: 1px solid #000;
+	background: transparent;
+	outline: none;
+	height: 30px;
+	color: #111;
+	font-size: 16px;
+}
+
+input[type="submit"] {
+	border: none;
+	outline: none;
+	height: 30px;
+	font-size: 18px;
+	border-radius: 30px;
+	background: #819FF7;
+}
+
+input[type="submit"]:hover {
+	background: #2ECCFA;
+}
+
+a {
+	text-decoration: none;
+	font-size: 12px;
+	line-height: 20px;
+	color: #005;
+}
+
+a:hover {
+	color: #00f;
+}
