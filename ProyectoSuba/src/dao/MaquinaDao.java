@@ -61,7 +61,7 @@ public class MaquinaDao {
 		}
 	}
 	
-	public Maquina traer(long idMaquina) throws HibernateException {
+	public Maquina traer(int idMaquina) throws HibernateException {
 		Maquina objeto = null;
 		
 		try {

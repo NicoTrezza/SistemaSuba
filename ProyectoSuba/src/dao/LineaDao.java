@@ -61,7 +61,7 @@ public class LineaDao {
 		}
 	}
 	
-	public Linea traer(long idLinea) throws HibernateException {
+	public Linea traer(int idLinea) throws HibernateException {
 		Linea objeto = null;
 		
 		try {

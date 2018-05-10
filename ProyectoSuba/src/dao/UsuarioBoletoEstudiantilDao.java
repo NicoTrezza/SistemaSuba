@@ -61,7 +61,7 @@ public class UsuarioBoletoEstudiantilDao {
 		}
 	}
 	
-	public UsuarioBoletoEstudiantil traer(long idUsuarioBoletoEstudiantil) throws HibernateException {
+	public UsuarioBoletoEstudiantil traer(int idUsuarioBoletoEstudiantil) throws HibernateException {
 		UsuarioBoletoEstudiantil objeto = null;
 		
 		try {

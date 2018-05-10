@@ -10,11 +10,11 @@
 		<property name="tipo" column="tipo" type="int"/>
 		
 		<joined-subclass name="datos.MaquinaTren" table="MaquinaTren">
-			<key column="idMaquinaTren"/>			
+			<key column="idMaquina"/>			
 		</joined-subclass>
 		
 		<joined-subclass name="datos.MaquinaColectivo" table="MaquinaColectivo">
-			<key column="idMaquinaColectivo"/>			
+			<key column="idMaquina"/>			
 		</joined-subclass>
 				
 	</class>

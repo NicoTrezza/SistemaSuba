@@ -61,7 +61,7 @@ public class BoletoTrenDao {
 		}
 	}
 	
-	public BoletoTren traer(long idBoletoTren) throws HibernateException {
+	public BoletoTren traer(int idBoletoTren) throws HibernateException {
 		BoletoTren objeto = null;
 		
 		try {

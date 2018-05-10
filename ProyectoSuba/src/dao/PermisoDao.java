@@ -61,7 +61,7 @@ public class PermisoDao {
 		}
 	}
 	
-	public Permiso traer(long idPermiso) throws HibernateException {
+	public Permiso traer(int idPermiso) throws HibernateException {
 		Permiso objeto = null;
 		
 		try {

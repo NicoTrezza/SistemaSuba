@@ -3,7 +3,7 @@
 <hibernate-configuration>
 	<session-factory>
 		<property name="connection.driver_class"> com.mysql.jdbc.Driver </property>
-		<property name="connection.url"> jdbc:mysql://localhost/SistemaSuba </property>
+		<property name="connection.url"> jdbc:mysql://localhost/subabd </property>
 		<property name="connection.username"> root </property>
 		<property name="connection.password"> root </property>
 		<property name="connection.pool_size"> 1 </property>
@@ -11,17 +11,16 @@
 		<property name="show_sql"> true </property> <!-- en true muestra hql en consola -->
 		
 		<!-- Mapeo Entidades -->
+		<mapping resource="mapeos/TipoIdentificacion.hbm.xml"/>
 		<mapping resource="mapeos/Usuario.hbm.xml"/>
 		<mapping resource="mapeos/BoletoEstudiantil.hbm.xml"/>
 		<mapping resource="mapeos/Permiso.hbm.xml"/>
 		<mapping resource="mapeos/TarifaSocial.hbm.xml"/>
 		<mapping resource="mapeos/UsuarioBoletoEstudiantil.hbm.xml"/>
-		<mapping resource="mapeos/TipoIdentificacion.hbm.xml"/>
 		<mapping resource="mapeos/BoletoColectivo.hbm.xml"/>
 		<mapping resource="mapeos/BoletoTren.hbm.xml"/>
 		<mapping resource="mapeos/Carga.hbm.xml"/>
 		<mapping resource="mapeos/Estacion.hbm.xml"/>
-		<mapping resource="mapeos/InternoColectivo.hbm.xml"/>
 		<mapping resource="mapeos/Linea.hbm.xml"/>
 		<mapping resource="mapeos/LineaColectivo.hbm.xml"/>
 		<mapping resource="mapeos/Maquina.hbm.xml"/>

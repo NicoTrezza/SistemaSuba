@@ -61,7 +61,7 @@ public class RedSubeDao {
 		}
 	}
 	
-	public RedSube traer(long idRedSube) throws HibernateException {
+	public RedSube traer(int idRedSube) throws HibernateException {
 		RedSube objeto = null;
 		
 		try {

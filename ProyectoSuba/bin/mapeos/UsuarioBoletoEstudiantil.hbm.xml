@@ -8,6 +8,9 @@
 			<generator class="identity"/>
 		</id>
 		<property name="fechaVencimiento" column="fechaVencimiento" type="calendar"/>
-				
+		<many-to-one name = "usuario" class = "datos.Usuario"
+		column = "idUsuario" not-null = "true"/>
+		<many-to-one name = "boletoEstudiantil" class = "datos.BoletoEstudiantil"
+		column = "idBoletoEstudiantil" not-null = "true"/>
 	</class>
 </hibernate-mapping>

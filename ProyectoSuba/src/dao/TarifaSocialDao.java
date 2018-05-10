@@ -61,7 +61,7 @@ public class TarifaSocialDao {
 		}
 	}
 	
-	public TarifaSocial traer(long idTarifaSocial) throws HibernateException {
+	public TarifaSocial traer(int idTarifaSocial) throws HibernateException {
 		TarifaSocial objeto = null;
 		
 		try {

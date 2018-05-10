@@ -61,7 +61,7 @@ public class EstacionDao {
 		}
 	}
 	
-	public Estacion traer(long idEstacion) throws HibernateException {
+	public Estacion traer(int idEstacion) throws HibernateException {
 		Estacion objeto = null;
 		
 		try {

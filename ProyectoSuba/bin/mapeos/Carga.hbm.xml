@@ -9,6 +9,9 @@
 		</id>
 		<property name="nroTarjeta" column="nroTarjeta" type="int"/>
 		<property name="fechaHora" column="fechaHora" type="calendar"/>
-				
+		<many-to-one name = "tarjeta" class = "datos.Tarjeta"
+		column = "idTarjeta" not-null = "true"/>
+		<many-to-one name = "maquina" class = "datos.Maquina"
+		column = "idMaquina" not-null = "true"/>
 	</class>
 </hibernate-mapping>

@@ -61,7 +61,7 @@ public class LineaColectivoDao {
 		}
 	}
 	
-	public LineaColectivo traer(long idLineaColectivo) throws HibernateException {
+	public LineaColectivo traer(int idLineaColectivo) throws HibernateException {
 		LineaColectivo objeto = null;
 		
 		try {

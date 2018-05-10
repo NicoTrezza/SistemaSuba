@@ -61,7 +61,7 @@ public class TipoIdentificacionDao {
 		}
 	}
 	
-	public TipoIdentificacion traer(long idTipoIdentificacion) throws HibernateException {
+	public TipoIdentificacion traer(int idTipoIdentificacion) throws HibernateException {
 		TipoIdentificacion objeto = null;
 		
 		try {

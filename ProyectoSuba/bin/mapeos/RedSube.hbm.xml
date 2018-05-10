@@ -7,7 +7,7 @@
 		<id column="idRedSube" name="idRedSube">
 			<generator class="identity"/>
 		</id>
-		<property name="procentajeDescuento" column="procentajeDescuento" type="float"/>
+		<property name="porcentajeDescuento" column="porcentajeDescuento" type="float"/>
 				
 	</class>
 </hibernate-mapping>

@@ -61,7 +61,7 @@ public class TarjetaDao {
 		}
 	}
 	
-	public Tarjeta traer(long idTarjeta) throws HibernateException {
+	public Tarjeta traer(int idTarjeta) throws HibernateException {
 		Tarjeta objeto = null;
 		
 		try {

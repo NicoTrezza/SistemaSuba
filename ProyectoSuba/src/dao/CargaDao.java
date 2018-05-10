@@ -61,7 +61,7 @@ public class CargaDao {
 		}
 	}
 	
-	public Carga traer(long idCarga) throws HibernateException {
+	public Carga traer(int idCarga) throws HibernateException {
 		Carga objeto = null;
 		
 		try {
