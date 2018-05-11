@@ -3,10 +3,9 @@ package dao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import datos.Viaje;
 
-import datos.Estacion;
-
-public class EstacionDao {
+public class ViajeDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -20,7 +19,7 @@ public class EstacionDao {
 		throw new HibernateException("Error en la capa de acceso a datos", he);
 	}
 	
-	public int agregar(Estacion objeto) {
+	public int agregar(Viaje objeto) {
 		int id = 0;
 		try {
 			iniciaOperacion();
@@ -35,7 +34,7 @@ public class EstacionDao {
 		return id;
 	}
 	
-	public void actualizar(Estacion objeto) throws HibernateException {
+	public void actualizar(Viaje objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session.update(objeto);
@@ -48,7 +47,7 @@ public class EstacionDao {
 		}
 	}
 	
-	public void eliminar(Estacion objeto) throws HibernateException {
+	public void eliminar(Viaje objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session.delete(objeto);
@@ -61,25 +60,12 @@ public class EstacionDao {
 		}
 	}
 	
-	public Estacion traer(int idEstacion) throws HibernateException {
-		Estacion objeto = null;
+	public Viaje traer(int idViaje) throws HibernateException {
+		Viaje objeto = null;
 		
 		try {
 			iniciaOperacion();
-			objeto = (Estacion) session.get(Estacion.class, idEstacion);
-		} finally {
-			session.close();
-		}
-		
-		return objeto;
-	}
-	
-	public Estacion traer(String nombre) throws HibernateException {
-		Estacion objeto = null;
-		
-		try {
-			iniciaOperacion();
-			objeto = (Estacion) session.createQuery("from Estacion e where e.nombre="+nombre).uniqueResult();
+			objeto = (Viaje) session.get(Viaje.class, idViaje);
 		} finally {
 			session.close();
 		}

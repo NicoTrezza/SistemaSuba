@@ -20,6 +20,7 @@
 		<mapping resource="mapeos/BoletoColectivo.hbm.xml"/>
 		<mapping resource="mapeos/BoletoTren.hbm.xml"/>
 		<mapping resource="mapeos/Carga.hbm.xml"/>
+		<mapping resource="mapeos/Viaje.hbm.xml"/>
 		<mapping resource="mapeos/Estacion.hbm.xml"/>
 		<mapping resource="mapeos/Linea.hbm.xml"/>
 		<mapping resource="mapeos/LineaColectivo.hbm.xml"/>

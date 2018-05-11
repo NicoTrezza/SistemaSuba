@@ -10,11 +10,11 @@ public class Linea {
 		this.linea = linea;
 	}
 
-	protected int getIdLinea() {
+	public int getIdLinea() {
 		return idLinea;
 	}
 
-	public void setIdLinea(int idLinea) {
+	 protected void setIdLinea(int idLinea) {
 		this.idLinea = idLinea;
 	}
 
