@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import datos.BoletoEstudiantil;
+import datos.Permiso;
 
 public class BoletoEstudiantilDao {
 	private static Session session;
@@ -67,6 +68,19 @@ public class BoletoEstudiantilDao {
 		try {
 			iniciaOperacion();
 			objeto = (BoletoEstudiantil) session.get(BoletoEstudiantil.class, idBoletoEstudiantil);
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
+	
+	public BoletoEstudiantil traer(String nivelEducativo) throws HibernateException {
+		BoletoEstudiantil objeto = null;
+		
+		try {
+			iniciaOperacion();
+			objeto = (BoletoEstudiantil) session.createQuery("from BoletoEstudiantil b where b.nivelEducativo="+nivelEducativo).uniqueResult();
 		} finally {
 			session.close();
 		}

@@ -6,7 +6,7 @@ import datos.LineaColectivo;
 public class LineaColectivoABM {
 	LineaColectivoDao dao = new LineaColectivoDao();
 
-	public LineaColectivo traerLinea(int idLineaColectivo) throws Exception {
+	public LineaColectivo traerLineaColectivo(int idLineaColectivo) throws Exception {
 		LineaColectivo lc = dao.traer(idLineaColectivo);
 		if (lc==null) throw new Exception("La linea no existe");
 		return lc;

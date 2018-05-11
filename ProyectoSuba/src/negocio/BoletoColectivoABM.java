@@ -6,7 +6,7 @@ import datos.BoletoColectivo;
 public class BoletoColectivoABM {
 	BoletoColectivoDao dao = new BoletoColectivoDao();
 
-	public BoletoColectivo traerLinea(int idBoletoColectivo) throws Exception {
+	public BoletoColectivo traerBoleto(int idBoletoColectivo) throws Exception {
 		BoletoColectivo bc = dao.traer(idBoletoColectivo);
 		if (bc==null) throw new Exception("La sección no existe");
 		return bc;

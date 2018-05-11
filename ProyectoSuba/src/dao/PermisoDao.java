@@ -73,4 +73,17 @@ public class PermisoDao {
 		
 		return objeto;
 	}
+	
+	public Permiso traerPorNivel(int nivelPermisos) throws HibernateException {
+		Permiso objeto = null;
+		
+		try {
+			iniciaOperacion();
+			objeto = (Permiso) session.createQuery("from Permiso p where p.nivelPermisos="+nivelPermisos).uniqueResult();
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
 }

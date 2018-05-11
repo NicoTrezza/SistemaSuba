@@ -6,7 +6,7 @@ import datos.RedSube;
 public class RedSubeABM {
 	RedSubeDao dao = new RedSubeDao();
 
-	public RedSube traerLinea(int idRedSube) throws Exception {
+	public RedSube traerRedSube(int idRedSube) throws Exception {
 		RedSube redSube = dao.traer(idRedSube);
 		if (redSube==null) throw new Exception("El nivel de descuento Red Sube no existe");
 		return redSube;
