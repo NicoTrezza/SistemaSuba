@@ -3,7 +3,6 @@ package dao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import datos.Tarjeta;
 
 public class TarjetaDao {
@@ -67,6 +66,19 @@ public class TarjetaDao {
 		try {
 			iniciaOperacion();
 			objeto = (Tarjeta) session.get(Tarjeta.class, idTarjeta);
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
+	
+	public Tarjeta traerPorNumero(int nroTarjeta) throws HibernateException {
+		Tarjeta objeto = null;
+		
+		try {
+			iniciaOperacion();
+			objeto = (Tarjeta) session.createQuery("from Tarjeta t where t.nroTarjeta="+nroTarjeta).uniqueResult();
 		} finally {
 			session.close();
 		}

@@ -3,9 +3,7 @@ package dao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import datos.BoletoEstudiantil;
-import datos.Permiso;
 
 public class BoletoEstudiantilDao {
 	private static Session session;

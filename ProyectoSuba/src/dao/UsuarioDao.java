@@ -4,6 +4,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import datos.Permiso;
 import datos.Usuario;
 
 public class UsuarioDao {
@@ -67,6 +68,19 @@ public class UsuarioDao {
 		try {
 			iniciaOperacion();
 			objeto = (Usuario) session.get(Usuario.class, idUsuario);
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
+	
+	public Usuario traerPorIdentificacion(int nroIdentificacion) throws HibernateException {
+		Usuario objeto = null;
+		
+		try {
+			iniciaOperacion();
+			objeto = (Usuario) session.createQuery("from Usuario u where u.nroIdentificacion="+nroIdentificacion).uniqueResult();
 		} finally {
 			session.close();
 		}

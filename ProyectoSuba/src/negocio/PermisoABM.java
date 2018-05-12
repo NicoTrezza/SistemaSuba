@@ -8,13 +8,13 @@ public class PermisoABM {
 
 	public Permiso traerPermisoPorID(int idPermiso) throws Exception {
 		Permiso permiso = dao.traer(idPermiso);
-		if (permiso==null) throw new Exception("El permiso no existe.");
+		if (permiso==null) throw new Exception("El permiso no existe");
 		return permiso;
 	}
 	
 	public Permiso traerPermisoPorNivel(int nivelPermisos) throws Exception {
 		Permiso permiso = dao.traerPorNivel(nivelPermisos);
-		if (permiso==null) throw new Exception("El permiso no existe.");
+		if (permiso==null) throw new Exception("El permiso no existe");
 		return permiso;
 	}
 	
