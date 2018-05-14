@@ -64,8 +64,8 @@ public class Tarjeta {
 	}
 	
 	public void añadirUsuario(Usuario usuario) throws Exception {
-		TarjetaABM abm = new TarjetaABM();
 		if (this.usuario!=null) throw new Exception("La tarjeta ya tiene un usuario asignado");
+		TarjetaABM abm = new TarjetaABM();
 		this.usuario = usuario;
 		abm.modificar(this);
 	}
