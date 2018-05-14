@@ -2,6 +2,7 @@ package negocio;
 
 import dao.TarjetaDao;
 import datos.Tarjeta;
+import datos.Usuario;
 
 public class TarjetaABM {
 	TarjetaDao dao = new TarjetaDao();
@@ -12,13 +13,21 @@ public class TarjetaABM {
 		return tarjeta;
 	}
 	
-	public int agregar(Tarjeta tarjeta) throws Exception {
+	public Tarjeta traerTarjetaPorNumero(int nroTarjeta) throws Exception {
+		Tarjeta tarjeta = dao.traerPorNumero(nroTarjeta);
+		if (tarjeta==null) throw new Exception("La tarjeta no existe");
+		return tarjeta;
+	}
+	
+	public int agregar(int nroTarjeta, float saldo, boolean activa, Usuario usuario) throws Exception {
+		Tarjeta tarjeta = new Tarjeta(nroTarjeta,saldo,activa,usuario);
 		if (dao.traerPorNumero(tarjeta.getNroTarjeta())!=null) throw new Exception("Tarjeta duplicada");
 		return dao.agregar(tarjeta);
 	}
 	
 	public void modificar(Tarjeta tarjeta) throws Exception {
-		if (dao.traerPorNumero(tarjeta.getNroTarjeta())!=null) throw new Exception("Tarjeta duplicada");
+		Tarjeta tarjeta1 = dao.traerPorNumero(tarjeta.getNroTarjeta());
+		if (tarjeta1!=null && (tarjeta1.getIdTarjeta()!=tarjeta.getIdTarjeta()) ) throw new Exception("Tarjeta duplicada");
 		dao.actualizar(tarjeta);
 	}
 	

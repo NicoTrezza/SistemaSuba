@@ -14,9 +14,9 @@ public class BoletoEstudiantilABM {
 	
 	public int agregar(String nivelEducativo, int cantViajesGratis, int limiteDiario,
 			int horaInicial, int horaFinal, int diaInicial, int diaFinal) throws Exception {
+		if (dao.traer(nivelEducativo)!=null) throw new Exception("Ya existe un beneficio para el nivel educativo seleccionado");
 		BoletoEstudiantil boletoEstudiantil = new BoletoEstudiantil(nivelEducativo,cantViajesGratis,limiteDiario,
 				horaInicial,horaFinal,diaInicial,diaFinal);
-		if (dao.traer(nivelEducativo)!=null) throw new Exception("Ya existe un beneficio para el nivel educativo seleccionado");
 		return dao.agregar(boletoEstudiantil);
 	}
 	

@@ -2,12 +2,12 @@ package datos;
 
 public class TarifaSocial {
 	protected int idTarifaSocial;
-	private float procentajeDescuento;
+	private float porcentajeDescuento;
 	
 	public TarifaSocial() {}
 	
-	public TarifaSocial(float procentajeDescuento) {
-		this.procentajeDescuento = procentajeDescuento;
+	public TarifaSocial(float porcentajeDescuento) {
+		this.porcentajeDescuento = porcentajeDescuento;
 	}
 
 	public int getIdTarifaSocial() {
@@ -18,16 +18,16 @@ public class TarifaSocial {
 		this.idTarifaSocial = idTarifaSocial;
 	}
 
-	public float getProcentajeDescuento() {
-		return procentajeDescuento;
+	public float getPorcentajeDescuento() {
+		return porcentajeDescuento;
 	}
 
-	public void setProcentajeDescuento(float procentajeDescuento) {
-		this.procentajeDescuento = procentajeDescuento;
+	public void setPorcentajeDescuento(float porcentajeDescuento) {
+		this.porcentajeDescuento = porcentajeDescuento;
 	}
 
 	@Override
 	public String toString() {
-		return "TarifaSocial [idTarifaSocial=" + idTarifaSocial + ", procentajeDescuento=" + procentajeDescuento + "]";
+		return "TarifaSocial [idTarifaSocial=" + idTarifaSocial + ", porcentajeDescuento=" + porcentajeDescuento + "]";
 	}
 }

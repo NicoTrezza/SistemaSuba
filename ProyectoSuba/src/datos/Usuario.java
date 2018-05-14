@@ -1,24 +1,25 @@
 package datos;
 import java.util.Set;
+import negocio.UsuarioABM;
 
 public class Usuario {
 	protected int idUsuario;
 	private String nombre;
 	private String apellido;
 	private char sexo;
-	private int nroIdentificacion;
-	private int clave;
+	private long nroIdentificacion;
+	private long clave;
 	private String email;
 	private long movil;
 	private long fijo;
-	private TipoIdentificacion identificacion;
+	private TipoIdentificacion tipoIdentificacion;
 	private Permiso permiso;
 	private TarifaSocial tarifaSocial;
 	private Set<Tarjeta> lstTarjetas;
 	
 	public Usuario() {}
 
-	public Usuario(String nombre, String apellido, char sexo, int nroIdentificacion, int clave,
+	public Usuario(String nombre, String apellido, char sexo, long nroIdentificacion, long clave,
 			String email, long movil, long fijo, TipoIdentificacion identificacion, Permiso permiso,
 			TarifaSocial tarifaSocial, Set<Tarjeta> lstTarjetas) {
 		this.nombre = nombre;
@@ -29,7 +30,7 @@ public class Usuario {
 		this.email = email;
 		this.movil = movil;
 		this.fijo = fijo;
-		this.identificacion = identificacion;
+		this.tipoIdentificacion = identificacion;
 		this.permiso = permiso;
 		this.tarifaSocial = tarifaSocial;
 		this.lstTarjetas = lstTarjetas;
@@ -67,19 +68,19 @@ public class Usuario {
 		this.sexo = sexo;
 	}
 
-	public int getNroIdentificacion() {
+	public long getNroIdentificacion() {
 		return nroIdentificacion;
 	}
 
-	public void setNroIdentificacion(int nroIdentificacion) {
+	public void setNroIdentificacion(long nroIdentificacion) {
 		this.nroIdentificacion = nroIdentificacion;
 	}
 
-	public int getClave() {
+	public long getClave() {
 		return clave;
 	}
 
-	public void setClave(int clave) {
+	public void setClave(long clave) {
 		this.clave = clave;
 	}
 
@@ -107,12 +108,12 @@ public class Usuario {
 		this.fijo = fijo;
 	}
 
-	public TipoIdentificacion getIdentificacion() {
-		return identificacion;
+	public TipoIdentificacion getTipoIdentificacion() {
+		return tipoIdentificacion;
 	}
 
-	public void setIdentificacion(TipoIdentificacion identificacion) {
-		this.identificacion = identificacion;
+	public void setTipoIdentificacion(TipoIdentificacion tipoIdentificacion) {
+		this.tipoIdentificacion = tipoIdentificacion;
 	}
 
 	public Permiso getPermiso() {
@@ -137,5 +138,19 @@ public class Usuario {
 
 	public void setLstTarjetas(Set<Tarjeta> lstTarjetas) {
 		this.lstTarjetas = lstTarjetas;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apellido=" + apellido + ", sexo=" + sexo
+				+ ", nroIdentificacion=" + nroIdentificacion + ", clave=" + clave + ", email=" + email + ", movil="
+				+ movil + ", fijo=" + fijo + ", tipoIdentificacion=" + tipoIdentificacion + ", permiso=" + permiso
+				+ ", tarifaSocial=" + tarifaSocial + ", lstTarjetas=" + lstTarjetas + "]";
+	}
+	
+	public void registrarTarjeta(Tarjeta tarjeta) throws Exception {
+		UsuarioABM abm = new UsuarioABM();
+		this.lstTarjetas.add(tarjeta);
+		abm.modificar(this);
 	}
 }

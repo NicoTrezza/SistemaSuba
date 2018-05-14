@@ -67,7 +67,12 @@ public class UsuarioDao {
 		
 		try {
 			iniciaOperacion();
-			objeto = (Usuario) session.get(Usuario.class, idUsuario);
+			String hql = "from Usuario u inner join fetch u.permiso "
+					+ "inner join fetch u.tipoIdentificacion "
+					+ "inner join fetch u.tarifaSocial "
+					+ "left join fetch u.lstTarjetas "
+					+ "where u.idUsuario="+idUsuario;
+			objeto = (Usuario) session.createQuery(hql).uniqueResult();
 		} finally {
 			session.close();
 		}
@@ -75,7 +80,7 @@ public class UsuarioDao {
 		return objeto;
 	}
 	
-	public Usuario traerPorIdentificacion(int nroIdentificacion) throws HibernateException {
+	public Usuario traerPorIdentificacion(long nroIdentificacion) throws HibernateException {
 		Usuario objeto = null;
 		
 		try {

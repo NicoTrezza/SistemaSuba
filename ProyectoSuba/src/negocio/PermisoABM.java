@@ -18,15 +18,15 @@ public class PermisoABM {
 		return permiso;
 	}
 	
-	public int agregar(Permiso permiso) throws Exception {
-		Permiso permiso1 = dao.traerPorNivel(permiso.getNivelPermisos());
-		if (permiso1!=null) throw new Exception("Numero de nivel ya existente.");
+	public int agregar(int nivelPermisos, String nombre) throws Exception {
+		if (dao.traerPorNivel(nivelPermisos)!=null) throw new Exception("Numero de nivel ya existente.");
+		Permiso permiso = new Permiso(nivelPermisos,nombre);
 		return dao.agregar(permiso);
 	}
 	
-	public void modificar(Permiso permiso) throws Exception {
-		Permiso permiso1 = dao.traerPorNivel(permiso.getNivelPermisos());
-		if (permiso1!=null) throw new Exception("Numero de nivel ya existente.");
+	public void modificar(int nivelPermisos, String nombre) throws Exception {
+		if (dao.traerPorNivel(nivelPermisos)!=null) throw new Exception("Numero de nivel ya existente.");
+		Permiso permiso = new Permiso(nivelPermisos,nombre);
 		dao.actualizar(permiso);
 	}
 	

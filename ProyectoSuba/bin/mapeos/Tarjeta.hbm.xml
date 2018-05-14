@@ -10,6 +10,6 @@
 		<property name="nroTarjeta" column="nroTarjeta" type="int"/>
 		<property name="saldo" column="saldo" type="float"/>
 		<property name="activa" column="activa" type="boolean"/>
-				
+		<many-to-one name = "usuario" class = "datos.Usuario" column = "idUsuario" not-null = "false"/>
 	</class>
 </hibernate-mapping>

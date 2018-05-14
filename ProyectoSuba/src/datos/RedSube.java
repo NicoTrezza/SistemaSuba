@@ -14,7 +14,7 @@ public class RedSube {
 		return idRedSube;
 	}
 
-	public void setIdRedSube(int idRedSube) {
+	protected void setIdRedSube(int idRedSube) {
 		this.idRedSube = idRedSube;
 	}
 

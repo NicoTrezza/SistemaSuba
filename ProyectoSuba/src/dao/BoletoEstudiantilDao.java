@@ -78,7 +78,8 @@ public class BoletoEstudiantilDao {
 		
 		try {
 			iniciaOperacion();
-			objeto = (BoletoEstudiantil) session.createQuery("from BoletoEstudiantil b where b.nivelEducativo="+nivelEducativo).uniqueResult();
+			String hql = "from BoletoEstudiantil b where b.nivelEducativo = '" + nivelEducativo + "'";
+			objeto = (BoletoEstudiantil) session.createQuery(hql).uniqueResult();
 		} finally {
 			session.close();
 		}

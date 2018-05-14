@@ -73,4 +73,18 @@ public class TipoIdentificacionDao {
 		
 		return objeto;
 	}
+	
+	public TipoIdentificacion traer(String nombre) throws HibernateException {
+		TipoIdentificacion objeto = null;
+		
+		try {
+			iniciaOperacion();
+			String hql = "from TipoIdentificacion ti where ti.nombre = '" + nombre + "'";
+			objeto = (TipoIdentificacion) session.createQuery(hql).uniqueResult();
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
 }

@@ -12,7 +12,8 @@ public class TarifaSocialABM {
 		return tarifaSocial;
 	}
 	
-	public int agregar(TarifaSocial tarifaSocial) {
+	public int agregar(float porcentajeDescuento) {
+		TarifaSocial tarifaSocial = new TarifaSocial(porcentajeDescuento);
 		return dao.agregar(tarifaSocial);
 	}
 	

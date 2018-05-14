@@ -12,7 +12,8 @@ public class RedSubeABM {
 		return redSube;
 	}
 	
-	public int agregar(RedSube redSube) {
+	public int agregar(float porcentajeDescuento) {
+		RedSube redSube = new RedSube(porcentajeDescuento);
 		return dao.agregar(redSube);
 	}
 	
