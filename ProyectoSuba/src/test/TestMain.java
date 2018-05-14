@@ -31,7 +31,7 @@ public class TestMain {
 			//usuarioABM.agregar("Juan","Perez",'M',33444555,4555,"a@a.com",1166882233,44446666,
 			//		tipoIdentificacionABM.traerTipoIdentificacion(1),permisoABM.traerPermisoPorNivel(0),
 			//		tarifaSocialABM.traerTarifaSocial(1),null);
-			usuarioABM.traerUsuario(1).registrarTarjeta(tarjetaABM.traerTarjetaPorNumero(130));
+			//usuarioABM.traerUsuario(1).registrarTarjeta(tarjetaABM.traerTarjetaPorNumero(130));
 			
 			SubeVirtual subeVirtual = new SubeVirtual(130,0,true,new GregorianCalendar(),
 					tarifaSocialABM.traerTarifaSocial(1),boletoEstudiantilABM.traerBoletoEstudiantil(1),null);

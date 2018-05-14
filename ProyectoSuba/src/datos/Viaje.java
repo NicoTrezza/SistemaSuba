@@ -3,15 +3,13 @@ import java.util.GregorianCalendar;
 
 public class Viaje {
 	protected int idViaje;
-	private int nroTarjeta;
 	private GregorianCalendar fechaHora;
 	private Tarjeta tarjeta;
 	private Maquina maquina;
 	
 	public Viaje() {}
 
-	public Viaje(int nroTarjeta, GregorianCalendar fechaHora, Tarjeta tarjeta, Maquina maquina) {
-		this.nroTarjeta = nroTarjeta;
+	public Viaje(GregorianCalendar fechaHora, Tarjeta tarjeta, Maquina maquina) {
 		this.fechaHora = fechaHora;
 		this.tarjeta = tarjeta;
 		this.maquina = maquina;
@@ -23,14 +21,6 @@ public class Viaje {
 
 	protected void setIdViaje(int idViaje) {
 		this.idViaje = idViaje;
-	}
-
-	public int getNroTarjeta() {
-		return nroTarjeta;
-	}
-
-	public void setNroTarjeta(int nroTarjeta) {
-		this.nroTarjeta = nroTarjeta;
 	}
 
 	public GregorianCalendar getFechaHora() {
@@ -59,7 +49,7 @@ public class Viaje {
 
 	@Override
 	public String toString() {
-		return "Viaje [idViaje=" + idViaje + ", nroTarjeta=" + nroTarjeta + ", fechaHora=" + fechaHora + ", tarjeta="
+		return "Viaje [idViaje=" + idViaje + ", fechaHora=" + fechaHora + ", tarjeta="
 				+ tarjeta + ", maquina=" + maquina + "]";
 	}
 }
