@@ -39,7 +39,11 @@ public class TestMain {
 			//usuarioABM.traerUsuario(1).otorgarTarifaSocial(tarifaSocialABM.traerTarifaSocial(1));
 			/*-------Beneficio Tarifa Social-------*/
 			
+			//
 			/*-------Beneficio Boleto Estudiantil-------*/
+			
+			//tarjetaABM.traerTarjetaPorNumero(130).darDeBaja();
+			/*-------Dar de baja Tarjeta-------*/
 			
 			/*SubeVirtual subeVirtual = new SubeVirtual(130,0,true,new GregorianCalendar(),
 					tarifaSocialABM.traerTarifaSocial(1),boletoEstudiantilABM.traerBoletoEstudiantil(1),null);*/

@@ -69,4 +69,10 @@ public class Tarjeta {
 		this.usuario = usuario;
 		abm.modificar(this);
 	}
+	
+	public void darDeBaja() throws Exception {
+		TarjetaABM abm = new TarjetaABM();
+		this.activa = false;
+		abm.modificar(this);
+	}
 }
