@@ -69,7 +69,7 @@ public class UsuarioDao {
 			iniciaOperacion();
 			String hql = "from Usuario u inner join fetch u.permiso "
 					+ "inner join fetch u.tipoIdentificacion "
-					+ "inner join fetch u.tarifaSocial "
+					+ "left join fetch u.tarifaSocial "
 					+ "left join fetch u.lstTarjetas "
 					+ "where u.idUsuario="+idUsuario;
 			objeto = (Usuario) session.createQuery(hql).uniqueResult();
