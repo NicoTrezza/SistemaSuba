@@ -7,8 +7,8 @@
 		<id column="idViaje" name="idViaje">
 			<generator class="identity"/>
 		</id>
-		<property name="nroTarjeta" column="nroTarjeta" type="int"/>
 		<property name="fechaHora" column="fechaHora" type="calendar"/>
+		<property name="valor" column="valor" type="float"/>
 		<many-to-one name = "tarjeta" class = "datos.Tarjeta"
 		column = "idTarjeta" not-null = "true"/>
 		<many-to-one name = "maquina" class = "datos.Maquina"
