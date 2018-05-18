@@ -1,5 +1,4 @@
 package test;
-import datos.SubeVirtual;
 import java.util.GregorianCalendar;
 import negocio.TarifaSocialABM;
 import negocio.BoletoEstudiantilABM;
@@ -24,7 +23,11 @@ public class TestMain {
 			//tipoIdentificacionABM.agregar("Documento Nacional de Identidad");
 			//permisoABM.agregar(0, "Administrador");
 			//tarifaSocialABM.agregar((float)45.5);
-			//boletoEstudiantilABM.agregar("Secundario",60,3,600,2000,2,6);
+			//boletoEstudiantilABM.agregar("Inicial",50,4,500,2300,2,6);
+			//boletoEstudiantilABM.agregar("Primario",50,4,500,2300,2,6);
+			//boletoEstudiantilABM.agregar("Secundario",50,4,500,2300,2,6);
+			//boletoEstudiantilABM.agregar("Terciario",45,0,0,0,2,7);
+			//boletoEstudiantilABM.agregar("Universitario",45,0,0,0,2,7);
 			//redSubeABM.agregar(50);
 			//redSubeABM.agregar(25);
 			

@@ -149,7 +149,7 @@ public class Usuario {
 	}
 	
 	public void registrarTarjeta(Tarjeta tarjeta) throws Exception {
-		tarjeta.añadirUsuario(this);
+		tarjeta.anadirUsuario(this);
 		UsuarioABM abm = new UsuarioABM();
 		this.lstTarjetas.add(tarjeta);
 		abm.modificar(this);

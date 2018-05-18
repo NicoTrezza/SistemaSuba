@@ -27,8 +27,9 @@ public class MaquinaColectivo extends Maquina {
 		this.lineaColectivo = lineaColectivo;
 	}
 
-	public void Cobrar(SubeVirtual tarjeta) {
-		BoletoColectivo boleto;
-		//tarjeta.setSaldo(tarjeta.getSaldo() - boleto.getValor());
+	public void cobrar(Tarjeta tarjeta) throws Exception {
+		if (tarjeta.getSaldo() - 10 < 20) 
+			throw new Exception("Saldo insuficiente");
+		tarjeta.setSaldo(tarjeta.getSaldo() - 10);
 	}
 }

@@ -38,6 +38,6 @@ public class Estacion {
 
 	@Override
 	public String toString() {
-		return "Estacion [idEstacion=" + idEstacion + ", nombre=" + nombre + ", linea=" + linea + "]";
+		return "Estacion [idEstacion=" + idEstacion + ", nombre=" + nombre + "]";
 	}
 }

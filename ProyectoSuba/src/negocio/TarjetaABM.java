@@ -19,8 +19,8 @@ public class TarjetaABM {
 		return tarjeta;
 	}
 	
-	public int agregar(int nroTarjeta, float saldo, boolean activa, Usuario usuario) throws Exception {
-		Tarjeta tarjeta = new Tarjeta(nroTarjeta,saldo,activa,usuario);
+	public int agregar(int nroTarjeta) throws Exception {
+		Tarjeta tarjeta = new Tarjeta(nroTarjeta);
 		if (dao.traerPorNumero(tarjeta.getNroTarjeta())!=null) throw new Exception("Tarjeta duplicada");
 		return dao.agregar(tarjeta);
 	}
