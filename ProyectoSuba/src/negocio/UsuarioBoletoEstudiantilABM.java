@@ -1,6 +1,9 @@
 package negocio;
 
+import java.util.GregorianCalendar;
 import dao.UsuarioBoletoEstudiantilDao;
+import datos.BoletoEstudiantil;
+import datos.Usuario;
 import datos.UsuarioBoletoEstudiantil;
 
 public class UsuarioBoletoEstudiantilABM {
@@ -12,7 +15,10 @@ public class UsuarioBoletoEstudiantilABM {
 		return usuarioBoletoEstudiantil;
 	}
 	
-	public int agregar(UsuarioBoletoEstudiantil usuarioBoletoEstudiantil) {
+	public int agregar(GregorianCalendar fechaVencimiento, Usuario usuario,
+			BoletoEstudiantil boletoEstudiantil) {
+		UsuarioBoletoEstudiantil usuarioBoletoEstudiantil = new UsuarioBoletoEstudiantil(fechaVencimiento,usuario,
+				boletoEstudiantil);
 		return dao.agregar(usuarioBoletoEstudiantil);
 	}
 	

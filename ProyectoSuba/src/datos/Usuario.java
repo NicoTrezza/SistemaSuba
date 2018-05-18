@@ -16,12 +16,14 @@ public class Usuario {
 	private Permiso permiso;
 	private TarifaSocial tarifaSocial;
 	private Set<Tarjeta> lstTarjetas;
+	private BoletoEstudiantil boletoEstudiantil;
 	
 	public Usuario() {}
 
-	public Usuario(String nombre, String apellido, char sexo, long nroIdentificacion, long clave,
-			String email, long movil, long fijo, TipoIdentificacion identificacion, Permiso permiso,
-			TarifaSocial tarifaSocial, Set<Tarjeta> lstTarjetas) {
+	public Usuario(String nombre, String apellido, char sexo, long nroIdentificacion, long clave, String email,
+			long movil, long fijo, TipoIdentificacion tipoIdentificacion, Permiso permiso, TarifaSocial tarifaSocial,
+			Set<Tarjeta> lstTarjetas, BoletoEstudiantil boletoEstudiantil) {
+		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.sexo = sexo;
@@ -30,10 +32,11 @@ public class Usuario {
 		this.email = email;
 		this.movil = movil;
 		this.fijo = fijo;
-		this.tipoIdentificacion = identificacion;
+		this.tipoIdentificacion = tipoIdentificacion;
 		this.permiso = permiso;
 		this.tarifaSocial = tarifaSocial;
 		this.lstTarjetas = lstTarjetas;
+		this.boletoEstudiantil = boletoEstudiantil;
 	}
 
 	public int getIdUsuario() {
@@ -140,24 +143,37 @@ public class Usuario {
 		this.lstTarjetas = lstTarjetas;
 	}
 
+	public BoletoEstudiantil getBoletoEstudiantil() {
+		return boletoEstudiantil;
+	}
+
+	public void setBoletoEstudiantil(BoletoEstudiantil boletoEstudiantil) {
+		this.boletoEstudiantil = boletoEstudiantil;
+	}
+
 	@Override
 	public String toString() {
 		return "Usuario [idUsuario=" + idUsuario + ", nombre=" + nombre + ", apellido=" + apellido + ", sexo=" + sexo
 				+ ", nroIdentificacion=" + nroIdentificacion + ", clave=" + clave + ", email=" + email + ", movil="
 				+ movil + ", fijo=" + fijo + ", tipoIdentificacion=" + tipoIdentificacion + ", permiso=" + permiso
-				+ ", tarifaSocial=" + tarifaSocial + ", lstTarjetas=" + lstTarjetas + "]";
+				+ ", tarifaSocial=" + tarifaSocial + ", lstTarjetas=" + lstTarjetas + ", boletoEstudiantil="
+				+ boletoEstudiantil + "]";
 	}
-	
+
 	public void registrarTarjeta(Tarjeta tarjeta) throws Exception {
 		tarjeta.anadirUsuario(this);
-		UsuarioABM abm = new UsuarioABM();
 		this.lstTarjetas.add(tarjeta);
+	}
+	
+	public void solictarTarifaSocial(TarifaSocial tarifaSocial) throws Exception {
+		UsuarioABM abm = new UsuarioABM();
+		this.tarifaSocial=tarifaSocial;
 		abm.modificar(this);
 	}
 	
-	public void otorgarTarifaSocial(TarifaSocial tarifaSocial) throws Exception {
+	public void solicitarBoletoEstudiantil(BoletoEstudiantil boletoEstudiantil) throws Exception {
 		UsuarioABM abm = new UsuarioABM();
-		this.tarifaSocial=tarifaSocial;
+		this.boletoEstudiantil = boletoEstudiantil;
 		abm.modificar(this);
 	}
 }

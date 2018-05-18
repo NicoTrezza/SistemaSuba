@@ -3,6 +3,7 @@ package negocio;
 import java.util.Set;
 
 import dao.UsuarioDao;
+import datos.BoletoEstudiantil;
 import datos.Permiso;
 import datos.TarifaSocial;
 import datos.Tarjeta;
@@ -20,9 +21,9 @@ public class UsuarioABM {
 	
 	public int agregar(String nombre, String apellido, char sexo, long nroIdentificacion, long clave,
 			String email, long movil, long fijo, TipoIdentificacion identificacion, Permiso permiso,
-			TarifaSocial tarifaSocial, Set<Tarjeta> lstTarjetas) throws Exception {
+			TarifaSocial tarifaSocial, Set<Tarjeta> lstTarjetas, BoletoEstudiantil boletoEstudiantil) throws Exception {
 		Usuario usuario = new Usuario(nombre,apellido,sexo,nroIdentificacion,clave,email,movil,fijo,identificacion,
-				permiso,tarifaSocial,lstTarjetas);
+				permiso,tarifaSocial,lstTarjetas,boletoEstudiantil);
 		Usuario usuario1 = dao.traerPorIdentificacion(nroIdentificacion);
 		if ((usuario1 != null) && (usuario1.getTipoIdentificacion().getIdTipoIdentificacion() == identificacion.getIdTipoIdentificacion())) throw new Exception("Usuario duplicado");
 		return dao.agregar(usuario);

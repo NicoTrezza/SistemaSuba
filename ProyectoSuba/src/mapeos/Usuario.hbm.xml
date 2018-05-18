@@ -17,11 +17,12 @@
 		<property name="fijo" column="fijo" type="long"/>
 		<many-to-one name = "tipoIdentificacion" class = "datos.TipoIdentificacion" column = "idTipoIdentificacion" not-null = "true"/>
 		<many-to-one name = "permiso" class = "datos.Permiso" column = "idPermiso" not-null = "true"/>
-		<many-to-one name = "tarifaSocial" class = "datos.TarifaSocial" column = "idTarifaSocial" not-null = "true"/>
+		<many-to-one name = "tarifaSocial" class = "datos.TarifaSocial" column = "idTarifaSocial"/>
 		<set name = "lstTarjetas" table = "Tarjeta" order-by = "idTarjeta asc"
 		inverse = "true" lazy = "true" fetch = "select">
 			<key column = "idUsuario" not-null = "true"/>
 			<one-to-many class = "datos.Tarjeta"/>
 		</set>
+		<many-to-one name = "boletoEstudiantil" class = "datos.BoletoEstudiantil" column = "idBoletoEstudiantil"/>
 	</class>
 </hibernate-mapping>

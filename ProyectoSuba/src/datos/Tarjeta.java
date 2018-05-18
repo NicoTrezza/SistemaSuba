@@ -21,11 +21,11 @@ public class Tarjeta {
 		this.nroTarjeta = nroTarjeta;
 		this.saldo = 0;
 		this.activa = true;
-		this.usuario = new Usuario();
-		this.tarifaSocial = new TarifaSocial();
-		this.boletoEstudiantil = new BoletoEstudiantil();
-		this.estadoRedSube = new RedSube();
-		this.boleto = new BoletoTren();
+		this.usuario = null;
+		this.tarifaSocial = null;
+		this.boletoEstudiantil = null;
+		this.estadoRedSube = null;
+		this.boleto = null;
 	}
 
 	public Tarjeta(int nroTarjeta, float saldo, boolean activa, Usuario usuario,
@@ -121,13 +121,13 @@ public class Tarjeta {
 	public void setBoleto(BoletoTren boleto) {
 		this.boleto = boleto;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Tarjeta [idTarjeta=" + idTarjeta + ", nroTarjeta=" + nroTarjeta + ", saldo=" + saldo + ", activa="
 				+ activa + "]";
 	}
-	
+
 	public void anadirUsuario(Usuario usuario) throws Exception {
 		if (this.usuario!=null) throw new Exception("La tarjeta ya tiene un usuario asignado");
 		TarjetaABM abm = new TarjetaABM();

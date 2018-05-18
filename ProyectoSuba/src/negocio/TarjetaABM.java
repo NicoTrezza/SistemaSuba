@@ -2,7 +2,6 @@ package negocio;
 
 import dao.TarjetaDao;
 import datos.Tarjeta;
-import datos.Usuario;
 
 public class TarjetaABM {
 	TarjetaDao dao = new TarjetaDao();

@@ -3,8 +3,6 @@ package dao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
-import datos.Permiso;
 import datos.Usuario;
 
 public class UsuarioDao {
@@ -64,19 +62,18 @@ public class UsuarioDao {
 	
 	public Usuario traer(int idUsuario) throws HibernateException {
 		Usuario objeto = null;
-		
 		try {
 			iniciaOperacion();
 			String hql = "from Usuario u inner join fetch u.permiso "
 					+ "inner join fetch u.tipoIdentificacion "
 					+ "left join fetch u.tarifaSocial "
 					+ "left join fetch u.lstTarjetas "
+					+ "left join fetch u.boletoEstudiantil "
 					+ "where u.idUsuario="+idUsuario;
 			objeto = (Usuario) session.createQuery(hql).uniqueResult();
 		} finally {
 			session.close();
 		}
-		
 		return objeto;
 	}
 	
