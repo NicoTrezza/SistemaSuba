@@ -9,7 +9,11 @@ import negocio.PermisoABM;
 import negocio.UsuarioABM;
 import negocio.UsuarioBoletoEstudiantilABM;
 import negocio.BoletoColectivoABM;
+import negocio.LineaColectivoABM;
 import negocio.MaquinaABM;
+import datos.BoletoColectivo;
+import datos.MaquinaColectivo;
+import datos.Tarjeta;
 
 public class TestMain {
 
@@ -23,6 +27,8 @@ public class TestMain {
 		UsuarioABM usuarioABM = new UsuarioABM();
 		UsuarioBoletoEstudiantilABM usuarioBoletoEstudiantilABM = new UsuarioBoletoEstudiantilABM();
 		BoletoColectivoABM boletoColectivoABM = new BoletoColectivoABM();
+		MaquinaABM maquinaABM = new MaquinaABM();
+		LineaColectivoABM lineaColectivoABM = new LineaColectivoABM();
 		
 		try {
 			//tipoIdentificacionABM.agregar("Documento Nacional de Identidad");
@@ -40,6 +46,13 @@ public class TestMain {
 			//boletoColectivoABM.agregar(3, 9.50f);
 			//boletoColectivoABM.agregar(4, 9.75f);
 			//boletoColectivoABM.agregar(5, 10f);
+			//lineaColectivoABM.agregar(266);
+			//lineaColectivoABM.agregar(160);
+			//MaquinaColectivo maquinaColectivo = new MaquinaColectivo(1,lineaColectivoABM.traerLineaColectivo(1));
+			//maquinaABM.agregar(maquinaColectivo);
+			//maquinaColectivo.setNumInterno(1);
+			//maquinaColectivo.setLineaColectivo(lineaColectivoABM.traerLineaColectivo(2));
+			//maquinaABM.agregar(maquinaColectivo);
 			
 			//usuarioABM.agregar("Juan","Perez",'M',33444555,4555,"a@a.com",1166882233,44446666,
 			//		tipoIdentificacionABM.traerTipoIdentificacion(1),permisoABM.traerPermisoPorNivel(0),null,null,null);
@@ -62,6 +75,7 @@ public class TestMain {
 			//		boletoEstudiantilABM.traerBoletoEstudiantil(1));
 			/*-------Beneficio Boleto Estudiantil-------*/
 			
+			maquinaABM.traerMaquina(1).cobrar(tarjetaABM.traerTarjetaPorNumero(130), boletoColectivoABM.traerBoletoPorSeccion(1));
 			
 			/*-------Cobro en MaquinaColectivo-------*/
 			
@@ -69,8 +83,8 @@ public class TestMain {
 			System.out.println(boletoEstudiantilABM.traerBoletoEstudiantil(1).toString());
 			System.out.println(redSubeABM.traerRedSube(1).toString());
 			System.out.println(redSubeABM.traerRedSube(2).toString());
-			System.out.println(tarjetaABM.traerTarjetaPorNumero(130).toString());
-			System.out.println(usuarioABM.traerUsuario(1).toString());*/
+			System.out.println(tarjetaABM.traerTarjetaPorNumero(130).toString());*/
+			System.out.println(usuarioABM.traerUsuario(1).toString());
 			System.out.println(usuarioBoletoEstudiantilABM.traerUsuarioBoletoEstudiantil(1).toString());
 
 			

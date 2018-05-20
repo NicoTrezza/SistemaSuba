@@ -3,9 +3,7 @@ package dao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import datos.BoletoColectivo;
-import datos.Tarjeta;
 
 public class BoletoColectivoDao {
 	private static Session session;
@@ -68,6 +66,21 @@ public class BoletoColectivoDao {
 		try {
 			iniciaOperacion();
 			objeto = (BoletoColectivo) session.get(BoletoColectivo.class, idBoletoColectivo);
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
+	
+	public BoletoColectivo traerPorSeccion(int seccion) throws HibernateException {
+		BoletoColectivo objeto = null;
+		
+		try {
+			iniciaOperacion();
+			String hql;
+			hql = "from BoletoColectivo bc where bc.seccion=" + seccion;
+			objeto = (BoletoColectivo) session.createQuery(hql).uniqueResult();
 		} finally {
 			session.close();
 		}

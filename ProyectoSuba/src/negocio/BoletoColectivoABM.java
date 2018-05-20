@@ -12,6 +12,12 @@ public class BoletoColectivoABM {
 		return bc;
 	}
 	
+	public BoletoColectivo traerBoletoPorSeccion(int seccion) throws Exception {
+		BoletoColectivo bc = dao.traerPorSeccion(seccion);
+		if (bc==null) throw new Exception("La sección no existe");
+		return bc;
+	}
+	
 	public BoletoColectivo traerBoletoMax() throws Exception {
 		BoletoColectivo bc = dao.traerMax();
 		if (bc==null) throw new Exception("No hay secciones ingresadas");
