@@ -1,4 +1,8 @@
 package datos;
+import negocio.TarjetaABM;
+import negocio.BoletoColectivoABM;
+import negocio.ViajeABM;
+import java.util.GregorianCalendar;
 
 public class MaquinaColectivo extends Maquina {
 	private int numInterno;
@@ -27,9 +31,14 @@ public class MaquinaColectivo extends Maquina {
 		this.lineaColectivo = lineaColectivo;
 	}
 
-	public void cobrar(Tarjeta tarjeta) throws Exception {
-		if (tarjeta.getSaldo() - 10 < 20) 
-			throw new Exception("Saldo insuficiente");
-		tarjeta.setSaldo(tarjeta.getSaldo() - 10);
+	public void cobrar(Tarjeta tarjeta, BoletoColectivo boletoColectivo) throws Exception {
+		TarjetaABM tarjetaABM = new TarjetaABM();
+		BoletoColectivoABM boletoColectivoABM = new BoletoColectivoABM();
+		ViajeABM viajeABM = new ViajeABM();
+		GregorianCalendar fechaHora = new GregorianCalendar();
+		if ((tarjeta.getSaldo()-boletoColectivo.getValor()) < -(boletoColectivoABM.traerBoletoMax().getValor()*3)) throw new Exception("Saldo insuficiente");
+		tarjeta.setSaldo(tarjeta.getSaldo() - boletoColectivo.getValor());
+		tarjetaABM.modificar(tarjeta);
+		viajeABM.agregar(fechaHora,boletoColectivo.getValor(),tarjeta,this);
 	}
 }

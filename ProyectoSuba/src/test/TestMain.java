@@ -8,6 +8,8 @@ import negocio.TipoIdentificacionABM;
 import negocio.PermisoABM;
 import negocio.UsuarioABM;
 import negocio.UsuarioBoletoEstudiantilABM;
+import negocio.BoletoColectivoABM;
+import negocio.MaquinaABM;
 
 public class TestMain {
 
@@ -20,6 +22,7 @@ public class TestMain {
 		PermisoABM permisoABM = new PermisoABM();
 		UsuarioABM usuarioABM = new UsuarioABM();
 		UsuarioBoletoEstudiantilABM usuarioBoletoEstudiantilABM = new UsuarioBoletoEstudiantilABM();
+		BoletoColectivoABM boletoColectivoABM = new BoletoColectivoABM();
 		
 		try {
 			//tipoIdentificacionABM.agregar("Documento Nacional de Identidad");
@@ -32,6 +35,11 @@ public class TestMain {
 			//boletoEstudiantilABM.agregar("Universitario",45,0,0,0,2,7);
 			//redSubeABM.agregar((float)0.5);
 			//redSubeABM.agregar((float)0.25);
+			//boletoColectivoABM.agregar(1, 9f);
+			//boletoColectivoABM.agregar(2, 9.25f);
+			//boletoColectivoABM.agregar(3, 9.50f);
+			//boletoColectivoABM.agregar(4, 9.75f);
+			//boletoColectivoABM.agregar(5, 10f);
 			
 			//usuarioABM.agregar("Juan","Perez",'M',33444555,4555,"a@a.com",1166882233,44446666,
 			//		tipoIdentificacionABM.traerTipoIdentificacion(1),permisoABM.traerPermisoPorNivel(0),null,null,null);
@@ -40,6 +48,9 @@ public class TestMain {
 			//tarjetaABM.agregar(130); //Primero se da de alta la tarjeta en el sistema
 			//usuarioABM.traerUsuario(1).registrarTarjeta(tarjetaABM.traerTarjetaPorNumero(130)); //Y luego se la asigna a un usuario
 			/*-------Agregar y asignar tarjeta-------*/
+			
+			//tarjetaABM.traerTarjetaPorNumero(130).darDeBaja();
+			/*-------Dar de baja Tarjeta-------*/
 			 
 			//usuarioABM.traerUsuario(1).solicitarTarifaSocial(tarifaSocialABM.traerTarifaSocial(1));
 			/*-------Beneficio Tarifa Social-------*/
@@ -51,21 +62,18 @@ public class TestMain {
 			//		boletoEstudiantilABM.traerBoletoEstudiantil(1));
 			/*-------Beneficio Boleto Estudiantil-------*/
 			
-			//tarjetaABM.traerTarjetaPorNumero(130).darDeBaja();
-			/*-------Dar de baja Tarjeta-------*/
 			
-			/*SubeVirtual subeVirtual = new SubeVirtual(130,0,true,new GregorianCalendar(),
-					tarifaSocialABM.traerTarifaSocial(1),boletoEstudiantilABM.traerBoletoEstudiantil(1),null);*/
+			/*-------Cobro en MaquinaColectivo-------*/
 			
 			/*System.out.println(tarifaSocialABM.traerTarifaSocial(1).toString());
 			System.out.println(boletoEstudiantilABM.traerBoletoEstudiantil(1).toString());
 			System.out.println(redSubeABM.traerRedSube(1).toString());
 			System.out.println(redSubeABM.traerRedSube(2).toString());
-			System.out.println(tarjetaABM.traerTarjetaPorNumero(130).toString());*/
+			System.out.println(tarjetaABM.traerTarjetaPorNumero(130).toString());
+			System.out.println(usuarioABM.traerUsuario(1).toString());*/
 			System.out.println(usuarioBoletoEstudiantilABM.traerUsuarioBoletoEstudiantil(1).toString());
-			System.out.println(usuarioABM.traerUsuario(1).toString());
+
 			
-			//System.out.println(subeVirtual.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

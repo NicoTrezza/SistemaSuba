@@ -1,6 +1,9 @@
 package negocio;
 
+import java.util.GregorianCalendar;
 import dao.ViajeDao;
+import datos.Maquina;
+import datos.Tarjeta;
 import datos.Viaje;
 
 public class ViajeABM {
@@ -12,7 +15,8 @@ public class ViajeABM {
 		return viaje;
 	}
 	
-	public int agregar(Viaje viaje) {
+	public int agregar(GregorianCalendar fechaHora, float valor, Tarjeta tarjeta, Maquina maquina) {
+		Viaje viaje = new Viaje(fechaHora,valor,tarjeta,maquina);
 		return dao.agregar(viaje);
 	}
 	

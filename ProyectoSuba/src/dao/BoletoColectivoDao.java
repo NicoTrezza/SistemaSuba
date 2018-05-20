@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import datos.BoletoColectivo;
+import datos.Tarjeta;
 
 public class BoletoColectivoDao {
 	private static Session session;
@@ -67,6 +68,21 @@ public class BoletoColectivoDao {
 		try {
 			iniciaOperacion();
 			objeto = (BoletoColectivo) session.get(BoletoColectivo.class, idBoletoColectivo);
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
+	
+	public BoletoColectivo traerMax() throws HibernateException {
+		BoletoColectivo objeto = null;
+		
+		try {
+			iniciaOperacion();
+			String hql;
+			hql = "from BoletoColectivo bc order by seccion desc";
+			objeto = (BoletoColectivo) session.createQuery(hql).setMaxResults(1).uniqueResult();
 		} finally {
 			session.close();
 		}
