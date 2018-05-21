@@ -1,4 +1,5 @@
 package test;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import negocio.TarifaSocialABM;
 import negocio.BoletoEstudiantilABM;
@@ -11,9 +12,9 @@ import negocio.UsuarioBoletoEstudiantilABM;
 import negocio.BoletoColectivoABM;
 import negocio.LineaColectivoABM;
 import negocio.MaquinaABM;
-import datos.BoletoColectivo;
-import datos.MaquinaColectivo;
 import datos.Tarjeta;
+import datos.Usuario;
+import funciones.Funciones;
 
 public class TestMain {
 
@@ -75,19 +76,21 @@ public class TestMain {
 			//		boletoEstudiantilABM.traerBoletoEstudiantil(1));
 			/*-------Beneficio Boleto Estudiantil-------*/
 			
-			maquinaABM.traerMaquina(1).cobrar(tarjetaABM.traerTarjetaPorNumero(130), boletoColectivoABM.traerBoletoPorSeccion(1));
-			
+			//Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(130);
+			//Usuario usuario = usuarioABM.traerUsuario(tarjeta.getUsuario().getIdUsuario());
+			//if (usuario.getTarifaSocial()!=null) tarjeta.setTarifaSocial(usuario.getTarifaSocial());
+			//maquinaABM.traerMaquina(1).cobrar(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(1));
+			//maquinaABM.traerMaquina(2).cobrar(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(1));
+			//maquinaABM.traerMaquina(2).cobrar(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(3));
 			/*-------Cobro en MaquinaColectivo-------*/
 			
 			/*System.out.println(tarifaSocialABM.traerTarifaSocial(1).toString());
 			System.out.println(boletoEstudiantilABM.traerBoletoEstudiantil(1).toString());
 			System.out.println(redSubeABM.traerRedSube(1).toString());
-			System.out.println(redSubeABM.traerRedSube(2).toString());
-			System.out.println(tarjetaABM.traerTarjetaPorNumero(130).toString());*/
+			System.out.println(redSubeABM.traerRedSube(2).toString());*/
+			//System.out.println(tarjeta.toString());
 			System.out.println(usuarioABM.traerUsuario(1).toString());
 			System.out.println(usuarioBoletoEstudiantilABM.traerUsuarioBoletoEstudiantil(1).toString());
-
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

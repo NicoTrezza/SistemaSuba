@@ -25,6 +25,8 @@ public class Maquina {
 	public void setTipo(int tipo) {
 		this.tipo = tipo;
 	}
+	
+	public void cobrar(Tarjeta tarjeta, Object boleto) throws Exception {}
 
 	@Override
 	public String toString() {
