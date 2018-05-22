@@ -45,7 +45,8 @@ public class MaquinaColectivo extends Maquina {
 		if (tarjeta.getEstacionIngreso()!=null &&
 				(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())>7200000)
 			tarjeta.setEstacionIngreso(null);
-		if ((tarjeta.getSaldo()-boletoColectivo.getValor()) < -(boletoColectivoABM.traerBoletoMax().getValor()*3)) throw new Exception("Saldo insuficiente");
+		if ((tarjeta.getSaldo()-boletoColectivo.getValor()) < -(boletoColectivoABM.traerBoletoMax().getValor()*3))
+			throw new Exception("Saldo insuficiente");
 		tarjeta.setUltHoraViaje(fechaHora);
 		if (tarjeta.getEstadoRedSube()!=null &&
 				(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())<=7200000) {

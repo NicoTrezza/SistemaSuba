@@ -31,13 +31,14 @@ public class MaquinaTren extends Maquina {
 	}
 
 	@Override
-	public void cobrar(Tarjeta tarjeta) throws Exception {
+	public void cobrar(Tarjeta tarjeta, int tipo) throws Exception {
 		GregorianCalendar fechaHora = new GregorianCalendar();
 		if (tarjeta.getEstacionIngreso()!=null &&
 				(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())>7200000)
 			tarjeta.setEstacionIngreso(null);
 		if (tarjeta.getEstacionIngreso()!=null) devolucionMolinete(tarjeta);
-		else cobroMolinete(tarjeta);
+		else if (tipo==0) cobroMolinete(tarjeta);
+		else if (tipo==1) cobroMolineteSubte(tarjeta);
 	}
 	
 	public void cobroMolinete(Tarjeta tarjeta) throws Exception {
@@ -109,15 +110,37 @@ public class MaquinaTren extends Maquina {
 		tarjeta.setSaldo(tarjeta.getSaldo()+tarifa);
 		tarjetaABM.modificar(tarjeta);
 		viajeABM.agregar(fechaHora,-tarifa,tarjeta,this);
-		
-		if (tarjeta.getEstacionIngreso()!=null &&
-				(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())>7200000)
-			tarjeta.setEstacionIngreso(null);
+		tarjeta.setEstacionIngreso(null);
 	}
 	
 	public void cobroMolineteSubte(Tarjeta tarjeta) throws Exception {
-		if (tarjeta.getSaldo() - 11 < 20) 
-			throw new Exception("Saldo insuficiente");
-		tarjeta.setSaldo(tarjeta.getSaldo() - 11);
+		RedSubeABM redSubeABM = new RedSubeABM();
+		TarjetaABM tarjetaABM = new TarjetaABM();
+		ViajeABM viajeABM = new ViajeABM();
+		GregorianCalendar fechaHora = new GregorianCalendar();
+		float tarifa = 9f; 
+		
+		if (tarjeta.getSaldo()-tarifa < -(tarifa*3)) throw new Exception("Saldo insuficiente");
+		tarjeta.setUltHoraViaje(fechaHora);
+		if (tarjeta.getEstadoRedSube()!=null &&
+				(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())<=7200000) {
+			tarifa = tarifa * tarjeta.getEstadoRedSube().getPorcentajeDescuento();
+			if (tarjeta.getEstadoRedSube().getIdRedSube()==1) tarjeta.setEstadoRedSube(redSubeABM.traerRedSube(2));
+			else {
+				tarjeta.setNumeroViaje(tarjeta.getNumeroViaje()+1);
+				if (tarjeta.getNumeroViaje()>4) {
+					tarjeta.setNumeroViaje(0);
+					tarjeta.setEstadoRedSube(null);
+				}
+			}
+		}
+		else {
+			tarjeta.setEstadoRedSube(redSubeABM.traerRedSube(1));
+			tarjeta.setNumeroViaje(1);
+		}
+		if (tarjeta.getTarifaSocial()!=null) tarifa = tarifa * tarjeta.getTarifaSocial().getPorcentajeDescuento();
+		tarjeta.setSaldo(tarjeta.getSaldo() - tarifa);
+		tarjetaABM.modificar(tarjeta);
+		viajeABM.agregar(fechaHora,tarifa,tarjeta,this);
 	}
 }

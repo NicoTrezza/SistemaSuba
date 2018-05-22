@@ -16,7 +16,7 @@ public class TestViajeTren {
 		
 		Tarjeta tarjeta = new Tarjeta(123456);
 		
-		maquinaI.cargar(tarjeta, 100);
+		//maquinaI.cargar(tarjeta, 100);
 		
 		try {
 			//maquinaI.cobroMolinete(tarjeta);

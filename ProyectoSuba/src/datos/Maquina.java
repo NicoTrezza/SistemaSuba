@@ -1,4 +1,7 @@
 package datos;
+import negocio.TarjetaABM;
+import negocio.CargaABM;
+import java.util.GregorianCalendar;
 
 public class Maquina {
 	protected int idMaquina;
@@ -32,9 +35,15 @@ public class Maquina {
 	}
 	
 	public void cobrar(Tarjeta tarjeta, Object boleto) throws Exception {}
-	public void cobrar(Tarjeta tarjeta) throws Exception {}
+	public void cobrar(Tarjeta tarjeta, int tipo) throws Exception {}
 	
-	public void cargar(Tarjeta tarjeta, float valor) {
+	public void cargar(Tarjeta tarjeta, float valor) throws Exception {
+		TarjetaABM tarjetaABM = new TarjetaABM();
+		CargaABM cargaABM = new CargaABM();
+		GregorianCalendar horaActual = new GregorianCalendar();
+		
 		tarjeta.setSaldo(tarjeta.getSaldo() + valor);
+		tarjetaABM.modificar(tarjeta);
+		cargaABM.agregar(horaActual,valor,tarjeta,this);
 	}
 }

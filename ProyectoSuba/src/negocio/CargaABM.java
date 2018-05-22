@@ -1,7 +1,11 @@
 package negocio;
 
+import java.util.GregorianCalendar;
+
 import dao.CargaDao;
 import datos.Carga;
+import datos.Maquina;
+import datos.Tarjeta;
 
 public class CargaABM {
 	CargaDao dao = new CargaDao();
@@ -12,7 +16,8 @@ public class CargaABM {
 		return carga;
 	}
 	
-	public int agregar(Carga carga) {
+	public int agregar(GregorianCalendar fechaHora, float valor, Tarjeta tarjeta, Maquina maquina) {
+		Carga carga = new Carga(fechaHora,valor,tarjeta,maquina);
 		return dao.agregar(carga);
 	}
 	
