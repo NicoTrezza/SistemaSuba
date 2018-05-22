@@ -3,8 +3,8 @@ package dao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import datos.BoletoTren;
+import datos.Estacion;
 
 public class BoletoTrenDao {
 	private static Session session;
@@ -67,6 +67,26 @@ public class BoletoTrenDao {
 		try {
 			iniciaOperacion();
 			objeto = (BoletoTren) session.get(BoletoTren.class, idBoletoTren);
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
+	
+	public BoletoTren traer(Estacion estacionI, Estacion estacionE) throws HibernateException {
+		BoletoTren objeto = null;
+		
+		try {
+			iniciaOperacion();
+			String hql;
+			hql = "from BoletoTren bt "
+					+ "inner join fetch bt.tarifaTren "
+					+ "inner join fetch bt.estacionIngreso "
+					+ "inner join fetch bt.estacionEgreso "
+					+ "where bt.estacionIngreso.idEstacion=" + estacionI.getIdEstacion()
+					+ " and bt.estacionEgreso.idEstacion=" + estacionE.getIdEstacion();
+			objeto = (BoletoTren) session.createQuery(hql).uniqueResult();
 		} finally {
 			session.close();
 		}

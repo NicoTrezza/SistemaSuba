@@ -2,14 +2,14 @@ package datos;
 
 public class BoletoTren {
 	protected int idBoletoTren;
-	private float valor;
+	private TarifaTren tarifaTren;
 	private Estacion estacionIngreso;
 	private Estacion estacionEgreso;
 	
 	public BoletoTren() {}
 	
-	public BoletoTren(float valor, Estacion estacionIngreso, Estacion estacionEgreso) {
-		this.valor = valor;
+	public BoletoTren(TarifaTren tarifaTren, Estacion estacionIngreso, Estacion estacionEgreso) {
+		this.tarifaTren = tarifaTren;
 		this.estacionIngreso = estacionIngreso;
 		this.estacionEgreso = estacionEgreso;
 	}
@@ -22,12 +22,12 @@ public class BoletoTren {
 		this.idBoletoTren = idBoletoTren;
 	}
 
-	public float getValor() {
-		return valor;
+	public TarifaTren getTarifaTren() {
+		return tarifaTren;
 	}
 
-	public void setValor(float valor) {
-		this.valor = valor;
+	public void setTarifaTren(TarifaTren tarifaTren) {
+		this.tarifaTren = tarifaTren;
 	}
 
 	public Estacion getEstacionIngreso() {
@@ -48,7 +48,7 @@ public class BoletoTren {
 
 	@Override
 	public String toString() {
-		return "BoletoTren [idBoletoTren=" + idBoletoTren + ", valor=" + valor + ", estacionIngreso=" + estacionIngreso
-				+ ", estacionEgreso=" + estacionEgreso + "]";
+		return "BoletoTren [idBoletoTren=" + idBoletoTren + ", tarifaTren=" + tarifaTren + ", estacionIngreso="
+				+ estacionIngreso + ", estacionEgreso=" + estacionEgreso + "]";
 	}
 }

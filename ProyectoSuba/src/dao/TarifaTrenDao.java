@@ -3,10 +3,9 @@ package dao;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import datos.TarifaTren;
 
-import datos.Estacion;
-
-public class EstacionDao {
+public class TarifaTrenDao {
 	private static Session session;
 	private Transaction tx;
 	
@@ -20,7 +19,7 @@ public class EstacionDao {
 		throw new HibernateException("Error en la capa de acceso a datos", he);
 	}
 	
-	public int agregar(Estacion objeto) {
+	public int agregar(TarifaTren objeto) {
 		int id = 0;
 		try {
 			iniciaOperacion();
@@ -35,7 +34,7 @@ public class EstacionDao {
 		return id;
 	}
 	
-	public void actualizar(Estacion objeto) throws HibernateException {
+	public void actualizar(TarifaTren objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session.update(objeto);
@@ -48,7 +47,7 @@ public class EstacionDao {
 		}
 	}
 	
-	public void eliminar(Estacion objeto) throws HibernateException {
+	public void eliminar(TarifaTren objeto) throws HibernateException {
 		try {
 			iniciaOperacion();
 			session.delete(objeto);
@@ -61,12 +60,12 @@ public class EstacionDao {
 		}
 	}
 	
-	public Estacion traer(int idEstacion) throws HibernateException {
-		Estacion objeto = null;
+	public TarifaTren traer(int idTarifaTren) throws HibernateException {
+		TarifaTren objeto = null;
 		
 		try {
 			iniciaOperacion();
-			objeto = (Estacion) session.get(Estacion.class, idEstacion);
+			objeto = (TarifaTren) session.get(TarifaTren.class, idTarifaTren);
 		} finally {
 			session.close();
 		}
@@ -74,12 +73,14 @@ public class EstacionDao {
 		return objeto;
 	}
 	
-	public Estacion traer(String nombre) throws HibernateException {
-		Estacion objeto = null;
+	public TarifaTren traerMax() throws HibernateException {
+		TarifaTren objeto = null;
 		
 		try {
 			iniciaOperacion();
-			objeto = (Estacion) session.createQuery("from Estacion e where e.nombre='"+nombre+"'").uniqueResult();
+			String hql;
+			hql = "from TarifaTren tt order by valor desc";
+			objeto = (TarifaTren) session.createQuery(hql).setMaxResults(1).uniqueResult();
 		} finally {
 			session.close();
 		}

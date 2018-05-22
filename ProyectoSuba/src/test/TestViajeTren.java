@@ -19,13 +19,13 @@ public class TestViajeTren {
 		maquinaI.cargar(tarjeta, 100);
 		
 		try {
-			maquinaI.cobroMolinete(tarjeta);
-			maquinaE.devolucionMolinete(tarjeta);
+			//maquinaI.cobroMolinete(tarjeta);
+			//maquinaE.devolucionMolinete(tarjeta);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 			
 		System.out.println(tarjeta.getSaldo());
-		System.out.println(tarjeta.getBoleto());
+		//System.out.println(tarjeta.getBoleto());
 	}
 }

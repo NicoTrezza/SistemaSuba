@@ -16,6 +16,7 @@
 		<mapping resource="mapeos/BoletoEstudiantil.hbm.xml"/>
 		<mapping resource="mapeos/Permiso.hbm.xml"/>
 		<mapping resource="mapeos/TarifaSocial.hbm.xml"/>
+		<mapping resource="mapeos/TarifaTren.hbm.xml"/>
 		<mapping resource="mapeos/UsuarioBoletoEstudiantil.hbm.xml"/>
 		<mapping resource="mapeos/BoletoColectivo.hbm.xml"/>
 		<mapping resource="mapeos/BoletoTren.hbm.xml"/>

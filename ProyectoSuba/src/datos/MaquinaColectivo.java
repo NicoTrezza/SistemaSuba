@@ -42,15 +42,18 @@ public class MaquinaColectivo extends Maquina {
 		BoletoColectivo boletoColectivo = (BoletoColectivo) boleto;
 		float tarifa;
 		
+		if (tarjeta.getEstacionIngreso()!=null &&
+				(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())>7200000)
+			tarjeta.setEstacionIngreso(null);
 		if ((tarjeta.getSaldo()-boletoColectivo.getValor()) < -(boletoColectivoABM.traerBoletoMax().getValor()*3)) throw new Exception("Saldo insuficiente");
 		tarjeta.setUltHoraViaje(fechaHora);
 		if (tarjeta.getEstadoRedSube()!=null &&
-				(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())<7200000) {
+				(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())<=7200000) {
 			tarifa = boletoColectivo.getValor() * tarjeta.getEstadoRedSube().getPorcentajeDescuento();
 			if (tarjeta.getEstadoRedSube().getIdRedSube()==1) tarjeta.setEstadoRedSube(redSubeABM.traerRedSube(2));
 			else {
 				tarjeta.setNumeroViaje(tarjeta.getNumeroViaje()+1);
-				if (tarjeta.getNumeroViaje()>5) {
+				if (tarjeta.getNumeroViaje()>4) {
 					tarjeta.setNumeroViaje(0);
 					tarjeta.setEstadoRedSube(null);
 				}

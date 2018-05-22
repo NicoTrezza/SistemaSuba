@@ -2,6 +2,7 @@ package negocio;
 
 import dao.EstacionDao;
 import datos.Estacion;
+import datos.Linea;
 
 public class EstacionABM {
 	EstacionDao dao = new EstacionDao();
@@ -12,7 +13,14 @@ public class EstacionABM {
 		return estacion;
 	}
 	
-	public int agregar(Estacion estacion) throws Exception {
+	public Estacion traerEstacion(String nombre) throws Exception {
+		Estacion estacion = dao.traer(nombre);
+		if (estacion==null) throw new Exception("La estacion no existe");
+		return estacion;
+	}
+	
+	public int agregar(String nombre, Linea linea) throws Exception {
+		Estacion estacion = new Estacion(nombre,linea);
 		if (dao.traer(estacion.getNombre())!=null) throw new Exception("Estación duplicada");
 		return dao.agregar(estacion);
 	}

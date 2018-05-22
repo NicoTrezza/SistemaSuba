@@ -2,6 +2,8 @@ package negocio;
 
 import dao.BoletoTrenDao;
 import datos.BoletoTren;
+import datos.Estacion;
+import datos.TarifaTren;
 
 public class BoletoTrenABM {
 	BoletoTrenDao dao = new BoletoTrenDao();
@@ -12,7 +14,14 @@ public class BoletoTrenABM {
 		return boletoTren;
 	}
 	
-	public int agregar(BoletoTren boletoTren) {
+	public BoletoTren traerBoletoTren(Estacion estacionI, Estacion estacionE) throws Exception {
+		BoletoTren boletoTren = dao.traer(estacionI,estacionE);
+		if (boletoTren==null) throw new Exception("No existe el trayecto seleccionado");
+		return boletoTren;
+	}
+	
+	public int agregar(TarifaTren tarifaTren, Estacion estacionIngreso, Estacion estacionEgreso) {
+		BoletoTren boletoTren = new BoletoTren(tarifaTren, estacionIngreso, estacionEgreso);
 		return dao.agregar(boletoTren);
 	}
 	

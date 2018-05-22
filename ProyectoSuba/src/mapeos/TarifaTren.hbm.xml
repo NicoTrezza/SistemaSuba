@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.TarifaTren" table="TarifaTren">
+		<id column="idTarifaTren" name="idTarifaTren">
+			<generator class="identity"/>
+		</id>
+		<property name="valor" column="valor" type="float"/>
+	</class>
+</hibernate-mapping>

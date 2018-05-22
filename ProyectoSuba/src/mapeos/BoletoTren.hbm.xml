@@ -7,7 +7,8 @@
 		<id column="idBoletoTren" name="idBoletoTren">
 			<generator class="identity"/>
 		</id>
-		<property name="valor" column="valor" type="float"/>
+		<many-to-one name = "tarifaTren" class = "datos.TarifaTren"
+		column = "idTarifaTren" not-null = "true"/>
 		<many-to-one name = "estacionIngreso" class = "datos.Estacion"
 		column = "estacionIngreso" not-null = "true"/>
 		<many-to-one name = "estacionEgreso" class = "datos.Estacion"

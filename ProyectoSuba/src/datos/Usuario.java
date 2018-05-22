@@ -165,7 +165,7 @@ public class Usuario {
 		this.lstTarjetas.add(tarjeta);
 	}
 	
-	public void solictarTarifaSocial(TarifaSocial tarifaSocial) throws Exception {
+	public void solicitarTarifaSocial(TarifaSocial tarifaSocial) throws Exception {
 		UsuarioABM abm = new UsuarioABM();
 		this.tarifaSocial=tarifaSocial;
 		abm.modificar(this);

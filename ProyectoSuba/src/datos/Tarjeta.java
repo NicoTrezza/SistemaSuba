@@ -16,7 +16,7 @@ public class Tarjeta {
 	private TarifaSocial tarifaSocial;
 	private BoletoEstudiantil boletoEstudiantil;
 	private RedSube estadoRedSube;
-	private BoletoTren boleto;
+	private Estacion estacionIngreso;
 	
 	public Tarjeta() {}
 	
@@ -31,12 +31,12 @@ public class Tarjeta {
 		this.tarifaSocial = null;
 		this.boletoEstudiantil = null;
 		this.estadoRedSube = null;
-		this.boleto = null;
+		this.estacionIngreso = null;
 	}
 	
 	public Tarjeta(int nroTarjeta, float saldo, boolean activa, Usuario usuario, int numeroViaje,
 			int viajesGratisRestantes, GregorianCalendar ultHoraViaje, TarifaSocial tarifaSocial,
-			BoletoEstudiantil boletoEstudiantil, RedSube estadoRedSube, BoletoTren boleto) {
+			BoletoEstudiantil boletoEstudiantil, RedSube estadoRedSube, Estacion estacionIngreso) {
 		this.nroTarjeta = nroTarjeta;
 		this.saldo = saldo;
 		this.activa = activa;
@@ -47,7 +47,16 @@ public class Tarjeta {
 		this.tarifaSocial = tarifaSocial;
 		this.boletoEstudiantil = boletoEstudiantil;
 		this.estadoRedSube = estadoRedSube;
-		this.boleto = boleto;
+		this.estacionIngreso = estacionIngreso;
+	}
+	
+	public void finalize() {
+		try {
+			super.finalize();
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public int getIdTarjeta() {
@@ -137,22 +146,22 @@ public class Tarjeta {
 	public void setEstadoRedSube(RedSube estadoRedSube) {
 		this.estadoRedSube = estadoRedSube;
 	}
-
-	public BoletoTren getBoleto() {
-		return boleto;
-	}
-
-	public void setBoleto(BoletoTren boleto) {
-		this.boleto = boleto;
-	}
 	
+	public Estacion getEstacionIngreso() {
+		return estacionIngreso;
+	}
+
+	public void setEstacionIngreso(Estacion estacionIngreso) {
+		this.estacionIngreso = estacionIngreso;
+	}
+
 	@Override
 	public String toString() {
 		return "Tarjeta [idTarjeta=" + idTarjeta + ", nroTarjeta=" + nroTarjeta + ", saldo=" + saldo + ", activa="
 				+ activa + ", numeroViaje=" + numeroViaje + ", viajesGratisRestantes=" + viajesGratisRestantes
 				+ ", ultHoraViaje=" + Funciones.traerFechaCortaHora(ultHoraViaje) + ", tarifaSocial=" + tarifaSocial
-				+ ", boletoEstudiantil=" + boletoEstudiantil + ", estadoRedSube=" + estadoRedSube + ", boleto="
-				+ boleto + "]";
+				+ ", boletoEstudiantil=" + boletoEstudiantil + ", estadoRedSube=" + estadoRedSube + ", estacionIngreso="
+				+ estacionIngreso + "]";
 	}
 
 	public void anadirUsuario(Usuario usuario) throws Exception {
