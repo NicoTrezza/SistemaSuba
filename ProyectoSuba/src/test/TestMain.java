@@ -196,14 +196,23 @@ public class TestMain {
 			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(130);
 			Usuario usuario = usuarioABM.traerUsuario(tarjeta.getUsuario().getIdUsuario());
 			if (usuario.getTarifaSocial()!=null) tarjeta.setTarifaSocial(usuario.getTarifaSocial());
+			if (usuario.getBoletoEstudiantil()!=null) {
+				tarjeta.setBoletoEstudiantil(usuario.getBoletoEstudiantil());
+				tarjeta.setViajesGratisRestantes(tarjeta.getBoletoEstudiantil().getCantViajesGratis());
+			}
 			maquinaABM.traerMaquina(1).cobrar(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(1));
 			maquinaABM.traerMaquina(2).cobrar(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(1));
-			maquinaABM.traerMaquina(2).cobrar(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(3));*/
+			maquinaABM.traerMaquina(2).cobrar(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(3));
+			System.out.println(tarjeta.toString());*/
 			/*-------Cobro en MaquinaColectivo-------*/
 			
 			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(130);
 			Usuario usuario = usuarioABM.traerUsuario(tarjeta.getUsuario().getIdUsuario());
 			if (usuario.getTarifaSocial()!=null) tarjeta.setTarifaSocial(usuario.getTarifaSocial());
+			if (usuario.getBoletoEstudiantil()!=null) {
+				tarjeta.setBoletoEstudiantil(usuario.getBoletoEstudiantil());
+				tarjeta.setViajesGratisRestantes(tarjeta.getBoletoEstudiantil().getCantViajesGratis());
+			}
 			maquinaABM.traerMaquina(3).cobrar(tarjeta,0);
 			System.out.println(tarjeta.toString());
 			maquinaABM.traerMaquina(10).cobrar(tarjeta,0);
@@ -213,6 +222,10 @@ public class TestMain {
 			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(130);
 			Usuario usuario = usuarioABM.traerUsuario(tarjeta.getUsuario().getIdUsuario());
 			if (usuario.getTarifaSocial()!=null) tarjeta.setTarifaSocial(usuario.getTarifaSocial());
+			if (usuario.getBoletoEstudiantil()!=null) {
+				tarjeta.setBoletoEstudiantil(usuario.getBoletoEstudiantil());
+				tarjeta.setViajesGratisRestantes(tarjeta.getBoletoEstudiantil().getCantViajesGratis());
+			}
 			maquinaABM.traerMaquina(26).cobrar(tarjeta,1);
 			System.out.println(tarjeta.toString());*/
 			/*-------Cobro en MaquinaTren(Subte)-------*/
