@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.Usuario" table="Usuario">
+		<id column="idUsuario" name="idUsuario">
+			<generator class="identity"/>
+		</id>
+		<property name="nombre" column="nombre" type="string"/>
+		<property name="apellido" column="apellido" type="string"/>
+		<property name="sexo" column="sexo" type="char"/>
+		<property name="nroIdentificacion" column="nroIdentificacion" type="long"/>
+		<property name="clave" column="clave" type="long"/>
+		<property name="email" column="email" type="string"/>
+		<property name="movil" column="movil" type="long"/>
+		<property name="fijo" column="fijo" type="long"/>
+		<many-to-one name = "tipoIdentificacion" class = "datos.TipoIdentificacion" column = "idTipoIdentificacion" not-null = "true"/>
+		<many-to-one name = "permiso" class = "datos.Permiso" column = "idPermiso" not-null = "true"/>
+		<many-to-one name = "tarifaSocial" class = "datos.TarifaSocial" column = "idTarifaSocial"/>
+		<set name = "lstTarjetas" table = "Tarjeta" order-by = "idTarjeta asc"
+		inverse = "true" lazy = "true" fetch = "select">
+			<key column = "idUsuario" not-null = "true"/>
+			<one-to-many class = "datos.Tarjeta"/>
+		</set>
+		<many-to-one name = "boletoEstudiantil" class = "datos.BoletoEstudiantil" column = "idBoletoEstudiantil"/>
+	</class>
+</hibernate-mapping>

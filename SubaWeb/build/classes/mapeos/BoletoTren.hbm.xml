@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.BoletoTren" table="BoletoTren">
+		<id column="idBoletoTren" name="idBoletoTren">
+			<generator class="identity"/>
+		</id>
+		<many-to-one name = "tarifaTren" class = "datos.TarifaTren"
+		column = "idTarifaTren" not-null = "true"/>
+		<many-to-one name = "estacionIngreso" class = "datos.Estacion"
+		column = "estacionIngreso" not-null = "true"/>
+		<many-to-one name = "estacionEgreso" class = "datos.Estacion"
+		column = "estacionEgreso" not-null = "true"/>
+	</class>
+</hibernate-mapping>

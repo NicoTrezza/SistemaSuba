@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="datos.Estacion" table="Estacion">
+		<id column="idEstacion" name="idEstacion">
+			<generator class="identity"/>
+		</id>
+		<property name="nombre" column="nombre" type="string"/>
+		<many-to-one name = "linea" class = "datos.Linea"
+		column = "idLinea" not-null = "true"/>
+	</class>
+</hibernate-mapping>
