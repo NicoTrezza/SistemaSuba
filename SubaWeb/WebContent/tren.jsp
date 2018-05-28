@@ -1,5 +1,3 @@
-<%@page import="datos.Maquina"%>
-<%@page import="negocio.MaquinaABM"%>
 <%@page import="datos.Estacion"%>
 <%@page import="java.util.List"%>
 <%@page import="negocio.EstacionABM"%>
@@ -25,10 +23,10 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
   <script src="js/jquery-3.3.1.js"></script>
-  <script type="text/javascript">
+  <!--  <script type="text/javascript">
  	$(document).ready(function(){
 	    $('#boton').click(function(){
-	    	var estacion = $('option').val();
+	    	var estacion = $('option');
 	    	$.ajax({
 	    		method: "POST",
 	    		url: "Viajes",
@@ -39,7 +37,7 @@
 	    	})
 	    });
 	});
-  </script>
+  </script>-->
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -55,19 +53,21 @@
 	        	<li class="breadcrumb-item active"> <%= usu.getNombre() %> <%= usu.getApellido() %> </li>
 	      	</ol>
 	      	
-	      	<div class="card mb-3">
-	            <div class="card-header" style="background:#81BEF7;">
-	              <i class="fa fa-train"></i> Estacion de ingreso</div>
-	            <select>
-		      		<% 	EstacionABM abm = new EstacionABM();
-		      			MaquinaABM mabm = new MaquinaABM();
-		      			List<Estacion> estaciones = abm.traerEstaciones();
-		      			for (Estacion estacion: estaciones) {%>
-		      				<option><%= estacion.getNombre() %></option>
-		      			<% } %>
-		      	</select>
-	      		<input id="boton" type="submit" value="Viajar">
-          	</div>
+	      	<form method="post" action="/SubaWeb/Tren">
+		      	<div class="card mb-3">
+		            <div class="card-header" style="background:#81BEF7;">
+		              <i class="fa fa-train"></i> Estacion</div>
+		            
+			            <select name="estacion">
+				      		<% 	EstacionABM abm = new EstacionABM();
+				      			List<Estacion> estaciones = abm.traerEstaciones();
+				      			for (Estacion estacion: estaciones) {%>
+				      				<option><%= estacion.getNombre() %></option>
+				      			<% } %>
+				      	</select>
+			      		<input id="boton" type="submit" value="Viajar">
+	          	</div>
+          	</form>
 	          
           	<div class="card text-white bg-success o-hidden h-100">
 	            <div class="card-body">

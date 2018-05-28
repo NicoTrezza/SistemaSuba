@@ -86,4 +86,17 @@ public class MaquinaDao {
 		
 		return objeto;
 	}
+	
+	public Maquina traerPorLinea(int idLineaColectivo) throws HibernateException {
+		Maquina objeto = null;
+		
+		try {
+			iniciaOperacion();
+			objeto = (Maquina) session.createQuery("from Maquina m where idLineaColectivo="+idLineaColectivo).uniqueResult();
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
 }

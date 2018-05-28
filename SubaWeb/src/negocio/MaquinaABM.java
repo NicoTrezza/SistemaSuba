@@ -2,6 +2,7 @@ package negocio;
 
 import dao.MaquinaDao;
 import datos.Estacion;
+import datos.LineaColectivo;
 import datos.Maquina;
 
 public class MaquinaABM {
@@ -15,6 +16,12 @@ public class MaquinaABM {
 	
 	public Maquina traerMaquinaPorEstacion(Estacion e) throws Exception{
 		Maquina maquina = dao.traerPorEstacion(e.getIdEstacion());
+		if (maquina==null) throw new Exception("La maquina no existe");
+		return maquina;
+	}
+	
+	public Maquina traerMaquinaPorLinea(LineaColectivo l) throws Exception{
+		Maquina maquina = dao.traerPorLinea(l.getIdLineaColectivo());
 		if (maquina==null) throw new Exception("La maquina no existe");
 		return maquina;
 	}

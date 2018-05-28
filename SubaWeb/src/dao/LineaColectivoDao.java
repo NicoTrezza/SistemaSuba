@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -72,5 +74,32 @@ public class LineaColectivoDao {
 		}
 		
 		return objeto;
+	}
+	
+	public LineaColectivo traerLinea(int linea) throws HibernateException {
+		LineaColectivo objeto = null;
+		
+		try {
+			iniciaOperacion();
+			objeto = (LineaColectivo) session.createQuery("from LineaColectivo l where l.linea=" + linea).uniqueResult();
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<LineaColectivo> traer() throws HibernateException {
+		List<LineaColectivo> lineas = null;
+		
+		try {
+			iniciaOperacion();
+			lineas = session.createQuery("from LineaColectivo").list();
+		} finally {
+			session.close();
+		}
+		
+		return lineas;
 	}
 }

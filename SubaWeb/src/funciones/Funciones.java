@@ -103,12 +103,12 @@ public class Funciones {
 		String fechaCorta=null;
 		if (f!=null) {
 			fechaCorta = traerFechaCorta(f) + " " + f.get(Calendar.HOUR_OF_DAY) + ":";
-			if (f.get(Calendar.MINUTE) < 9) 
+			if (f.get(Calendar.MINUTE) <= 9) 
 				fechaCorta += "0" + f.get(Calendar.MINUTE) + ":";
 			else
 				fechaCorta += f.get(Calendar.MINUTE) + ":";
 			
-			if (f.get(Calendar.SECOND) < 9) 
+			if (f.get(Calendar.SECOND) <= 9) 
 				fechaCorta += "0" + f.get(Calendar.SECOND);
 			else 
 				fechaCorta += f.get(Calendar.SECOND);

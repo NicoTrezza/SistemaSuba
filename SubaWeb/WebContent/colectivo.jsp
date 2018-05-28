@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="negocio.LineaColectivoABM"%>
+<%@page import="datos.LineaColectivo"%>
 <%@page import="datos.Tarjeta"%>
 <%@page import="datos.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -34,11 +37,30 @@
 	        	<li class="breadcrumb-item active"> <%= usu.getNombre() %> <%= usu.getApellido() %> </li>
 	      	</ol>
 	      	
-	      	<div class="card mb-3">
-	            <div class="card-header" style="background:#81BEF7;">
-	        	  <i class="fa fa-bus"></i> Parada</div>
-	            <input id="boton" type="submit" value="Viajar">
-          	</div>
+	      	<form method="post" action="/SubaWeb/Colectivo">
+		      	<div class="card mb-3">
+		            <div class="card-header" style="background:#81BEF7;">
+		        	  <i class="fa fa-bus"></i> Linea</div>
+		        	  
+		        	  <select name="linea">
+		        	  	<% LineaColectivoABM lAbm = new LineaColectivoABM();
+		        	  		List<LineaColectivo> lineas = lAbm.traerLineas();
+		        	  		for (LineaColectivo linea: lineas) { %>
+		        	  			<option><%= linea.getLinea() %> </option>
+		        	  		<% } %>
+		        	  </select>
+		        	  
+		            <div class="card-header" style="background:#81BEF7;">
+		        	  <i class="fa fa-map"></i> Seccion</div>
+		        	
+		        	  <select name="seccion">
+		        	  	<option> 1 </option>
+		        	  	<option> 2 </option>
+		        	  	<option> 3 </option>
+		        	  </select>
+		        	  <input id="boton" type="submit" value="Viajar">
+	          	</div>
+          	</form>
           	
           	<div class="card text-white bg-success o-hidden h-100">
 	            <div class="card-body">

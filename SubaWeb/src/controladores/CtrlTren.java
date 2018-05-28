@@ -1,7 +1,6 @@
 package controladores;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +12,8 @@ import datos.Maquina;
 import datos.Tarjeta;
 import negocio.EstacionABM;
 import negocio.MaquinaABM;
-import negocio.TarjetaABM;
 
-public class CtrlViajes extends HttpServlet {
+public class CtrlTren extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		procesarPeticion(request, response);
 	}
@@ -35,7 +33,7 @@ public class CtrlViajes extends HttpServlet {
 			Maquina maq = mAbm.traerMaquinaPorEstacion(estacion);
 			
 			Tarjeta tar = (Tarjeta) request.getSession().getAttribute("tarjeta");
-			maq.cobrar(tar);
+			maq.cobrar(tar, 0);
 						
 			request.getRequestDispatcher("/tabla.jsp").forward(request, response);
 		} catch (Exception e) {

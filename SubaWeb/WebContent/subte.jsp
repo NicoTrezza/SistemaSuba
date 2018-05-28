@@ -38,11 +38,13 @@
 	        	<li class="breadcrumb-item active"> <%= usu.getNombre() %> <%= usu.getApellido() %> </li>
 	      	</ol>
 	      	
-	      	<div class="card mb-3">
-	            <div class="card-header" style="background:#81BEF7;">
-	        	  <i class="fa fa-subway"></i> Estacion de ingreso</div>
-	            <input id="boton" type="submit" value="Viajar">
-          	</div>
+	      	<form method="post" action="/SubaWeb/Subte">
+		      	<div class="card mb-3">
+		            <div class="card-header" style="background:#81BEF7;">
+		        	  <i class="fa fa-subway"></i> Estacion</div>
+		            <input id="boton" type="submit" value="Viajar">
+	          	</div>
+          	</form>
           	
           	<div class="card text-white bg-success o-hidden h-100">
 	            <div class="card-body">

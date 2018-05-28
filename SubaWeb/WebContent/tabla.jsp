@@ -68,7 +68,11 @@
 		              	<tr>
 		                  <td><%= viaje.getIdViaje() %></td>
 		                  <td><%= Funciones.traerFechaCortaHora(viaje.getFechaHora())%></td>
-		                  <td><%= viaje.getValor() %></td>
+		                  <% if (viaje.getValor() * -1 < 0) { %>
+		                  	<td style="color:red;"><%= viaje.getValor() * -1 %></td>
+		                  <% }  else {%>
+		                  	<td style="color:green;"><%= viaje.getValor() * -1 %></td>
+		                  <% } %>
 		                  <td><%= viaje.getMaquina().getIdMaquina() %></td>
 		                </tr>
 		             	<% } 

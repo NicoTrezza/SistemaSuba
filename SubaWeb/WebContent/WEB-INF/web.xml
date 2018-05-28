@@ -12,11 +12,31 @@
   
   <display-name>Web</display-name>
   <servlet>
-  	<servlet-name>CtrlViajes</servlet-name>
-  	<servlet-class>controladores.CtrlViajes</servlet-class>
+  	<servlet-name>CtrlTren</servlet-name>
+  	<servlet-class>controladores.CtrlTren</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>CtrlViajes</servlet-name>
-  	<url-pattern>/Viajes</url-pattern>
+  	<servlet-name>CtrlTren</servlet-name>
+  	<url-pattern>/Tren</url-pattern>
+  </servlet-mapping>
+  
+  <display-name>Web</display-name>
+  <servlet>
+  	<servlet-name>CtrlSubte</servlet-name>
+  	<servlet-class>controladores.CtrlSubte</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CtrlSubte</servlet-name>
+  	<url-pattern>/Subte</url-pattern>
+  </servlet-mapping>
+  
+  <display-name>Web</display-name>
+  <servlet>
+  	<servlet-name>CtrlColectivo</servlet-name>
+  	<servlet-class>controladores.CtrlColectivo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CtrlColectivo</servlet-name>
+  	<url-pattern>/Colectivo</url-pattern>
   </servlet-mapping>
 </web-app>

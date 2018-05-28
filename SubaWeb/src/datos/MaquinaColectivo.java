@@ -40,33 +40,37 @@ public class MaquinaColectivo extends Maquina {
 		RedSubeABM redSubeABM = new RedSubeABM();
 		GregorianCalendar fechaHora = new GregorianCalendar();
 		BoletoColectivo boletoColectivo = (BoletoColectivo) boleto;
-		float tarifa;
+		float tarifa=0;
 		
-		if (tarjeta.getEstacionIngreso()!=null &&
-				(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())>7200000)
-			tarjeta.setEstacionIngreso(null);
-		if ((tarjeta.getSaldo()-boletoColectivo.getValor()) < -(boletoColectivoABM.traerBoletoMax().getValor()*3)) throw new Exception("Saldo insuficiente");
-		tarjeta.setUltHoraViaje(fechaHora);
-		if (tarjeta.getEstadoRedSube()!=null &&
-				(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())<=7200000) {
-			tarifa = boletoColectivo.getValor() * tarjeta.getEstadoRedSube().getPorcentajeDescuento();
-			if (tarjeta.getEstadoRedSube().getIdRedSube()==1) tarjeta.setEstadoRedSube(redSubeABM.traerRedSube(2));
-			else {
-				tarjeta.setNumeroViaje(tarjeta.getNumeroViaje()+1);
-				if (tarjeta.getNumeroViaje()>4) {
-					tarjeta.setNumeroViaje(0);
-					tarjeta.setEstadoRedSube(null);
+		if (tarjeta.getViajesGratisRestantes()<1) {
+			if (tarjeta.getEstacionIngreso()!=null &&
+					(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())>7200000)
+				tarjeta.setEstacionIngreso(null);
+			if ((tarjeta.getSaldo()-boletoColectivo.getValor()) < -(boletoColectivoABM.traerBoletoMax().getValor()*3))
+				throw new Exception("Saldo insuficiente");
+			tarjeta.setUltHoraViaje(fechaHora);
+			if (tarjeta.getEstadoRedSube()!=null &&
+					(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())<=7200000) {
+				tarifa = boletoColectivo.getValor() * tarjeta.getEstadoRedSube().getPorcentajeDescuento();
+				if (tarjeta.getEstadoRedSube().getIdRedSube()==1) tarjeta.setEstadoRedSube(redSubeABM.traerRedSube(2));
+				else {
+					tarjeta.setNumeroViaje(tarjeta.getNumeroViaje()+1);
+					if (tarjeta.getNumeroViaje()>4) {
+						tarjeta.setNumeroViaje(0);
+						tarjeta.setEstadoRedSube(null);
+					}
 				}
 			}
+			else {
+				tarifa = boletoColectivo.getValor();
+				tarjeta.setEstadoRedSube(redSubeABM.traerRedSube(1));
+				tarjeta.setNumeroViaje(1);
+			}
+			if (tarjeta.getTarifaSocial()!=null) tarifa = tarifa * tarjeta.getTarifaSocial().getPorcentajeDescuento();
+			tarjeta.setSaldo(tarjeta.getSaldo()-tarifa);
+			tarjetaABM.modificar(tarjeta);
 		}
-		else {
-			tarifa = boletoColectivo.getValor();
-			tarjeta.setEstadoRedSube(redSubeABM.traerRedSube(1));
-			tarjeta.setNumeroViaje(1);
-		}
-		if (tarjeta.getTarifaSocial()!=null) tarifa = tarifa * tarjeta.getTarifaSocial().getPorcentajeDescuento();
-		tarjeta.setSaldo(tarjeta.getSaldo()-tarifa);
-		tarjetaABM.modificar(tarjeta);
+		else tarjeta.setViajesGratisRestantes(tarjeta.getViajesGratisRestantes()-1);
 		viajeABM.agregar(fechaHora,tarifa,tarjeta,this);
 	}
 }

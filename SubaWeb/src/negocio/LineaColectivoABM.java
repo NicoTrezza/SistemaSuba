@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.List;
+
 import dao.LineaColectivoDao;
 import datos.LineaColectivo;
 
@@ -10,6 +12,16 @@ public class LineaColectivoABM {
 		LineaColectivo lc = dao.traer(idLineaColectivo);
 		if (lc==null) throw new Exception("La linea no existe");
 		return lc;
+	}
+	
+	public LineaColectivo traerPorLineaColectivo(int linea) throws Exception {
+		LineaColectivo lc = dao.traerLinea(linea);
+		if (lc==null) throw new Exception("La linea no existe");
+		return lc;
+	}
+	
+	public List<LineaColectivo> traerLineas() {
+		return dao.traer();
 	}
 	
 	public int agregar(int linea) {

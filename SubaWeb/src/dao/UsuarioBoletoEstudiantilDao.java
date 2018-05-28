@@ -81,4 +81,26 @@ public class UsuarioBoletoEstudiantilDao {
 		
 		return objeto;
 	}
+	
+	public UsuarioBoletoEstudiantil traerPorUsuario(int idUsuario) throws HibernateException {
+		UsuarioBoletoEstudiantil objeto = null;
+		
+		try {
+			iniciaOperacion();
+			String hql = "from UsuarioBoletoEstudiantil ube "
+					+ "inner join fetch ube.usuario "
+					+ "inner join fetch ube.usuario.permiso "
+					+ "inner join fetch ube.usuario.tipoIdentificacion "
+					+ "left join fetch ube.usuario.tarifaSocial "
+					+ "left join fetch ube.usuario.lstTarjetas "
+					+ "left join fetch ube.usuario.boletoEstudiantil " 
+					+ "inner join fetch ube.boletoEstudiantil "
+					+ "where ube.usuario.idUsuario="+idUsuario;
+			objeto = (UsuarioBoletoEstudiantil) session.createQuery(hql).uniqueResult();
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
 }
