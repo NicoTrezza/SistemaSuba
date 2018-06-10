@@ -28,16 +28,13 @@ public class CtrlColectivo extends HttpServlet {
 		try {
 			
 			int l = Integer.parseInt(request.getParameter("linea"));
-			int s = Integer.parseInt(request.getParameter("seccion"));
+			float s = Float.parseFloat(request.getParameter("seccion"));
 			
-			LineaColectivoABM lAbm = new LineaColectivoABM();
-			LineaColectivo linea = lAbm.traerPorLineaColectivo(l);
+			LineaColectivo linea = LineaColectivoABM.getInstancia().traerPorLineaColectivo(l);
 						
-			BoletoColectivoABM bAbm = new BoletoColectivoABM();
-			BoletoColectivo boleto = bAbm.traerBoletoPorSeccion(s);
+			BoletoColectivo boleto = BoletoColectivoABM.getInstancia().traerBoletoPorValor(s);
 			
-			MaquinaABM mAbm = new MaquinaABM();
-			Maquina maq = mAbm.traerMaquinaPorLinea(linea);
+			Maquina maq = MaquinaABM.getInstancia().traerMaquinaPorLinea(linea);
 			
 			Tarjeta tar = (Tarjeta) request.getSession().getAttribute("tarjeta");
 			maq.cobrar(tar, boleto);

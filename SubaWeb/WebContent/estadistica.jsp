@@ -1,3 +1,5 @@
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="funciones.Funciones"%>
 <%@page import="datos.Tarjeta"%>
 <%@page import="datos.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -33,6 +35,40 @@
 	        	</li>
 	        	<li class="breadcrumb-item active"> <%= usu.getNombre() %> <%= usu.getApellido() %> </li>
 	      	</ol>
+	      	        
+    		<div class="card mb-3">
+	     	  <div class="card-header" style="background:#81BEF7;">
+		         <i class="fa fa-area-chart"></i> Area Chart Example</div>
+		      <div class="card-body">
+		      	<canvas id="myAreaChart" width="100%" height="30"></canvas>
+		      </div>
+		      <div class="card-footer small text-muted">Última actualización <%= Funciones.traerFechaCortaHora(new GregorianCalendar()) %></div>
+		  	</div>
+		  	
+			<div class="row">
+			  <div class="col-lg-8">
+			    <!-- Example Bar Chart Card-->
+			    <div class="card mb-3">
+			      <div class="card-header" style="background:#81BEF7;">
+			        <i class="fa fa-bar-chart"></i> Viajes por semana</div>
+			      <div class="card-body">
+			        <canvas id="myBarChart" width="100" height="50"></canvas>
+			      </div>
+			      <div class="card-footer small text-muted">Última actualización <%= Funciones.traerFechaCortaHora(new GregorianCalendar()) %></div>
+			    </div>
+			  </div>
+			  <div class="col-lg-4">
+			    <!-- Example Pie Chart Card-->
+			    <div class="card mb-3">
+			      <div class="card-header" style="background:#81BEF7;">
+			        <i class="fa fa-pie-chart"></i> Transportes mas utilizados</div>
+			      <div class="card-body">
+			        <canvas id="myPieChart" width="100%" height="100"></canvas>
+			      </div>
+			      <div class="card-footer small text-muted">Última actualización <%= Funciones.traerFechaCortaHora(new GregorianCalendar()) %></div>
+			    </div>
+			  </div>
+			</div>
 	     </div>
 		<%@include file="pie.jsp" %>
 	</div>

@@ -480,6 +480,6 @@ footer.sticky-footer {
 }
 
 .ingreso {
-  top: 350px;
-  left: -20%;
+  opacity: 0.9;
+  top: 150px;
 }

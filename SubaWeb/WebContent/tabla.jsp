@@ -1,3 +1,11 @@
+<%@page import="negocio.LineaColectivoABM"%>
+<%@page import="datos.Maquina"%>
+<%@page import="datos.MaquinaTren"%>
+<%@page import="negocio.MaquinaABM"%>
+<%@page import="datos.Estacion"%>
+<%@page import="negocio.EstacionABM"%>
+<%@page import="negocio.CargaABM"%>
+<%@page import="datos.Carga"%>
 <%@page import="funciones.Funciones"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.List"%>
@@ -32,8 +40,8 @@
 	    <div class="container-fluid">
 			<% Usuario usu = (Usuario) request.getSession().getAttribute("usuario"); 
 	    	Tarjeta tar = (Tarjeta) request.getSession().getAttribute("tarjeta");
-	    	ViajeABM abm  = new ViajeABM();
-	    	List<Viaje> viajes = abm.traerViajes();%>
+	    	List<Viaje> viajes = ViajeABM.getInstancia().traerViajes();
+	    	List<Carga> cargas = CargaABM.getInstancia().traerCargas();%>
 			<ol class="breadcrumb">
 	      		<li class="breadcrumb-item">
 	          		<a href="#">Tablas</a>
@@ -48,25 +56,27 @@
 		            <table class="table table-bordered" id="dataTable">
 		              <thead>
 		                <tr>
-		                  <th>Id Viaje</th>
+		                  <th>Id viaje</th>
 		                  <th>Fecha Hora</th>
 		                  <th>Valor</th>
 		                  <th>Máquina</th>
+		                  <th>Estacion / Colectivo</th>	
 		                </tr>
 		              </thead>
 		              <tfoot>
 		                <tr>
-		                  <th>Id Viaje</th>
+		                  <th>Id viaje</th>
 		                  <th>Fecha Hora</th>
 		                  <th>Valor</th>
 		                  <th>Máquina</th>
+		                  <th>Estacion / Colectivo</th>
 		                </tr>
 		              </tfoot>
 		              <tbody>
 		              <% for (Viaje viaje: viajes) { 
 		              	if (viaje.getTarjeta().getIdTarjeta() == tar.getIdTarjeta()) { %>
 		              	<tr>
-		                  <td><%= viaje.getIdViaje() %></td>
+		              	  <td><%= viaje.getIdViaje() %></td>
 		                  <td><%= Funciones.traerFechaCortaHora(viaje.getFechaHora())%></td>
 		                  <% if (viaje.getValor() * -1 < 0) { %>
 		                  	<td style="color:red;"><%= viaje.getValor() * -1 %></td>
@@ -74,7 +84,14 @@
 		                  	<td style="color:green;"><%= viaje.getValor() * -1 %></td>
 		                  <% } %>
 		                  <td><%= viaje.getMaquina().getIdMaquina() %></td>
-		                </tr>
+		                  <% Maquina m = MaquinaABM.getInstancia().traerMaquina(viaje.getMaquina().getIdMaquina());
+		                  	if (m.getTipo() == 0) { %>
+		                  		<td><%= LineaColectivoABM.getInstancia().traerLineaColectivoPorMaquina(m).getLinea() %></td>
+		                  <% } else { %>
+		                  		<td><%= EstacionABM.getInstancia().traerEstacionPorMaquina(m).getNombre() %></td>
+		                  <% } %>
+		                  
+		                 </tr>
 		             	<% } 
 		              	} %>
 		              </tbody>

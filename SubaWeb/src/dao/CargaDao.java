@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -72,5 +74,19 @@ public class CargaDao {
 		}
 		
 		return objeto;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Carga> traer() throws HibernateException {
+		List<Carga> cargas = null;
+		
+		try {
+			iniciaOperacion();
+			cargas = session.createQuery("from Carga").list();
+		} finally {
+			session.close();
+		}
+		
+		return cargas;
 	}
 }

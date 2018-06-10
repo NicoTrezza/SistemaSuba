@@ -26,11 +26,9 @@ public class CtrlTren extends HttpServlet {
 		try {
 			String e = request.getParameter("estacion");
 			
-			EstacionABM eAbm = new EstacionABM();
-			Estacion estacion = eAbm.traerEstacion(e);
+			Estacion estacion = EstacionABM.getInstancia().traerEstacion(e);
 			
-			MaquinaABM mAbm = new MaquinaABM();
-			Maquina maq = mAbm.traerMaquinaPorEstacion(estacion);
+			Maquina maq = MaquinaABM.getInstancia().traerMaquinaPorEstacion(estacion);
 			
 			Tarjeta tar = (Tarjeta) request.getSession().getAttribute("tarjeta");
 			maq.cobrar(tar, 0);

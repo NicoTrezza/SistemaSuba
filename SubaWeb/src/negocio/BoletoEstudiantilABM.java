@@ -4,8 +4,19 @@ import dao.BoletoEstudiantilDao;
 import datos.BoletoEstudiantil;
 
 public class BoletoEstudiantilABM {
-	BoletoEstudiantilDao dao = new BoletoEstudiantilDao();
+	private static BoletoEstudiantilABM instancia;
+	protected BoletoEstudiantilDao dao;
 
+	protected BoletoEstudiantilABM() {
+		dao = new BoletoEstudiantilDao();
+	}
+	
+	public static BoletoEstudiantilABM getInstancia() {
+		if (instancia == null)
+			instancia = new BoletoEstudiantilABM();
+		return instancia;
+	}
+	
 	public BoletoEstudiantil traerBoletoEstudiantil(int idBoletoEstudiantil) throws Exception {
 		BoletoEstudiantil boletoEstudiantil = dao.traer(idBoletoEstudiantil);
 		if (boletoEstudiantil==null) throw new Exception("El boleto estudiantil seleccionado no existe");

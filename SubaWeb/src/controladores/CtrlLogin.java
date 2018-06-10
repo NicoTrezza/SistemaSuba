@@ -25,12 +25,10 @@ public class CtrlLogin extends HttpServlet {
 		try {
 			String email = request.getParameter("email");
 			long clave = Long.parseLong(request.getParameter("clave"));
-			UsuarioABM abm = new UsuarioABM();
-			Usuario usu = abm.traerUsuarioPorClave(clave);
+			Usuario usu = UsuarioABM.getInstancia().traerUsuarioPorClave(clave);
 			
 			if (email.equals(usu.getEmail())) {
-				TarjetaABM tarAbm = new TarjetaABM();
-				Tarjeta t = tarAbm.traerTarjetaPorUsuario(usu);
+				Tarjeta t = TarjetaABM.getInstancia().traerTarjetaPorUsuario(usu);
 				request.getSession().setAttribute("usuario", usu);
 		      	request.getSession().setAttribute("tarjeta", t);
 				

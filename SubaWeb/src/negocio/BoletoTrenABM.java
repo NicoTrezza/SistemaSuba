@@ -6,8 +6,19 @@ import datos.Estacion;
 import datos.TarifaTren;
 
 public class BoletoTrenABM {
-	BoletoTrenDao dao = new BoletoTrenDao();
+	private static BoletoTrenABM instancia;
+	protected BoletoTrenDao dao;
 
+	protected BoletoTrenABM() {
+		dao = new BoletoTrenDao();
+	}
+	
+	public static BoletoTrenABM getInstancia() {
+		if (instancia == null)
+			instancia = new BoletoTrenABM();
+		return instancia;
+	}
+	
 	public BoletoTren traerBoleto(int idBoletoTren) throws Exception {
 		BoletoTren boletoTren = dao.traer(idBoletoTren);
 		if (boletoTren==null) throw new Exception("No existe el trayecto seleccionado");

@@ -4,8 +4,19 @@ import dao.RedSubeDao;
 import datos.RedSube;
 
 public class RedSubeABM {
-	RedSubeDao dao = new RedSubeDao();
+	private static RedSubeABM instancia;
+	protected RedSubeDao dao;
 
+	protected RedSubeABM() {
+		dao = new RedSubeDao();
+	}
+	
+	public static RedSubeABM getInstancia() {
+		if (instancia == null)
+			instancia = new RedSubeABM();
+		return instancia;
+	}
+	
 	public RedSube traerRedSube(int idRedSube) throws Exception {
 		RedSube redSube = dao.traer(idRedSube);
 		if (redSube==null) throw new Exception("El nivel de descuento Red Sube no existe");

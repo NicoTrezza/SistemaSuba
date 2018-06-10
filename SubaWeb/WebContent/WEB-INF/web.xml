@@ -12,6 +12,16 @@
   
   <display-name>Web</display-name>
   <servlet>
+  	<servlet-name>CtrlCarga</servlet-name>
+  	<servlet-class>controladores.CtrlCarga</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CtrlCarga</servlet-name>
+  	<url-pattern>/Carga</url-pattern>
+  </servlet-mapping>
+  
+  <display-name>Web</display-name>
+  <servlet>
   	<servlet-name>CtrlTren</servlet-name>
   	<servlet-class>controladores.CtrlTren</servlet-class>
   </servlet>
@@ -39,4 +49,15 @@
   	<servlet-name>CtrlColectivo</servlet-name>
   	<url-pattern>/Colectivo</url-pattern>
   </servlet-mapping>
+  
+  <display-name>Web</display-name>
+  <servlet>
+  	<servlet-name>CtrlRegistro</servlet-name>
+  	<servlet-class>controladores.CtrlRegistro</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CtrlRegistro</servlet-name>
+  	<url-pattern>/Registro</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

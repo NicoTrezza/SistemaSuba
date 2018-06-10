@@ -9,8 +9,19 @@ import datos.Tarjeta;
 import datos.Viaje;
 
 public class ViajeABM {
-	ViajeDao dao = new ViajeDao();
+	private static ViajeABM instancia;
+	protected ViajeDao dao;
 
+	protected ViajeABM() {
+		dao = new ViajeDao();
+	}
+	
+	public static ViajeABM getInstancia() {
+		if (instancia == null)
+			instancia = new ViajeABM();
+		return instancia;
+	}
+	
 	public Viaje traerCarga(int idViaje) throws Exception {
 		Viaje viaje = dao.traer(idViaje);
 		if (viaje==null) throw new Exception("Movimiento de viaje no existente");

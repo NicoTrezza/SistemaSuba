@@ -22,22 +22,6 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
-  <script src="js/jquery-3.3.1.js"></script>
-  <!--  <script type="text/javascript">
- 	$(document).ready(function(){
-	    $('#boton').click(function(){
-	    	var estacion = $('option');
-	    	$.ajax({
-	    		method: "POST",
-	    		url: "Viajes",
-	    		data: {estacion: estacion},
-	    		async: false
-	    	}).done(function(data) {
-	    		$("#estacion").html(data);
-	    	})
-	    });
-	});
-  </script>-->
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -57,12 +41,10 @@
 		      	<div class="card mb-3">
 		            <div class="card-header" style="background:#81BEF7;">
 		              <i class="fa fa-train"></i> Estacion</div>
-		            
 			            <select name="estacion">
-				      		<% 	EstacionABM abm = new EstacionABM();
-				      			List<Estacion> estaciones = abm.traerEstaciones();
-				      			for (Estacion estacion: estaciones) {%>
-				      				<option><%= estacion.getNombre() %></option>
+				      		<% List<Estacion> estaciones = EstacionABM.getInstancia().traerEstacionesTren();
+				      			for (Estacion estacion: estaciones) { %>
+				      					<option><%= estacion.getNombre() %></option>
 				      			<% } %>
 				      	</select>
 			      		<input id="boton" type="submit" value="Viajar">

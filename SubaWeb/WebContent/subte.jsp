@@ -1,3 +1,6 @@
+<%@page import="datos.Estacion"%>
+<%@page import="java.util.List"%>
+<%@page import="negocio.EstacionABM"%>
 <%@page import="datos.Tarjeta"%>
 <%@page import="datos.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -42,6 +45,12 @@
 		      	<div class="card mb-3">
 		            <div class="card-header" style="background:#81BEF7;">
 		        	  <i class="fa fa-subway"></i> Estacion</div>
+		        	  <select name="estacion">
+				      		<% 	List<Estacion> estaciones = EstacionABM.getInstancia().traerEstacionesSubte();
+				      			for (Estacion estacion: estaciones) { %>
+				      					<option><%= estacion.getNombre() %></option>				      			
+				      			<% } %>
+				      	</select>
 		            <input id="boton" type="submit" value="Viajar">
 	          	</div>
           	</form>

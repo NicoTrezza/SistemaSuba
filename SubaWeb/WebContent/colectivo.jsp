@@ -1,3 +1,5 @@
+<%@page import="negocio.BoletoColectivoABM"%>
+<%@page import="datos.BoletoColectivo"%>
 <%@page import="java.util.List"%>
 <%@page import="negocio.LineaColectivoABM"%>
 <%@page import="datos.LineaColectivo"%>
@@ -43,20 +45,20 @@
 		        	  <i class="fa fa-bus"></i> Linea</div>
 		        	  
 		        	  <select name="linea">
-		        	  	<% LineaColectivoABM lAbm = new LineaColectivoABM();
-		        	  		List<LineaColectivo> lineas = lAbm.traerLineas();
+		        	  	<% List<LineaColectivo> lineas = LineaColectivoABM.getInstancia().traerLineas();
 		        	  		for (LineaColectivo linea: lineas) { %>
 		        	  			<option><%= linea.getLinea() %> </option>
 		        	  		<% } %>
 		        	  </select>
 		        	  
 		            <div class="card-header" style="background:#81BEF7;">
-		        	  <i class="fa fa-map"></i> Seccion</div>
+		        	  <i class="fa fa-map"></i> Valor por seccion</div>
 		        	
 		        	  <select name="seccion">
-		        	  	<option> 1 </option>
-		        	  	<option> 2 </option>
-		        	  	<option> 3 </option>
+		        	  	<% List<BoletoColectivo> boletos = BoletoColectivoABM.getInstancia().traerBoletos();
+		        	  		for (BoletoColectivo boleto: boletos) { %>
+		        	  			<option><%= boleto.getValor() %> </option>
+			        	  	<% } %>
 		        	  </select>
 		        	  <input id="boton" type="submit" value="Viajar">
 	          	</div>

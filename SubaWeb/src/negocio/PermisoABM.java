@@ -4,7 +4,18 @@ import dao.PermisoDao;
 import datos.Permiso;
 
 public class PermisoABM {
-	PermisoDao dao = new PermisoDao();
+	private static PermisoABM instancia;
+	protected PermisoDao dao;
+	
+	protected PermisoABM() {
+		dao = new PermisoDao();
+	}
+	
+	public static PermisoABM getInstancia() {
+		if (instancia == null)
+			instancia = new PermisoABM();
+		return instancia;
+	}
 
 	public Permiso traerPermisoPorID(int idPermiso) throws Exception {
 		Permiso permiso = dao.traer(idPermiso);

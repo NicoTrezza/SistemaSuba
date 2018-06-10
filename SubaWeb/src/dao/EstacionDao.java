@@ -88,7 +88,7 @@ public class EstacionDao {
 		
 		return objeto;
 	}
-	
+		
 	@SuppressWarnings("unchecked")
 	public List<Estacion> traer() throws HibernateException {
 		List<Estacion> estaciones = null;

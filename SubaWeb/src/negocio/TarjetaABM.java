@@ -5,8 +5,19 @@ import datos.Tarjeta;
 import datos.Usuario;
 
 public class TarjetaABM {
-	TarjetaDao dao = new TarjetaDao();
+	private static TarjetaABM instancia;
+	protected TarjetaDao dao;
 
+	protected TarjetaABM() {
+		dao = new TarjetaDao();
+	}
+	
+	public static TarjetaABM getInstancia() {
+		if (instancia == null)
+			instancia = new TarjetaABM();
+		return instancia;
+	}
+	
 	public Tarjeta traerTarjeta(int idTarjeta) throws Exception {
 		Tarjeta tarjeta = dao.traer(idTarjeta);
 		if (tarjeta==null) throw new Exception("La tarjeta no existe");
@@ -26,8 +37,8 @@ public class TarjetaABM {
 	}
 
 	
-	public int agregar(int nroTarjeta) throws Exception {
-		Tarjeta tarjeta = new Tarjeta(nroTarjeta);
+	public int agregar(int nroTarjeta, Usuario usuario) throws Exception {
+		Tarjeta tarjeta = new Tarjeta(nroTarjeta, usuario);
 		if (dao.traerPorNumero(tarjeta.getNroTarjeta())!=null) throw new Exception("Tarjeta duplicada");
 		return dao.agregar(tarjeta);
 	}

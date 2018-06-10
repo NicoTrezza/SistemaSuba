@@ -6,7 +6,18 @@ import datos.LineaColectivo;
 import datos.Maquina;
 
 public class MaquinaABM {
-	MaquinaDao dao = new MaquinaDao(); 
+	private static MaquinaABM instancia;
+	protected MaquinaDao dao; 
+	
+	protected MaquinaABM() {
+		dao = new MaquinaDao(); 
+	}
+	
+	public static MaquinaABM getInstancia() {
+		if (instancia == null)
+			instancia = new MaquinaABM();
+		return instancia;
+	}
 	
 	public Maquina traerMaquina(int idMaquina) throws Exception{
 		Maquina maquina = dao.traer(idMaquina);

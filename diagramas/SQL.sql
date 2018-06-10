@@ -121,6 +121,7 @@ INSERT INTO `subabd`.`redsube` (`porcentajeDescuento`) VALUES ('0.25');
 INSERT INTO `subabd`.`tarifasocial` (`porcentajeDescuento`) VALUES ('0.45');
 
 INSERT INTO `subabd`.`permiso` (`nivelPermisos`, `nombre`) VALUES ('0', 'Administrador');
+INSERT INTO `subabd`.`permiso` (`nivelPermisos`, `nombre`) VALUES ('1', 'Cliente');
 
 INSERT INTO `subabd`.`tipoidentificacion` (`nombre`) VALUES ('Documento Nacional de Identidad');
 

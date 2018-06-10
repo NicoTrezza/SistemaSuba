@@ -11,8 +11,19 @@ import datos.TipoIdentificacion;
 import datos.Usuario;
 
 public class UsuarioABM {
-	UsuarioDao dao = new UsuarioDao();
+	private static UsuarioABM instancia;
+	protected UsuarioDao dao;
 
+	protected UsuarioABM() {
+		dao = new UsuarioDao();
+	}
+	
+	public static UsuarioABM getInstancia() {
+		if (instancia == null)
+			instancia = new UsuarioABM();
+		return instancia;
+	}
+	
 	public Usuario traerUsuario(int idUsuario) throws Exception {
 		Usuario usuario = dao.traer(idUsuario);
 		if (usuario==null) throw new Exception("El usuario no existe");
@@ -24,7 +35,21 @@ public class UsuarioABM {
 		if (usuario==null) throw new Exception("El usuario no existe");
 		return usuario;
 	}
-		
+	
+	public int agregar(Usuario usuario) throws Exception {
+		Usuario usuario1 = dao.traerPorIdentificacion(usuario.getNroIdentificacion());
+		if ((usuario1 != null) && (usuario1.getTipoIdentificacion().getIdTipoIdentificacion() == usuario.getTipoIdentificacion().getIdTipoIdentificacion())) throw new Exception("Usuario duplicado");
+		return dao.agregar(usuario);
+	}
+	
+	public int agregar(String nombre, String apellido, char sexo, long nroIdentificacion, long clave,
+			String email, TipoIdentificacion identificacion, Permiso permiso) throws Exception {
+		Usuario usuario = new Usuario(nombre,apellido,sexo,nroIdentificacion,clave,email,identificacion,permiso);
+		Usuario usuario1 = dao.traerPorIdentificacion(nroIdentificacion);
+		if ((usuario1 != null) && (usuario1.getTipoIdentificacion().getIdTipoIdentificacion() == identificacion.getIdTipoIdentificacion())) throw new Exception("Usuario duplicado");
+		return dao.agregar(usuario);
+	}
+	
 	public int agregar(String nombre, String apellido, char sexo, long nroIdentificacion, long clave,
 			String email, long movil, long fijo, TipoIdentificacion identificacion, Permiso permiso,
 			TarifaSocial tarifaSocial, Set<Tarjeta> lstTarjetas, BoletoEstudiantil boletoEstudiantil) throws Exception {

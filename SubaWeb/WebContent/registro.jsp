@@ -23,36 +23,52 @@
     <div class="card card-register mx-auto mt-5 ingreso">
       <div class="card-header">Registrar cuenta</div>
       <div class="card-body">
-        <form>
+        <form method="post" action="/SubaWeb/Registro">
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
                 <label for="exampleInputName">Nombre</label>
-                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Nombre">
+                <input class="form-control" name="nombre" type="text" aria-describedby="nameHelp" placeholder="Nombre">
               </div>
               <div class="col-md-6">
                 <label for="exampleInputLastName">Apellido</label>
-                <input class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Apellido">
+                <input class="form-control" name="apellido" type="text" aria-describedby="nameHelp" placeholder="Apellido">
               </div>
             </div>
           </div>
           <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-4">
+                <label for="exampleInputName">DNI</label>
+                <input class="form-control" name="dni" type="text" placeholder="clave">
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputName">Sexo</label>
+                <input class="form-control" name="sexo" type="text" placeholder="clave">
+              </div>
+              <div class="col-md-4">
+                <label for="exampleInputName">Numero de tarjeta</label>
+                <input class="form-control" name="numtar" type="text" placeholder="clave">
+             </div>
+            </div>
+          </div>
+          <div class="form-group">
             <label for="exampleInputEmail1">Direccion de email</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="nombreapellido@suba.com">
+            <input class="form-control" name="email" type="email" aria-describedby="emailHelp" placeholder="nombreapellido@suba.com">
           </div>
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-6">
                 <label for="exampleInputPassword1">Clave</label>
-                <input class="form-control" id="exampleInputPassword1" type="password" placeholder="clave">
+                <input class="form-control" name="clave" type="password" placeholder="clave">
               </div>
               <div class="col-md-6">
                 <label for="exampleConfirmPassword">Confirmar clave</label>
-                <input class="form-control" id="exampleConfirmPassword" type="password" placeholder="clave">
+                <input class="form-control" name="conclave" type="password" placeholder="clave">
               </div>
             </div>
           </div>
-          <a class="btn btn-primary btn-block" href="login.html">Registrar</a>
+          <input class="btn btn-primary btn-block" type="submit" value="Registrar">
         </form>
         <div class="text-center">
           <a class="d-block small mt-3" href="login.html">Ingresar</a>

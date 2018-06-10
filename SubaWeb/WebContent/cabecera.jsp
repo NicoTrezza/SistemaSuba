@@ -51,12 +51,6 @@
 	            <span class="nav-link-text">UNLa</span>
 	         </a> 
         </div>
-        <div class="nav-item" data-toggle="tooltip" data-placement="right" title="Ajustes">
-          <a class="nav-link" href="configuracion.jsp">
-            <i class="fa fa-fw fa-wrench"></i>
-            <span class="nav-link-text">Ajustes</span>
-          </a>
-        </div>
       </form>
       <ul class="navbar-nav sidenav-toggler">
         <li class="nav-item">

@@ -7,8 +7,19 @@ import datos.Usuario;
 import datos.UsuarioBoletoEstudiantil;
 
 public class UsuarioBoletoEstudiantilABM {
-	UsuarioBoletoEstudiantilDao dao = new UsuarioBoletoEstudiantilDao();
+	private static UsuarioBoletoEstudiantilABM instancia;
+	protected UsuarioBoletoEstudiantilDao dao;
 
+	protected UsuarioBoletoEstudiantilABM() {
+		dao = new UsuarioBoletoEstudiantilDao();
+	}
+	
+	public static UsuarioBoletoEstudiantilABM getInstancia() {
+		if (instancia == null)
+			instancia = new UsuarioBoletoEstudiantilABM();
+		return instancia;
+	}
+	
 	public UsuarioBoletoEstudiantil traerUsuarioBoletoEstudiantil(int idUsuarioBoletoEstudiantil) throws Exception {
 		UsuarioBoletoEstudiantil usuarioBoletoEstudiantil = dao.traer(idUsuarioBoletoEstudiantil);
 		if (usuarioBoletoEstudiantil==null) throw new Exception("El registro seleccionado no existe");

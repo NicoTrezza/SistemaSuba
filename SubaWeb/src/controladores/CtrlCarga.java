@@ -13,7 +13,7 @@ import datos.Tarjeta;
 import negocio.EstacionABM;
 import negocio.MaquinaABM;
 
-public class CtrlSubte extends HttpServlet {
+public class CtrlCarga extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		procesarPeticion(request, response);
 	}
@@ -24,18 +24,21 @@ public class CtrlSubte extends HttpServlet {
 	
 	private void procesarPeticion(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		try {
+			
 			String e = request.getParameter("estacion");
+			float s = Float.parseFloat(request.getParameter("saldo"));
+			
 			Estacion estacion = EstacionABM.getInstancia().traerEstacion(e);
 			
 			Maquina maq = MaquinaABM.getInstancia().traerMaquinaPorEstacion(estacion);
 			
 			Tarjeta tar = (Tarjeta) request.getSession().getAttribute("tarjeta");
-			maq.cobrar(tar, 1);
-			
-			request.getRequestDispatcher("/tabla.jsp").forward(request, response);
+			maq.cargar(tar, s);
+						
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			request.getRequestDispatcher("/subte.jsp").forward(request, response);
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 	}
 }
