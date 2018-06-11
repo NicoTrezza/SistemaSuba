@@ -60,4 +60,24 @@
   	<url-pattern>/Registro</url-pattern>
   </servlet-mapping>
   
+  <display-name>Web</display-name>
+  <servlet>
+  	<servlet-name>CtrlBoletoE</servlet-name>
+  	<servlet-class>controladores.CtrlBoletoE</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CtrlBoletoE</servlet-name>
+  	<url-pattern>/BoletoE</url-pattern>
+  </servlet-mapping>
+  
+  <display-name>Web</display-name>
+  <servlet>
+  	<servlet-name>CtrlTarifaS</servlet-name>
+  	<servlet-class>controladores.CtrlTarifaS</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CtrlTarifaS</servlet-name>
+  	<url-pattern>/TarifaS</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

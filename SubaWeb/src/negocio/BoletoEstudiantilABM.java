@@ -1,5 +1,7 @@
 package negocio;
 
+import java.util.List;
+
 import dao.BoletoEstudiantilDao;
 import datos.BoletoEstudiantil;
 
@@ -15,6 +17,16 @@ public class BoletoEstudiantilABM {
 		if (instancia == null)
 			instancia = new BoletoEstudiantilABM();
 		return instancia;
+	}
+	
+	public List<BoletoEstudiantil> traerBoletos() {
+		return dao.traer();
+	}
+	
+	public BoletoEstudiantil traerBoletoEstudiantil(String nivel) throws Exception {
+		BoletoEstudiantil boletoEstudiantil = dao.traer(nivel);
+		if (boletoEstudiantil==null) throw new Exception("El boleto estudiantil seleccionado no existe");
+		return boletoEstudiantil;
 	}
 	
 	public BoletoEstudiantil traerBoletoEstudiantil(int idBoletoEstudiantil) throws Exception {

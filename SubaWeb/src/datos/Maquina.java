@@ -40,10 +40,12 @@ public class Maquina {
 	public void cobrar(Tarjeta tarjeta, int tipo) throws Exception {}
 	
 	public void cargar(Tarjeta tarjeta, float valor) throws Exception {
-		GregorianCalendar horaActual = new GregorianCalendar();
-		
-		tarjeta.setSaldo(tarjeta.getSaldo() + valor);
-		TarjetaABM.getInstancia().modificar(tarjeta);
-		CargaABM.getInstancia().agregar(horaActual,valor,tarjeta,this);
+		if (valor > 0) {
+			GregorianCalendar horaActual = new GregorianCalendar();
+			
+			tarjeta.setSaldo(tarjeta.getSaldo() + valor);
+			TarjetaABM.getInstancia().modificar(tarjeta);
+			CargaABM.getInstancia().agregar(horaActual,valor,tarjeta,this);
+		}
 	}
 }

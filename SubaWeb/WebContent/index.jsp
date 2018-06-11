@@ -1,3 +1,6 @@
+<%@page import="negocio.UsuarioBoletoEstudiantilABM"%>
+<%@page import="negocio.BoletoEstudiantilABM"%>
+<%@page import="datos.BoletoEstudiantil"%>
 <%@page import="negocio.EstacionABM"%>
 <%@page import="datos.Estacion"%>
 <%@page import="java.util.List"%>
@@ -93,19 +96,37 @@
 		                <i class="fa fa-fw "></i>
 		              </div>
 		              <div>
-		              	<h6> Boleto Estudiantil: </h6>
-					  	<% if (tar.getBoletoEstudiantil() == null) { %>
-					  		<%= tar.getBoletoEstudiantil() %>
-					  	<%} else { %>
-					  		<h6> Activado </h6><br>
-					  	<% } %>
-					  	<h6> Tarifa Social: </h6>
-					  	<% if (tar.getTarifaSocial() == null) { %>
-					  		<h6> Desactivado </h6>
-					  		<%= tar.getTarifaSocial() %>
-					  	<%} else { %>
-					  		<h6> Activado </h6>
-					  	<% } %>
+			              <form method="post" action="/SubaWeb/BoletoE">
+			              	<div class="card mb-3">
+					            <div class="card-header" style="background:#81BEF7;">
+				            	  <i class="fa fa-child"></i> Boleto Estudiantil</div>
+				            	  <% if (UsuarioBoletoEstudiantilABM.getInstancia().traerPorUsuario(usu.getIdUsuario()) == null) { %>
+							  		<h3>Desactivado</h3>
+									<select name="boleto">
+							      		<% List<BoletoEstudiantil> boletos = BoletoEstudiantilABM.getInstancia().traerBoletos();
+							      			for (BoletoEstudiantil b: boletos) { %>
+							      				<option><%= b.getNivelEducativo() %></option>
+							      			<% } %>
+							      	</select>
+							      	<input id="boton" type="submit" value="Activar">
+							  	<%} else { %>
+							  		<h3>Activado</h3>
+							  		<h4>Nivel Educativo: <%= UsuarioBoletoEstudiantilABM.getInstancia().traerPorUsuario(usu.getIdUsuario()).getBoletoEstudiantil().getNivelEducativo() %></h4>
+							  	<% } %>
+							  </div>
+							</form>
+							<form method="post" action="/SubaWeb/TarifaS">
+							  <div class="card mb-3">
+						      	<div class="card-header" style="background:#81BEF7;">
+				            	  <i class="fa fa-child"></i> Tarifa Social</div>
+				            	  <% if (usu.getTarifaSocial() == null) { %>
+							  		<h3>Desactivado</h3>
+							  		<input id="boton" type="submit" value="Activar">
+							  	<%} else { %>
+							  		<h3>Activado</h3>
+							  	<% } %>
+				          	</div>
+				          </form>
 					  </div>
 		            </div>
 		          </div>
