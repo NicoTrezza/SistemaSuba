@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import datos.Tarjeta;
 import datos.Usuario;
+import negocio.BoletoEstudiantilABM;
 import negocio.TarjetaABM;
 import negocio.UsuarioABM;
 
@@ -31,7 +32,17 @@ public class CtrlLogin extends HttpServlet {
 				Tarjeta t = TarjetaABM.getInstancia().traerTarjetaPorUsuario(usu);
 				request.getSession().setAttribute("usuario", usu);
 		      	request.getSession().setAttribute("tarjeta", t);
-				
+		      	request.getSession().setAttribute("saldo", 1);
+			
+		      	
+		      	
+		      	if (usu.getTarifaSocial() != null) 
+		      		t.setTarifaSocial(usu.getTarifaSocial());
+				if (usu.getBoletoEstudiantil() != null) {
+					t.setBoletoEstudiantil(BoletoEstudiantilABM.getInstancia().traerBoletoEstudiantil(usu.getBoletoEstudiantil().getIdBoletoEstudiantil()));
+					t.setViajesGratisRestantes(t.getBoletoEstudiantil().getCantViajesGratis());
+				}
+		      	
 				request.getRequestDispatcher("/index.jsp").forward(request, response);
 			}
 			else {

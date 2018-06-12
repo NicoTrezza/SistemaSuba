@@ -24,6 +24,16 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+  <script src="js/jquery-3.3.1.js"></script>
+  <script type="text/javascript">
+  	$(document).ready(function() {
+  		<% int saldo = (int) request.getSession().getAttribute("saldo"); 
+			if (saldo == 0) {%>
+				alert('Saldo insuficiente');
+				<%request.getSession().setAttribute("saldo", 1);
+			} %>
+  	});
+  </script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -37,8 +47,7 @@
 	          		<a href="#">Colectivo</a>
 	        	</li>
 	        	<li class="breadcrumb-item active"> <%= usu.getNombre() %> <%= usu.getApellido() %> </li>
-	      	</ol>
-	      	
+	      	</ol>	      	
 	      	<form method="post" action="/SubaWeb/Colectivo">
 		      	<div class="card mb-3">
 		            <div class="card-header" style="background:#81BEF7;">

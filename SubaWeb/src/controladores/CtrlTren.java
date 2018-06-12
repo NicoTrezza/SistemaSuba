@@ -12,6 +12,7 @@ import datos.Maquina;
 import datos.Tarjeta;
 import negocio.EstacionABM;
 import negocio.MaquinaABM;
+import negocio.TarifaTrenABM;
 
 public class CtrlTren extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -31,9 +32,16 @@ public class CtrlTren extends HttpServlet {
 			Maquina maq = MaquinaABM.getInstancia().traerMaquinaPorEstacion(estacion);
 			
 			Tarjeta tar = (Tarjeta) request.getSession().getAttribute("tarjeta");
-			maq.cobrar(tar, 0);
-						
-			request.getRequestDispatcher("/tabla.jsp").forward(request, response);
+			
+			if (tar.getSaldo() - TarifaTrenABM.getInstancia().traerTarifaTrenMax().getValor() < -20) {
+				request.getSession().setAttribute("saldo", 0);
+				request.getRequestDispatcher("/tren.jsp").forward(request, response);
+			}
+			else {
+				maq.cobrar(tar, 0);
+				request.getRequestDispatcher("/tabla.jsp").forward(request, response);
+			}
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			request.getRequestDispatcher("/tren.jsp").forward(request, response);

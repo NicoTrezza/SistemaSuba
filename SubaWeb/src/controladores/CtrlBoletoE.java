@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import datos.Tarjeta;
 import datos.Usuario;
 import funciones.Funciones;
 import negocio.BoletoEstudiantilABM;
@@ -27,10 +28,16 @@ public class CtrlBoletoE extends HttpServlet {
 			
 			String e = request.getParameter("boleto");
 			Usuario u = (Usuario) request.getSession().getAttribute("usuario");
+			Tarjeta t = (Tarjeta) request.getSession().getAttribute("tarjeta");
 			
 			u.solicitarBoletoEstudiantil(BoletoEstudiantilABM.getInstancia().traerBoletoEstudiantil(e));
 			
 			UsuarioBoletoEstudiantilABM.getInstancia().agregar(Funciones.traerFechaProximo(new GregorianCalendar(), 30), u, BoletoEstudiantilABM.getInstancia().traerBoletoEstudiantil(e));
+			
+			if (u.getBoletoEstudiantil() != null) {
+				t.setBoletoEstudiantil(BoletoEstudiantilABM.getInstancia().traerBoletoEstudiantil(u.getBoletoEstudiantil().getIdBoletoEstudiantil()));
+				t.setViajesGratisRestantes(t.getBoletoEstudiantil().getCantViajesGratis());
+			}
 			
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		} catch (Exception e) {

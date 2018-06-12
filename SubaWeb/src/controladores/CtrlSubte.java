@@ -30,9 +30,16 @@ public class CtrlSubte extends HttpServlet {
 			Maquina maq = MaquinaABM.getInstancia().traerMaquinaPorEstacion(estacion);
 			
 			Tarjeta tar = (Tarjeta) request.getSession().getAttribute("tarjeta");
-			maq.cobrar(tar, 1);
 			
-			request.getRequestDispatcher("/tabla.jsp").forward(request, response);
+			if (tar.getSaldo() - 12.5 < -20) {
+				request.getSession().setAttribute("saldo", 0);
+				request.getRequestDispatcher("/subte.jsp").forward(request, response);
+			}
+			else {
+				maq.cobrar(tar, 1);
+				request.getRequestDispatcher("/tabla.jsp").forward(request, response);
+			}
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			request.getRequestDispatcher("/subte.jsp").forward(request, response);

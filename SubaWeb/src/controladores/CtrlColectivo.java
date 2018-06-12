@@ -37,9 +37,16 @@ public class CtrlColectivo extends HttpServlet {
 			Maquina maq = MaquinaABM.getInstancia().traerMaquinaPorLinea(linea);
 			
 			Tarjeta tar = (Tarjeta) request.getSession().getAttribute("tarjeta");
-			maq.cobrar(tar, boleto);
 			
-			request.getRequestDispatcher("/tabla.jsp").forward(request, response);
+			if (tar.getSaldo() - boleto.getValor() < -20) {
+				request.getSession().setAttribute("saldo", 0);
+				request.getRequestDispatcher("/colectivo.jsp").forward(request, response);
+			}
+			else {
+				maq.cobrar(tar, boleto);
+				request.getRequestDispatcher("/tabla.jsp").forward(request, response);
+			}
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			request.getRequestDispatcher("/colectivo.jsp").forward(request, response);

@@ -40,8 +40,7 @@
 	    <div class="container-fluid">
 			<% Usuario usu = (Usuario) request.getSession().getAttribute("usuario"); 
 	    	Tarjeta tar = (Tarjeta) request.getSession().getAttribute("tarjeta");
-	    	List<Viaje> viajes = ViajeABM.getInstancia().traerViajes();
-	    	List<Carga> cargas = CargaABM.getInstancia().traerCargas();%>
+	    	List<Viaje> viajes = ViajeABM.getInstancia().traerViajes();%>
 			<ol class="breadcrumb">
 	      		<li class="breadcrumb-item">
 	          		<a href="#">Tablas</a>
@@ -78,7 +77,7 @@
 		              	<tr>
 		              	  <td><%= viaje.getIdViaje() %></td>
 		                  <td><%= Funciones.traerFechaCortaHora(viaje.getFechaHora())%></td>
-		                  <% if (viaje.getValor() * -1 < 0) { %>
+		                  <% if (viaje.getValor() >= 0) { %>
 		                  	<td style="color:red;"><%= viaje.getValor() * -1 %></td>
 		                  <% }  else {%>
 		                  	<td style="color:green;"><%= viaje.getValor() * -1 %></td>
@@ -90,7 +89,6 @@
 		                  <% } else { %>
 		                  		<td><%= EstacionABM.getInstancia().traerEstacionPorMaquina(m).getNombre() %></td>
 		                  <% } %>
-		                  
 		                 </tr>
 		             	<% } 
 		              	} %>

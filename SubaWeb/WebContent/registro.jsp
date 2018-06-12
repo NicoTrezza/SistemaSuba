@@ -40,15 +40,15 @@
             <div class="form-row">
               <div class="col-md-4">
                 <label for="exampleInputName">DNI</label>
-                <input class="form-control" name="dni" type="text" placeholder="clave">
+                <input class="form-control" name="dni" type="text" placeholder="dni">
               </div>
               <div class="col-md-4">
                 <label for="exampleInputName">Sexo</label>
-                <input class="form-control" name="sexo" type="text" placeholder="clave">
+                <input class="form-control" name="sexo" type="text" placeholder="'M' o 'F'">
               </div>
               <div class="col-md-4">
                 <label for="exampleInputName">Numero de tarjeta</label>
-                <input class="form-control" name="numtar" type="text" placeholder="clave">
+                <input class="form-control" name="numtar" type="text" placeholder="numero de tarjeta">
              </div>
             </div>
           </div>

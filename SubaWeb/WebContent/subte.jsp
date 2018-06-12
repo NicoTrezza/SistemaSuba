@@ -24,7 +24,13 @@
   <link href="css/sb-admin.css" rel="stylesheet">
   <script src="js/jquery-3.3.1.js"></script>
   <script type="text/javascript">
-  	
+  	$(document).ready(function() {
+  		<% int saldo = (int) request.getSession().getAttribute("saldo"); 
+			if (saldo == 0) {%>
+				alert('Saldo insuficiente');
+				<%request.getSession().setAttribute("saldo", 1);
+			} %>
+  	});
   </script>
 </head>
 
