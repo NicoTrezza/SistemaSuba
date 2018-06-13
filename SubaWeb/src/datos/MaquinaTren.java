@@ -102,9 +102,10 @@ public class MaquinaTren extends Maquina {
 		tarjeta.setUltHoraViaje(fechaHora);
 		
 		if (tarjeta.getViajesGratisRestantes()<1) {
+			tarifa = 12.5f; 
 			if (tarjeta.getEstadoRedSube()!=null &&
 					(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())<=7200000) {
-				tarifa = 12.5f * tarjeta.getEstadoRedSube().getPorcentajeDescuento();
+				tarifa = tarifa * tarjeta.getEstadoRedSube().getPorcentajeDescuento();
 				if (tarjeta.getEstadoRedSube().getIdRedSube()==1) tarjeta.setEstadoRedSube(RedSubeABM.getInstancia().traerRedSube(2));
 				else {
 					tarjeta.setNumeroViaje(tarjeta.getNumeroViaje()+1);
@@ -118,7 +119,7 @@ public class MaquinaTren extends Maquina {
 				tarjeta.setEstadoRedSube(RedSubeABM.getInstancia().traerRedSube(1));
 				tarjeta.setNumeroViaje(1);
 			}
-			if (tarjeta.getTarifaSocial()!=null) tarifa = 12.5f * tarjeta.getTarifaSocial().getPorcentajeDescuento();
+			if (tarjeta.getTarifaSocial()!=null) tarifa = tarifa * tarjeta.getTarifaSocial().getPorcentajeDescuento();
 			tarjeta.setSaldo(tarjeta.getSaldo() - tarifa);
 			TarjetaABM.getInstancia().modificar(tarjeta);
 		}

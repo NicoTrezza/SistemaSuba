@@ -53,12 +53,25 @@
 	          ['Subte', <%= EstadisticaABM.getInstancia().traerViajesEnSubte((Tarjeta) request.getSession().getAttribute("tarjeta")) %>]
 	        ]);
 	        var options2 = {
-	          'width':400, 
+	          'width':600, 
 	          'height':300,
 	          is3D: true,
 	        };
 	        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
 	        chart.draw(data2, options2);
+	        
+	        var data3 = google.visualization.arrayToDataTable([
+	          ['Dia', 'Viajes'],
+	          ['Dia de semana', <%= EstadisticaABM.getInstancia().traerViajesEnSemana((Tarjeta) request.getSession().getAttribute("tarjeta")) %>],
+	          ['Fin de semana', <%= EstadisticaABM.getInstancia().traerViajesEnFinDeSemana((Tarjeta) request.getSession().getAttribute("tarjeta")) %>]
+	         ]);
+	        var options3 = {
+	          'width':600, 
+	          'height':300,
+	          is3D: true,
+	        };
+	        var chart = new google.visualization.PieChart(document.getElementById('piecharts_3d'));
+	        chart.draw(data3, options3);
       }
     </script>
 </head>
@@ -76,18 +89,7 @@
 	        	<li class="breadcrumb-item active"> <%= usu.getNombre() %> <%= usu.getApellido() %> </li>
 	      	</ol>
 	      	
-		  	<div class="row">
-			  <div class="col-lg-4">
-			    <div class="card mb-3">
-			      <div class="card-header" style="background:#81BEF7;">
-			        <i class="fa fa-pie-chart"></i> Viajes por transporte</div>
-			      	<div id="piechart_3d"></div>
-			      <div class="card-footer small text-muted">Última actualización <%= Funciones.traerFechaCortaHora(new GregorianCalendar()) %></div>
-			    </div>
-			  </div>
-			 </div>
-		  	
-			<div class="row">
+	      	<div class="row">
 			  <div class="col-lg-12">
 			    <div class="card mb-3">
 			      <div class="card-header" style="background:#81BEF7;">
@@ -97,6 +99,26 @@
 			    </div>
 			  </div>
 			</div>
+	      	
+		  	<div class="row">
+			  <div class="col-lg-6">
+			    <div class="card mb-3">
+			      <div class="card-header" style="background:#81BEF7;">
+			        <i class="fa fa-pie-chart"></i> Viajes por transporte</div>
+			      	<div id="piechart_3d"></div>
+			      <div class="card-footer small text-muted">Última actualización <%= Funciones.traerFechaCortaHora(new GregorianCalendar()) %></div>
+			    </div>
+			  </div>
+			  <div class="col-lg-6">
+			    <div class="card mb-3">
+			      <div class="card-header" style="background:#81BEF7;">
+			        <i class="fa fa-pie-chart"></i> Viajes por semana</div>
+			      	<div id="piecharts_3d"></div>
+			      <div class="card-footer small text-muted">Última actualización <%= Funciones.traerFechaCortaHora(new GregorianCalendar()) %></div>
+			    </div>
+			  </div>
+			 </div>
+			
 	     </div>
 		<%@include file="pie.jsp" %>
 	</div>
