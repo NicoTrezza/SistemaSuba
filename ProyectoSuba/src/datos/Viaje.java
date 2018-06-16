@@ -59,7 +59,7 @@ public class Viaje {
 
 	@Override
 	public String toString() {
-		return "Viaje [idViaje=" + idViaje + ", fechaHora=" + fechaHora + ", valor=" + valor + ", tarjeta=" + tarjeta
-				+ ", maquina=" + maquina + "]";
+		return "Viaje [idViaje=" + idViaje + ", fechaHora=" + fechaHora + ", valor=" + valor + "]";
 	}
+ 
 }

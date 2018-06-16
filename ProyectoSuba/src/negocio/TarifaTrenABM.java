@@ -4,8 +4,19 @@ import dao.TarifaTrenDao;
 import datos.TarifaTren;
 
 public class TarifaTrenABM {
-	TarifaTrenDao dao = new TarifaTrenDao();
+	private static TarifaTrenABM instancia;
+	protected TarifaTrenDao dao;
 
+	protected TarifaTrenABM() {
+		dao = new TarifaTrenDao();
+	}
+	
+	public static TarifaTrenABM getInstancia() {
+		if (instancia == null)
+			instancia = new TarifaTrenABM();
+		return instancia;
+	}
+	
 	public TarifaTren traerTarifaTren(int idTarifaTren) throws Exception {
 		TarifaTren tarifaTren = dao.traer(idTarifaTren);
 		if (tarifaTren==null) throw new Exception("La tarifa no existe");

@@ -4,8 +4,19 @@ import dao.TarifaSocialDao;
 import datos.TarifaSocial;
 
 public class TarifaSocialABM {
-	TarifaSocialDao dao = new TarifaSocialDao();
+	private static TarifaSocialABM instancia;
+	protected TarifaSocialDao dao;
 
+	protected TarifaSocialABM() {
+		dao = new TarifaSocialDao();
+	}
+	
+	public static TarifaSocialABM getInstancia() {
+		if (instancia == null)
+			instancia = new TarifaSocialABM();
+		return instancia;
+	}
+	
 	public TarifaSocial traerTarifaSocial(int idTarifaSocial) throws Exception {
 		TarifaSocial tarifaSocial = dao.traer(idTarifaSocial);
 		if (tarifaSocial==null) throw new Exception("La tarifa social seleccionada no existe");

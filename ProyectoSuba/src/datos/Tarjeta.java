@@ -20,18 +20,11 @@ public class Tarjeta {
 	
 	public Tarjeta() {}
 	
-	public Tarjeta(int nroTarjeta) {
+	public Tarjeta(int nroTarjeta, Usuario usuario) {
 		this.nroTarjeta = nroTarjeta;
 		this.saldo = 0;
 		this.activa = true;
-		this.usuario = null;
-		this.numeroViaje = 0;
-		this.viajesGratisRestantes = 0;
-		this.ultHoraViaje = null;
-		this.tarifaSocial = null;
-		this.boletoEstudiantil = null;
-		this.estadoRedSube = null;
-		this.estacionIngreso = null;
+		this.usuario = usuario;
 	}
 	
 	public Tarjeta(int nroTarjeta, float saldo, boolean activa, Usuario usuario, int numeroViaje,
@@ -48,15 +41,6 @@ public class Tarjeta {
 		this.boletoEstudiantil = boletoEstudiantil;
 		this.estadoRedSube = estadoRedSube;
 		this.estacionIngreso = estacionIngreso;
-	}
-	
-	public void finalize() {
-		try {
-			super.finalize();
-		} catch (Throwable e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 	public int getIdTarjeta() {
@@ -166,14 +150,12 @@ public class Tarjeta {
 
 	public void anadirUsuario(Usuario usuario) throws Exception {
 		if (this.usuario!=null) throw new Exception("La tarjeta ya tiene un usuario asignado");
-		TarjetaABM abm = new TarjetaABM();
 		this.usuario = usuario;
-		abm.modificar(this);
+		TarjetaABM.getInstancia().modificar(this);
 	}
 	
 	public void darDeBaja() throws Exception {
-		TarjetaABM abm = new TarjetaABM();
 		this.activa = false;
-		abm.modificar(this);
+		TarjetaABM.getInstancia().modificar(this);
 	}
 }

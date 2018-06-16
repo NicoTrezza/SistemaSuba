@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -88,6 +90,21 @@ public class BoletoColectivoDao {
 		return objeto;
 	}
 	
+	public BoletoColectivo traerPorValor(float valor) throws HibernateException {
+		BoletoColectivo objeto = null;
+		
+		try {
+			iniciaOperacion();
+			String hql;
+			hql = "from BoletoColectivo bc where bc.valor=" + valor;
+			objeto = (BoletoColectivo) session.createQuery(hql).uniqueResult();
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
+	
 	public BoletoColectivo traerMax() throws HibernateException {
 		BoletoColectivo objeto = null;
 		
@@ -101,5 +118,19 @@ public class BoletoColectivoDao {
 		}
 		
 		return objeto;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<BoletoColectivo> traer() throws HibernateException {
+		List<BoletoColectivo> boletos = null;
+		
+		try {
+			iniciaOperacion();
+			boletos = session.createQuery("from BoletoColectivo").list();
+		} finally {
+			session.close();
+		}
+		
+		return boletos;
 	}
 }

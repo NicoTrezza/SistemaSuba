@@ -41,12 +41,9 @@ public class MaquinaTren extends Maquina {
 		else if (tipo==1) cobroMolineteSubte(tarjeta);
 	}
 	
-	public void cobroMolinete(Tarjeta tarjeta) throws Exception {
-		TarjetaABM tarjetaABM = new TarjetaABM();
-		TarifaTrenABM tarifaTrenABM = new TarifaTrenABM();
-		ViajeABM viajeABM = new ViajeABM();
+	private void cobroMolinete(Tarjeta tarjeta) throws Exception {
 		GregorianCalendar fechaHora = new GregorianCalendar();
-		TarifaTren tarifaTren = tarifaTrenABM.traerTarifaTrenMax();
+		TarifaTren tarifaTren = TarifaTrenABM.getInstancia().traerTarifaTrenMax();
 		float tarifa=0;
 		
 		if (tarjeta.getSaldo()-tarifaTren.getValor() < -(tarifaTren.getValor()*3)) throw new Exception("Saldo insuficiente");
@@ -54,31 +51,26 @@ public class MaquinaTren extends Maquina {
 		if (tarjeta.getViajesGratisRestantes()<1) {
 			tarifa = tarifaTren.getValor();
 			tarjeta.setSaldo(tarjeta.getSaldo()-tarifa);
-			tarjetaABM.modificar(tarjeta);
+			TarjetaABM.getInstancia().modificar(tarjeta);
 		}
 		tarjeta.setEstacionIngreso(estacion);
-		viajeABM.agregar(fechaHora,tarifa,tarjeta,this);
+		ViajeABM.getInstancia().agregar(fechaHora,tarifa,tarjeta,this);
 	}
 	
-	public void devolucionMolinete(Tarjeta tarjeta) throws Exception {
-		TarjetaABM tarjetaABM = new TarjetaABM();
-		TarifaTrenABM tarifaTrenABM = new TarifaTrenABM();
-		ViajeABM viajeABM = new ViajeABM();
-		RedSubeABM redSubeABM = new RedSubeABM();
+	private void devolucionMolinete(Tarjeta tarjeta) throws Exception {
 		GregorianCalendar fechaHora = new GregorianCalendar();
-		BoletoTrenABM boletoTrenABM = new BoletoTrenABM();
-		BoletoTren boletoTren = boletoTrenABM.traerBoletoTren(tarjeta.getEstacionIngreso(),estacion);
+		BoletoTren boletoTren = BoletoTrenABM.getInstancia().traerBoletoTren(tarjeta.getEstacionIngreso(),estacion);
 		System.out.println(boletoTren.toString());
 		float tarifa=0;
 		
 		if (tarjeta.getSaldo()-boletoTren.getTarifaTren().getValor() <
-				-(tarifaTrenABM.traerTarifaTrenMax().getValor()*3)) throw new Exception("Saldo insuficiente");
+				-(TarifaTrenABM.getInstancia().traerTarifaTrenMax().getValor()*3)) throw new Exception("Saldo insuficiente");
 		
 		if (tarjeta.getViajesGratisRestantes()<1) {
 			if (tarjeta.getEstadoRedSube()!=null &&
 					(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())<=7200000) {
 				tarifa = boletoTren.getTarifaTren().getValor() * tarjeta.getEstadoRedSube().getPorcentajeDescuento();
-				if (tarjeta.getEstadoRedSube().getIdRedSube()==1) tarjeta.setEstadoRedSube(redSubeABM.traerRedSube(2));
+				if (tarjeta.getEstadoRedSube().getIdRedSube()==1) tarjeta.setEstadoRedSube(RedSubeABM.getInstancia().traerRedSube(2));
 				else {
 					tarjeta.setNumeroViaje(tarjeta.getNumeroViaje()+1);
 					if (tarjeta.getNumeroViaje()>4) {
@@ -89,34 +81,32 @@ public class MaquinaTren extends Maquina {
 			}
 			else {
 				tarifa = boletoTren.getTarifaTren().getValor();
-				tarjeta.setEstadoRedSube(redSubeABM.traerRedSube(1));
+				tarjeta.setEstadoRedSube(RedSubeABM.getInstancia().traerRedSube(1));
 				tarjeta.setNumeroViaje(1);
 			}
 			if (tarjeta.getTarifaSocial()!=null) tarifa = tarifa * tarjeta.getTarifaSocial().getPorcentajeDescuento();
-			tarifa = tarifaTrenABM.traerTarifaTrenMax().getValor()-tarifa;
+			tarifa = TarifaTrenABM.getInstancia().traerTarifaTrenMax().getValor()-tarifa;
 			tarjeta.setSaldo(tarjeta.getSaldo()+tarifa);
 		}
 		else tarjeta.setViajesGratisRestantes(tarjeta.getViajesGratisRestantes()-1);
 		tarjeta.setEstacionIngreso(null);
-		tarjetaABM.modificar(tarjeta);
-		viajeABM.agregar(fechaHora,-tarifa,tarjeta,this);
+		TarjetaABM.getInstancia().modificar(tarjeta);
+		ViajeABM.getInstancia().agregar(fechaHora,-tarifa,tarjeta,this);
 	}
 	
-	public void cobroMolineteSubte(Tarjeta tarjeta) throws Exception {
-		RedSubeABM redSubeABM = new RedSubeABM();
-		TarjetaABM tarjetaABM = new TarjetaABM();
-		ViajeABM viajeABM = new ViajeABM();
+	private void cobroMolineteSubte(Tarjeta tarjeta) throws Exception {
 		GregorianCalendar fechaHora = new GregorianCalendar();
-		float tarifa = 9f; 
+		float tarifa = 0; 
 		
 		if (tarjeta.getSaldo()-tarifa < -(tarifa*3)) throw new Exception("Saldo insuficiente");
 		tarjeta.setUltHoraViaje(fechaHora);
 		
 		if (tarjeta.getViajesGratisRestantes()<1) {
+			tarifa = 12.5f; 
 			if (tarjeta.getEstadoRedSube()!=null &&
 					(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())<=7200000) {
 				tarifa = tarifa * tarjeta.getEstadoRedSube().getPorcentajeDescuento();
-				if (tarjeta.getEstadoRedSube().getIdRedSube()==1) tarjeta.setEstadoRedSube(redSubeABM.traerRedSube(2));
+				if (tarjeta.getEstadoRedSube().getIdRedSube()==1) tarjeta.setEstadoRedSube(RedSubeABM.getInstancia().traerRedSube(2));
 				else {
 					tarjeta.setNumeroViaje(tarjeta.getNumeroViaje()+1);
 					if (tarjeta.getNumeroViaje()>4) {
@@ -126,14 +116,14 @@ public class MaquinaTren extends Maquina {
 				}
 			}
 			else {
-				tarjeta.setEstadoRedSube(redSubeABM.traerRedSube(1));
+				tarjeta.setEstadoRedSube(RedSubeABM.getInstancia().traerRedSube(1));
 				tarjeta.setNumeroViaje(1);
 			}
 			if (tarjeta.getTarifaSocial()!=null) tarifa = tarifa * tarjeta.getTarifaSocial().getPorcentajeDescuento();
 			tarjeta.setSaldo(tarjeta.getSaldo() - tarifa);
-			tarjetaABM.modificar(tarjeta);
+			TarjetaABM.getInstancia().modificar(tarjeta);
 		}
 		else tarjeta.setViajesGratisRestantes(tarjeta.getViajesGratisRestantes()-1);
-		viajeABM.agregar(fechaHora,tarifa,tarjeta,this);
+		ViajeABM.getInstancia().agregar(fechaHora,tarifa,tarjeta,this);
 	}
 }

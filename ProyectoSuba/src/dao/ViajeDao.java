@@ -1,8 +1,11 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
 import datos.Viaje;
 
 public class ViajeDao {
@@ -71,5 +74,19 @@ public class ViajeDao {
 		}
 		
 		return objeto;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Viaje> traer() throws HibernateException {
+		List<Viaje> viajes = null;
+		
+		try {
+			iniciaOperacion();
+			viajes = session.createQuery("from Viaje").list();
+		} finally {
+			session.close();
+		}
+		
+		return viajes;
 	}
 }

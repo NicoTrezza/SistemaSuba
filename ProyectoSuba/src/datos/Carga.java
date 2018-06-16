@@ -59,7 +59,6 @@ public class Carga {
 
 	@Override
 	public String toString() {
-		return "Carga [idCarga=" + idCarga + ", fechaHora=" + fechaHora + ", valor=" + valor + ", tarjeta=" + tarjeta
-				+ ", maquina=" + maquina + "]";
+		return "Carga [idCarga=" + idCarga + ", fechaHora=" + fechaHora + ", valor=" + valor + "]";
 	}
 }

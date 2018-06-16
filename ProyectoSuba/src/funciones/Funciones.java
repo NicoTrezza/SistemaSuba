@@ -89,13 +89,30 @@ public class Funciones {
 	
 	public static String traerFechaCorta (GregorianCalendar f){
 		String fechaCorta=null;
-		if (f!=null) fechaCorta = traerDia(f) + "/" + traerMes(f) + "/" + traerAnio(f);
+		if (f!=null) {
+			fechaCorta = traerDia(f) + "/";
+			if (traerMes(f) < 9) 
+				fechaCorta += "0" + traerMes(f) + "/" + traerAnio(f);
+			else
+				fechaCorta += traerMes(f) + "/" + traerAnio(f);
+		}
 		return fechaCorta;
 	}
 	
 	public static String traerFechaCortaHora (GregorianCalendar f){
 		String fechaCorta=null;
-		if (f!=null) fechaCorta = traerDia(f) + "/" + traerMes(f) + "/" + traerAnio(f) + " " + f.get(Calendar.HOUR_OF_DAY) + ":" + f.get(Calendar.MINUTE) + ":" + f.get(Calendar.SECOND);
+		if (f!=null) {
+			fechaCorta = traerFechaCorta(f) + " " + f.get(Calendar.HOUR_OF_DAY) + ":";
+			if (f.get(Calendar.MINUTE) <= 9) 
+				fechaCorta += "0" + f.get(Calendar.MINUTE) + ":";
+			else
+				fechaCorta += f.get(Calendar.MINUTE) + ":";
+			
+			if (f.get(Calendar.SECOND) <= 9) 
+				fechaCorta += "0" + f.get(Calendar.SECOND);
+			else 
+				fechaCorta += f.get(Calendar.SECOND);
+		}
 		return fechaCorta;
 	}
 	

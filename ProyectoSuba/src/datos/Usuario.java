@@ -21,6 +21,19 @@ public class Usuario {
 	public Usuario() {}
 
 	public Usuario(String nombre, String apellido, char sexo, long nroIdentificacion, long clave, String email,
+			TipoIdentificacion tipoIdentificacion, Permiso permiso) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.sexo = sexo;
+		this.nroIdentificacion = nroIdentificacion;
+		this.clave = clave;
+		this.email = email;
+		this.tipoIdentificacion = tipoIdentificacion;
+		this.permiso = permiso;
+	}
+	
+	public Usuario(String nombre, String apellido, char sexo, long nroIdentificacion, long clave, String email,
 			long movil, long fijo, TipoIdentificacion tipoIdentificacion, Permiso permiso, TarifaSocial tarifaSocial,
 			Set<Tarjeta> lstTarjetas, BoletoEstudiantil boletoEstudiantil) {
 		super();
@@ -166,14 +179,12 @@ public class Usuario {
 	}
 	
 	public void solicitarTarifaSocial(TarifaSocial tarifaSocial) throws Exception {
-		UsuarioABM abm = new UsuarioABM();
 		this.tarifaSocial=tarifaSocial;
-		abm.modificar(this);
+		UsuarioABM.getInstancia().modificar(this);
 	}
 	
 	public void solicitarBoletoEstudiantil(BoletoEstudiantil boletoEstudiantil) throws Exception {
-		UsuarioABM abm = new UsuarioABM();
 		this.boletoEstudiantil = boletoEstudiantil;
-		abm.modificar(this);
+		UsuarioABM.getInstancia().modificar(this);
 	}
 }

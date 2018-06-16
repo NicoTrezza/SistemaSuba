@@ -85,4 +85,18 @@ public class TarjetaDao {
 		
 		return objeto;
 	}
+	
+	public Tarjeta traerPorUsuario(int idUsuario) throws HibernateException {
+		Tarjeta objeto = null;
+		
+		try {
+			iniciaOperacion();
+			objeto = (Tarjeta) session.createQuery("from Tarjeta t inner join fetch t.usuario u where u.idUsuario="+idUsuario).uniqueResult();
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
+
 }

@@ -89,4 +89,18 @@ public class UsuarioDao {
 		
 		return objeto;
 	}
+	
+	public Usuario traerPorClave(long clave) throws HibernateException {
+		Usuario objeto = null;
+		
+		try {
+			iniciaOperacion();
+			objeto = (Usuario) session.createQuery("from Usuario u where u.clave="+clave).uniqueResult();
+		} finally {
+			session.close();
+		}
+		
+		return objeto;
+	}
+
 }

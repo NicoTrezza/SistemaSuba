@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -85,5 +87,19 @@ public class BoletoEstudiantilDao {
 		}
 		
 		return objeto;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<BoletoEstudiantil> traer() throws HibernateException {
+		List<BoletoEstudiantil> boletos = null;
+		
+		try {
+			iniciaOperacion();
+			boletos = session.createQuery("from BoletoEstudiantil").list();
+		} finally {
+			session.close();
+		}
+		
+		return boletos;
 	}
 }
