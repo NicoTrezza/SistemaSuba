@@ -25,25 +25,26 @@ import datos.Maquina;
 public class TestMain {
 
 	public static void main(String[] args) {
-		TarifaSocialABM tarifaSocialABM = new TarifaSocialABM();
-		BoletoEstudiantilABM boletoEstudiantilABM = new BoletoEstudiantilABM();
-		RedSubeABM redSubeABM = new RedSubeABM();
-		TarjetaABM tarjetaABM = new TarjetaABM();
-		TipoIdentificacionABM tipoIdentificacionABM = new TipoIdentificacionABM();
-		PermisoABM permisoABM = new PermisoABM();
-		UsuarioABM usuarioABM = new UsuarioABM();
-		UsuarioBoletoEstudiantilABM usuarioBoletoEstudiantilABM = new UsuarioBoletoEstudiantilABM();
-		BoletoColectivoABM boletoColectivoABM = new BoletoColectivoABM();
-		MaquinaABM maquinaABM = new MaquinaABM();
-		LineaColectivoABM lineaColectivoABM = new LineaColectivoABM();
-		LineaABM lineaABM = new LineaABM();
-		EstacionABM estacionABM = new EstacionABM();
-		TarifaTrenABM tarifaTrenABM = new TarifaTrenABM();
-		BoletoTrenABM boletoTrenABM = new BoletoTrenABM();
+		TarifaSocialABM tarifaSocialABM = TarifaSocialABM.getInstancia();
+		BoletoEstudiantilABM boletoEstudiantilABM = BoletoEstudiantilABM.getInstancia();
+		RedSubeABM redSubeABM = RedSubeABM.getInstancia();
+		TarjetaABM tarjetaABM = TarjetaABM.getInstancia();
+		TipoIdentificacionABM tipoIdentificacionABM = TipoIdentificacionABM.getInstancia();
+		PermisoABM permisoABM = PermisoABM.getInstancia();
+		UsuarioABM usuarioABM = UsuarioABM.getInstancia();
+		UsuarioBoletoEstudiantilABM usuarioBoletoEstudiantilABM = UsuarioBoletoEstudiantilABM.getInstancia();
+		BoletoColectivoABM boletoColectivoABM = BoletoColectivoABM.getInstancia();
+		MaquinaABM maquinaABM = MaquinaABM.getInstancia();
+		LineaColectivoABM lineaColectivoABM = LineaColectivoABM.getInstancia();
+		LineaABM lineaABM = LineaABM.getInstancia();
+		EstacionABM estacionABM = EstacionABM.getInstancia();
+		TarifaTrenABM tarifaTrenABM = TarifaTrenABM.getInstancia();
+		BoletoTrenABM boletoTrenABM = BoletoTrenABM.getInstancia();
 		
 		try {
 			//tipoIdentificacionABM.agregar("Documento Nacional de Identidad");
 			//permisoABM.agregar(0, "Administrador");
+			//permisoABM.agregar(1, "Usuario");
 			//tarifaSocialABM.agregar((float)0.45);
 			/*boletoEstudiantilABM.agregar("Inicial",50,4,500,2300,2,6);
 			boletoEstudiantilABM.agregar("Primario",50,4,500,2300,2,6);
@@ -56,10 +57,10 @@ public class TestMain {
 			boletoColectivoABM.agregar(2, 9.25f);
 			boletoColectivoABM.agregar(3, 9.50f);
 			boletoColectivoABM.agregar(4, 9.75f);
-			boletoColectivoABM.agregar(5, 10f);*/
-			//lineaColectivoABM.agregar(266);
-			//lineaColectivoABM.agregar(160);
-			/*MaquinaColectivo maquinaColectivo = new MaquinaColectivo(1,lineaColectivoABM.traerLineaColectivo(1));
+			boletoColectivoABM.agregar(5, 10f);
+			lineaColectivoABM.agregar(266);
+			lineaColectivoABM.agregar(160);*/
+			/*MaquinaColectivo maquinaColectivo = new MaquinaColectivo(1,lineaColectivoABM.traerLineaColectivo(1),1);
 			maquinaABM.agregar(maquinaColectivo);
 			maquinaColectivo.setNumInterno(1);
 			maquinaColectivo.setLineaColectivo(lineaColectivoABM.traerLineaColectivo(2));
@@ -80,7 +81,7 @@ public class TestMain {
 			estacionABM.agregar("Glew",lineaABM.traerLinea(1));
 			estacionABM.agregar("Guernica",lineaABM.traerLinea(1));
 			estacionABM.agregar("Alejandro Korn",lineaABM.traerLinea(1));
-			MaquinaTren maquinaTren = new MaquinaTren(estacionABM.traerEstacion("Plaza Constitucion"));
+			MaquinaTren maquinaTren = new MaquinaTren(estacionABM.traerEstacion("Plaza Constitucion"),2);
 			maquinaABM.agregar(maquinaTren);
 			maquinaTren.setEstacion(estacionABM.traerEstacion("Hipolito Yrigoyen"));
 			maquinaABM.agregar(maquinaTren);
@@ -109,11 +110,11 @@ public class TestMain {
 			maquinaTren.setEstacion(estacionABM.traerEstacion("Guernica"));
 			maquinaABM.agregar(maquinaTren);
 			maquinaTren.setEstacion(estacionABM.traerEstacion("Alejandro Korn"));
-			maquinaABM.agregar(maquinaTren);
-			tarifaTrenABM.agregar(2.75f);
+			maquinaABM.agregar(maquinaTren);*/
+			/*tarifaTrenABM.agregar(2.75f);
 			tarifaTrenABM.agregar(4f);
-			tarifaTrenABM.agregar(5.5f);
-			boletoTrenABM.agregar(tarifaTrenABM.traerTarifaTren(1), estacionABM.traerEstacion("Plaza Constitucion"),
+			tarifaTrenABM.agregar(5.5f);*/
+			/*boletoTrenABM.agregar(tarifaTrenABM.traerTarifaTren(1), estacionABM.traerEstacion("Plaza Constitucion"),
 					estacionABM.traerEstacion("Hipolito Yrigoyen"));
 			boletoTrenABM.agregar(tarifaTrenABM.traerTarifaTren(1), estacionABM.traerEstacion("Plaza Constitucion"),
 					estacionABM.traerEstacion("Avellaneda"));
@@ -151,7 +152,7 @@ public class TestMain {
 			estacionABM.agregar("Lavalle",lineaABM.traerLinea(2));
 			estacionABM.agregar("San Martin",lineaABM.traerLinea(2));
 			estacionABM.agregar("Retiro",lineaABM.traerLinea(2));*/
-			/*MaquinaTren maquinaTren = new MaquinaTren(estacionABM.traerEstacion("Constitucion"));
+			/*MaquinaTren maquinaTren = new MaquinaTren(estacionABM.traerEstacion("Constitucion"),3);
 			maquinaABM.agregar(maquinaTren);
 			maquinaTren.setEstacion(estacionABM.traerEstacion("San Juan"));
 			maquinaABM.agregar(maquinaTren);
@@ -169,69 +170,72 @@ public class TestMain {
 			maquinaABM.agregar(maquinaTren);
 			maquinaTren.setEstacion(estacionABM.traerEstacion("Retiro"));
 			maquinaABM.agregar(maquinaTren);*/
-			//Maquina maquina = new Maquina(3);
-			//maquinaABM.agregar(maquina);
+			/*Maquina maquina = new Maquina(4);
+			maquinaABM.agregar(maquina);*/
 			
 			//usuarioABM.agregar("Juan","Perez",'M',33444555,4555,"a@a.com",1166882233,44446666,
 			//		tipoIdentificacionABM.traerTipoIdentificacion(1),permisoABM.traerPermisoPorNivel(0),null,null,null);
 			/*-------Crear usuario-------*/
 			
-			//tarjetaABM.agregar(130); //Primero se da de alta la tarjeta en el sistema
-			//usuarioABM.traerUsuario(1).registrarTarjeta(tarjetaABM.traerTarjetaPorNumero(130)); //Y luego se la asigna a un usuario
+			//tarjetaABM.agregar(1); //Primero se da de alta la tarjeta en el sistema
+			//usuarioABM.registrarTarjeta(usuarioABM.traerUsuario(1),tarjetaABM.traerTarjetaPorNumero(1)); //Y luego se la asigna a un usuario
 			/*-------Agregar y asignar tarjeta-------*/
 			
-			//tarjetaABM.traerTarjetaPorNumero(130).darDeBaja();
+			//tarjetaABM.darDeBaja(tarjetaABM.traerTarjetaPorNumero(1));
 			/*-------Dar de baja Tarjeta-------*/
 			 
 			//usuarioABM.traerUsuario(1).solicitarTarifaSocial(tarifaSocialABM.traerTarifaSocial(1));
 			/*-------Beneficio Tarifa Social-------*/
 			
-			//usuarioABM.traerUsuario(1).solicitarBoletoEstudiantil(boletoEstudiantilABM.traerBoletoEstudiantil(1));
-			//GregorianCalendar fechaVencimiento = new GregorianCalendar();
-			//fechaVencimiento.add(GregorianCalendar.MONTH,1);
-			//usuarioBoletoEstudiantilABM.agregar(fechaVencimiento,usuarioABM.traerUsuario(1),
-			//		boletoEstudiantilABM.traerBoletoEstudiantil(1));
+			/*usuarioABM.traerUsuario(1).solicitarBoletoEstudiantil(boletoEstudiantilABM.traerBoletoEstudiantil(1));
+			GregorianCalendar fechaVencimiento = new GregorianCalendar();
+			fechaVencimiento.add(GregorianCalendar.MONTH,1);
+			usuarioBoletoEstudiantilABM.agregar(fechaVencimiento,usuarioABM.traerUsuario(1),
+					boletoEstudiantilABM.traerBoletoEstudiantil(1));*/
 			/*-------Beneficio Boleto Estudiantil-------*/
 			
-			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(130);
+			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(1);
 			Usuario usuario = usuarioABM.traerUsuario(tarjeta.getUsuario().getIdUsuario());
 			if (usuario.getTarifaSocial()!=null) tarjeta.setTarifaSocial(usuario.getTarifaSocial());
 			if (usuario.getBoletoEstudiantil()!=null) {
 				tarjeta.setBoletoEstudiantil(usuario.getBoletoEstudiantil());
 				tarjeta.setViajesGratisRestantes(tarjeta.getBoletoEstudiantil().getCantViajesGratis());
 			}
-			maquinaABM.traerMaquina(1).cobrar(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(1));
-			maquinaABM.traerMaquina(2).cobrar(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(1));
-			maquinaABM.traerMaquina(2).cobrar(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(3));
+			maquinaABM.cobrarColectivo(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(1),
+					(MaquinaColectivo)maquinaABM.traerMaquina(1));
+			maquinaABM.cobrarColectivo(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(1),
+					(MaquinaColectivo)maquinaABM.traerMaquina(2));
+			maquinaABM.cobrarColectivo(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(3),
+					(MaquinaColectivo)maquinaABM.traerMaquina(2));
 			System.out.println(tarjeta.toString());*/
 			/*-------Cobro en MaquinaColectivo-------*/
 			
-			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(130);
+			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(1);
 			Usuario usuario = usuarioABM.traerUsuario(tarjeta.getUsuario().getIdUsuario());
 			if (usuario.getTarifaSocial()!=null) tarjeta.setTarifaSocial(usuario.getTarifaSocial());
 			if (usuario.getBoletoEstudiantil()!=null) {
 				tarjeta.setBoletoEstudiantil(usuario.getBoletoEstudiantil());
 				tarjeta.setViajesGratisRestantes(tarjeta.getBoletoEstudiantil().getCantViajesGratis());
 			}
-			maquinaABM.traerMaquina(3).cobrar(tarjeta,0);
+			maquinaABM.cobrarTren(tarjeta,(MaquinaTren)maquinaABM.traerMaquina(3));
 			System.out.println(tarjeta.toString());
-			maquinaABM.traerMaquina(10).cobrar(tarjeta,0);
+			maquinaABM.cobrarTren(tarjeta,(MaquinaTren)maquinaABM.traerMaquina(10));
 			System.out.println(tarjeta.toString());*/
 			/*-------Cobro en MaquinaTren-------*/
 			
-			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(130);
+			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(1);
 			Usuario usuario = usuarioABM.traerUsuario(tarjeta.getUsuario().getIdUsuario());
 			if (usuario.getTarifaSocial()!=null) tarjeta.setTarifaSocial(usuario.getTarifaSocial());
 			if (usuario.getBoletoEstudiantil()!=null) {
 				tarjeta.setBoletoEstudiantil(usuario.getBoletoEstudiantil());
 				tarjeta.setViajesGratisRestantes(tarjeta.getBoletoEstudiantil().getCantViajesGratis());
 			}
-			maquinaABM.traerMaquina(26).cobrar(tarjeta,1);
+			maquinaABM.cobrarTren(tarjeta,(MaquinaTren)maquinaABM.traerMaquina(26));
 			System.out.println(tarjeta.toString());*/
 			/*-------Cobro en MaquinaTren(Subte)-------*/
 			
-			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(130);
-			maquinaABM.traerMaquina(27).cargar(tarjeta,100);
+			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(1);
+			maquinaABM.cargar(tarjeta,100f,maquinaABM.traerMaquina(27));
 			System.out.println(tarjeta.toString());*/
 			/*-------Carga en Maquina-------*/
 			

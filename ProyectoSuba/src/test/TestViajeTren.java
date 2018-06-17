@@ -11,10 +11,10 @@ public class TestViajeTren {
 		Linea linea = new Linea("Grl Roca");
 		Estacion estacionI = new Estacion("Temperley", linea);
 		Estacion estacionE = new Estacion("Remedios de Escalada", linea);
-		MaquinaTren maquinaI = new MaquinaTren(estacionI);
-		MaquinaTren maquinaE = new MaquinaTren(estacionE);
+		//MaquinaTren maquinaI = new MaquinaTren(estacionI);
+		//MaquinaTren maquinaE = new MaquinaTren(estacionE);
 		
-		Tarjeta tarjeta = new Tarjeta(123456);
+		//Tarjeta tarjeta = new Tarjeta(123456);
 		
 		//maquinaI.cargar(tarjeta, 100);
 		
@@ -25,7 +25,7 @@ public class TestViajeTren {
 			System.out.println(e.getMessage());
 		}
 			
-		System.out.println(tarjeta.getSaldo());
+		//System.out.println(tarjeta.getSaldo());
 		//System.out.println(tarjeta.getBoleto());
 	}
 }

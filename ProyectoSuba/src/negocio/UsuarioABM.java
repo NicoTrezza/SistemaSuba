@@ -1,7 +1,6 @@
 package negocio;
 
 import java.util.Set;
-
 import dao.UsuarioDao;
 import datos.BoletoEstudiantil;
 import datos.Permiso;
@@ -70,5 +69,21 @@ public class UsuarioABM {
 		Usuario usuario = dao.traer(idUsuario);
 		if (usuario==null) throw new Exception("El usuario no existe");
 		dao.eliminar(usuario);
+	}
+	
+	public void registrarTarjeta(Usuario usuario, Tarjeta tarjeta) throws Exception {
+		TarjetaABM tarjetaABM = TarjetaABM.getInstancia();
+		tarjetaABM.anadirUsuario(usuario,tarjeta);
+		usuario.getLstTarjetas().add(tarjeta);
+	}
+	
+	public void solicitarTarifaSocial(Usuario usuario, TarifaSocial tarifaSocial) throws Exception {
+		usuario.setTarifaSocial(tarifaSocial);
+		UsuarioABM.getInstancia().modificar(usuario);
+	}
+	
+	public void solicitarBoletoEstudiantil(Usuario usuario, BoletoEstudiantil boletoEstudiantil) throws Exception {
+		usuario.setBoletoEstudiantil(boletoEstudiantil);
+		UsuarioABM.getInstancia().modificar(usuario);
 	}
 }
