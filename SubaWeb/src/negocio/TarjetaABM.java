@@ -37,8 +37,8 @@ public class TarjetaABM {
 	}
 
 	
-	public int agregar(int nroTarjeta, Usuario usuario) throws Exception {
-		Tarjeta tarjeta = new Tarjeta(nroTarjeta, usuario);
+	public int agregar(int nroTarjeta) throws Exception {
+		Tarjeta tarjeta = new Tarjeta(nroTarjeta);
 		if (dao.traerPorNumero(tarjeta.getNroTarjeta())!=null) throw new Exception("Tarjeta duplicada");
 		return dao.agregar(tarjeta);
 	}
@@ -53,5 +53,16 @@ public class TarjetaABM {
 		Tarjeta tarjeta = dao.traer(idTarjeta);
 		if (tarjeta==null) throw new Exception("La tarjeta no existe");
 		dao.eliminar(tarjeta);
+	}
+	
+	public void anadirUsuario(Usuario usuario, Tarjeta tarjeta) throws Exception {
+		if (tarjeta.getUsuario()!=null) throw new Exception("La tarjeta ya tiene un usuario asignado");
+		tarjeta.setUsuario(usuario);
+		TarjetaABM.getInstancia().modificar(tarjeta);
+	}
+	
+	public void darDeBaja(Tarjeta tarjeta) throws Exception {
+		tarjeta.setActiva(false);
+		TarjetaABM.getInstancia().modificar(tarjeta);
 	}
 }

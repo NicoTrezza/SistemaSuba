@@ -28,7 +28,6 @@ public class UsuarioBoletoEstudiantilABM {
 	
 	public UsuarioBoletoEstudiantil traerPorUsuario(int idUsuario) {
 		UsuarioBoletoEstudiantil usuarioBoletoEstudiantil = dao.traerPorUsuario(idUsuario);
-		//if (usuarioBoletoEstudiantil==null) throw new Exception("El registro seleccionado no existe");
 		return usuarioBoletoEstudiantil;
 	}
 	

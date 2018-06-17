@@ -1,6 +1,5 @@
 package datos;
 import java.util.Set;
-import negocio.UsuarioABM;
 
 public class Usuario {
 	protected int idUsuario;
@@ -171,20 +170,5 @@ public class Usuario {
 				+ movil + ", fijo=" + fijo + ", tipoIdentificacion=" + tipoIdentificacion + ", permiso=" + permiso
 				+ ", tarifaSocial=" + tarifaSocial + ", lstTarjetas=" + lstTarjetas + ", boletoEstudiantil="
 				+ boletoEstudiantil + "]";
-	}
-
-	public void registrarTarjeta(Tarjeta tarjeta) throws Exception {
-		tarjeta.anadirUsuario(this);
-		this.lstTarjetas.add(tarjeta);
-	}
-	
-	public void solicitarTarifaSocial(TarifaSocial tarifaSocial) throws Exception {
-		this.tarifaSocial=tarifaSocial;
-		UsuarioABM.getInstancia().modificar(this);
-	}
-	
-	public void solicitarBoletoEstudiantil(BoletoEstudiantil boletoEstudiantil) throws Exception {
-		this.boletoEstudiantil = boletoEstudiantil;
-		UsuarioABM.getInstancia().modificar(this);
 	}
 }

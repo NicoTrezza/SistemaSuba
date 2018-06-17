@@ -1,7 +1,6 @@
 package datos;
 import java.util.GregorianCalendar;
 import funciones.Funciones;
-import negocio.TarjetaABM;
 
 public class Tarjeta {
 	protected int idTarjeta;
@@ -20,11 +19,10 @@ public class Tarjeta {
 	
 	public Tarjeta() {}
 	
-	public Tarjeta(int nroTarjeta, Usuario usuario) {
+	public Tarjeta(int nroTarjeta) {
 		this.nroTarjeta = nroTarjeta;
 		this.saldo = 0;
 		this.activa = true;
-		this.usuario = usuario;
 	}
 	
 	public Tarjeta(int nroTarjeta, float saldo, boolean activa, Usuario usuario, int numeroViaje,
@@ -146,16 +144,5 @@ public class Tarjeta {
 				+ ", ultHoraViaje=" + Funciones.traerFechaCortaHora(ultHoraViaje) + ", tarifaSocial=" + tarifaSocial
 				+ ", boletoEstudiantil=" + boletoEstudiantil + ", estadoRedSube=" + estadoRedSube + ", estacionIngreso="
 				+ estacionIngreso + "]";
-	}
-
-	public void anadirUsuario(Usuario usuario) throws Exception {
-		if (this.usuario!=null) throw new Exception("La tarjeta ya tiene un usuario asignado");
-		this.usuario = usuario;
-		TarjetaABM.getInstancia().modificar(this);
-	}
-	
-	public void darDeBaja() throws Exception {
-		this.activa = false;
-		TarjetaABM.getInstancia().modificar(this);
 	}
 }
