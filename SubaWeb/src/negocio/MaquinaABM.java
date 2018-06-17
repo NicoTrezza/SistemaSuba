@@ -59,8 +59,8 @@ public class MaquinaABM {
 		dao.eliminar(maquina);
 	}
 	
-	public void cobrarColectivo(Tarjeta tarjeta, BoletoColectivo boletoColectivo, MaquinaColectivo maquinaColectivo) throws Exception {
-		GregorianCalendar fechaHora = new GregorianCalendar();
+	public void cobrarColectivo(Tarjeta tarjeta, BoletoColectivo boletoColectivo,
+			MaquinaColectivo maquinaColectivo, GregorianCalendar fechaHora) throws Exception {
 		float tarifa=0;
 		
 		if (tarjeta.getViajesGratisRestantes()<1) {
@@ -95,20 +95,18 @@ public class MaquinaABM {
 		ViajeABM.getInstancia().agregar(fechaHora,tarifa,tarjeta,maquinaColectivo);
 	}
 	
-	public void cobrarTren(Tarjeta tarjeta, MaquinaTren maquinaTren) throws Exception {
-		GregorianCalendar fechaHora = new GregorianCalendar();
+	public void cobrarTren(Tarjeta tarjeta, MaquinaTren maquinaTren, GregorianCalendar fechaHora) throws Exception {
 		if (tarjeta.getEstacionIngreso()!=null &&
 				(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())>7200000)
 			tarjeta.setEstacionIngreso(null);
 		else if (maquinaTren.getTipo()==2) {
-			if (tarjeta.getEstacionIngreso()!=null) devolucionMolinete(tarjeta, maquinaTren);
-			else cobroMolinete(tarjeta, maquinaTren);
+			if (tarjeta.getEstacionIngreso()!=null) devolucionMolinete(tarjeta, maquinaTren, fechaHora);
+			else cobroMolinete(tarjeta, maquinaTren, fechaHora);
 		}
-		else if (maquinaTren.getTipo()==3) cobroMolineteSubte(tarjeta, maquinaTren);
+		else if (maquinaTren.getTipo()==3) cobroMolineteSubte(tarjeta, maquinaTren, fechaHora);
 	}
 	
-	private void cobroMolinete(Tarjeta tarjeta, MaquinaTren maquinaTren) throws Exception {
-		GregorianCalendar fechaHora = new GregorianCalendar();
+	private void cobroMolinete(Tarjeta tarjeta, MaquinaTren maquinaTren, GregorianCalendar fechaHora) throws Exception {
 		TarifaTren tarifaTren = TarifaTrenABM.getInstancia().traerTarifaTrenMax();
 		float tarifa=0;
 		
@@ -123,8 +121,7 @@ public class MaquinaABM {
 		ViajeABM.getInstancia().agregar(fechaHora,tarifa,tarjeta,maquinaTren);
 	}
 	
-	private void devolucionMolinete(Tarjeta tarjeta, MaquinaTren maquinaTren) throws Exception {
-		GregorianCalendar fechaHora = new GregorianCalendar();
+	private void devolucionMolinete(Tarjeta tarjeta, MaquinaTren maquinaTren, GregorianCalendar fechaHora) throws Exception {
 		BoletoTren boletoTren = BoletoTrenABM.getInstancia().traerBoletoTren(tarjeta.getEstacionIngreso(),
 				maquinaTren.getEstacion());
 		System.out.println(boletoTren.toString());
@@ -161,8 +158,7 @@ public class MaquinaABM {
 		ViajeABM.getInstancia().agregar(fechaHora,-tarifa,tarjeta,maquinaTren);
 	}
 	
-	private void cobroMolineteSubte(Tarjeta tarjeta, MaquinaTren maquinaTren) throws Exception {
-		GregorianCalendar fechaHora = new GregorianCalendar();
+	private void cobroMolineteSubte(Tarjeta tarjeta, MaquinaTren maquinaTren, GregorianCalendar fechaHora) throws Exception {
 		float tarifa = 0; 
 		
 		if (tarjeta.getSaldo()-tarifa < -(tarifa*3)) throw new Exception("Saldo insuficiente");

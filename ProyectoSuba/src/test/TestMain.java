@@ -188,10 +188,8 @@ public class TestMain {
 			/*-------Beneficio Tarifa Social-------*/
 			
 			/*usuarioABM.solicitarBoletoEstudiantil(usuarioABM.traerUsuario(1),boletoEstudiantilABM.traerBoletoEstudiantil(1));
-			GregorianCalendar fechaVencimiento = new GregorianCalendar();
-			fechaVencimiento.add(GregorianCalendar.MONTH,1);
-			usuarioBoletoEstudiantilABM.agregar(fechaVencimiento,usuarioABM.traerUsuario(1),
-					boletoEstudiantilABM.traerBoletoEstudiantil(1));*/
+			GregorianCalendar fechaActual = new GregorianCalendar(2018,6,17);
+			usuarioBoletoEstudiantilABM.agregar(usuarioABM.traerUsuario(1),fechaActual);*/
 			/*-------Beneficio Boleto Estudiantil-------*/
 			
 			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(1);
@@ -201,12 +199,13 @@ public class TestMain {
 				tarjeta.setBoletoEstudiantil(usuario.getBoletoEstudiantil());
 				tarjeta.setViajesGratisRestantes(tarjeta.getBoletoEstudiantil().getCantViajesGratis());
 			}
+			GregorianCalendar fechaHora = new GregorianCalendar();
 			maquinaABM.cobrarColectivo(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(1),
-					(MaquinaColectivo)maquinaABM.traerMaquina(1));
+					(MaquinaColectivo)maquinaABM.traerMaquina(1),fechaHora);
 			maquinaABM.cobrarColectivo(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(1),
-					(MaquinaColectivo)maquinaABM.traerMaquina(2));
+					(MaquinaColectivo)maquinaABM.traerMaquina(2),fechaHora);
 			maquinaABM.cobrarColectivo(tarjeta, boletoColectivoABM.traerBoletoPorSeccion(3),
-					(MaquinaColectivo)maquinaABM.traerMaquina(2));
+					(MaquinaColectivo)maquinaABM.traerMaquina(2),fechaHora);
 			System.out.println(tarjeta.toString());*/
 			/*-------Cobro en MaquinaColectivo-------*/
 			
@@ -217,9 +216,10 @@ public class TestMain {
 				tarjeta.setBoletoEstudiantil(usuario.getBoletoEstudiantil());
 				tarjeta.setViajesGratisRestantes(tarjeta.getBoletoEstudiantil().getCantViajesGratis());
 			}
-			maquinaABM.cobrarTren(tarjeta,(MaquinaTren)maquinaABM.traerMaquina(3));
+			GregorianCalendar fechaHora = new GregorianCalendar();
+			maquinaABM.cobrarTren(tarjeta,(MaquinaTren)maquinaABM.traerMaquina(3),fechaHora);
 			System.out.println(tarjeta.toString());
-			maquinaABM.cobrarTren(tarjeta,(MaquinaTren)maquinaABM.traerMaquina(10));
+			maquinaABM.cobrarTren(tarjeta,(MaquinaTren)maquinaABM.traerMaquina(10),fechaHora);
 			System.out.println(tarjeta.toString());*/
 			/*-------Cobro en MaquinaTren-------*/
 			
@@ -245,7 +245,7 @@ public class TestMain {
 			System.out.println(redSubeABM.traerRedSube(2).toString());*/
 			//System.out.println(tarjeta.toString());
 			System.out.println(usuarioABM.traerUsuario(1).toString());
-			System.out.println(usuarioBoletoEstudiantilABM.traerUsuarioBoletoEstudiantil(1).toString());
+			System.out.println(usuarioBoletoEstudiantilABM.traerUltimoPorUsuario(1).toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
