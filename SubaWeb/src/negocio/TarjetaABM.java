@@ -58,7 +58,7 @@ public class TarjetaABM {
 	public void anadirUsuario(Usuario usuario, Tarjeta tarjeta) throws Exception {
 		if (tarjeta.getUsuario()!=null) throw new Exception("La tarjeta ya tiene un usuario asignado");
 		tarjeta.setUsuario(usuario);
-		TarjetaABM.getInstancia().modificar(tarjeta);
+		modificar(tarjeta);
 	}
 	
 	public void darDeBaja(Tarjeta tarjeta) throws Exception {

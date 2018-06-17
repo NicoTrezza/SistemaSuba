@@ -8,6 +8,7 @@ import datos.TarifaSocial;
 import datos.Tarjeta;
 import datos.TipoIdentificacion;
 import datos.Usuario;
+import java.util.Iterator;
 
 public class UsuarioABM {
 	private static UsuarioABM instancia;
@@ -72,6 +73,11 @@ public class UsuarioABM {
 	}
 	
 	public void registrarTarjeta(Usuario usuario, Tarjeta tarjeta) throws Exception {
+		Set<Tarjeta> lstTarjeta = usuario.getLstTarjetas();
+		Iterator<Tarjeta> i = lstTarjeta.iterator();
+		while (i.hasNext()) {
+			if (i.next().isActiva()) throw new Exception("El usuario ya tiene una tarjeta activa registrada");
+		}
 		TarjetaABM tarjetaABM = TarjetaABM.getInstancia();
 		tarjetaABM.anadirUsuario(usuario,tarjeta);
 		usuario.getLstTarjetas().add(tarjeta);

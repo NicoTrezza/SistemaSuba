@@ -57,9 +57,9 @@ public class TestMain {
 			boletoColectivoABM.agregar(2, 9.25f);
 			boletoColectivoABM.agregar(3, 9.50f);
 			boletoColectivoABM.agregar(4, 9.75f);
-			boletoColectivoABM.agregar(5, 10f);
-			lineaColectivoABM.agregar(266);
-			lineaColectivoABM.agregar(160);*/
+			boletoColectivoABM.agregar(5, 10f);*/
+			//lineaColectivoABM.agregar(266);
+			//lineaColectivoABM.agregar(160);
 			/*MaquinaColectivo maquinaColectivo = new MaquinaColectivo(1,lineaColectivoABM.traerLineaColectivo(1),1);
 			maquinaABM.agregar(maquinaColectivo);
 			maquinaColectivo.setNumInterno(1);
@@ -80,8 +80,8 @@ public class TestMain {
 			estacionABM.agregar("Longchamps",lineaABM.traerLinea(1));
 			estacionABM.agregar("Glew",lineaABM.traerLinea(1));
 			estacionABM.agregar("Guernica",lineaABM.traerLinea(1));
-			estacionABM.agregar("Alejandro Korn",lineaABM.traerLinea(1));
-			MaquinaTren maquinaTren = new MaquinaTren(estacionABM.traerEstacion("Plaza Constitucion"),2);
+			estacionABM.agregar("Alejandro Korn",lineaABM.traerLinea(1));*/
+			/*MaquinaTren maquinaTren = new MaquinaTren(estacionABM.traerEstacion("Plaza Constitucion"),2);
 			maquinaABM.agregar(maquinaTren);
 			maquinaTren.setEstacion(estacionABM.traerEstacion("Hipolito Yrigoyen"));
 			maquinaABM.agregar(maquinaTren);
@@ -184,10 +184,10 @@ public class TestMain {
 			//tarjetaABM.darDeBaja(tarjetaABM.traerTarjetaPorNumero(1));
 			/*-------Dar de baja Tarjeta-------*/
 			 
-			//usuarioABM.traerUsuario(1).solicitarTarifaSocial(tarifaSocialABM.traerTarifaSocial(1));
+			//usuarioABM.solicitarTarifaSocial(usuarioABM.traerUsuario(1),tarifaSocialABM.traerTarifaSocial(1));
 			/*-------Beneficio Tarifa Social-------*/
 			
-			/*usuarioABM.traerUsuario(1).solicitarBoletoEstudiantil(boletoEstudiantilABM.traerBoletoEstudiantil(1));
+			/*usuarioABM.solicitarBoletoEstudiantil(usuarioABM.traerUsuario(1),boletoEstudiantilABM.traerBoletoEstudiantil(1));
 			GregorianCalendar fechaVencimiento = new GregorianCalendar();
 			fechaVencimiento.add(GregorianCalendar.MONTH,1);
 			usuarioBoletoEstudiantilABM.agregar(fechaVencimiento,usuarioABM.traerUsuario(1),
