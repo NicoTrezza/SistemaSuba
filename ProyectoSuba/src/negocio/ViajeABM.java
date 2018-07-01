@@ -117,4 +117,16 @@ public class ViajeABM {
 	public List<Viaje> traerPorTransporte(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) {
 		return dao.traerPorTransporte(fechaInicio, fechaFin);
 	}
+	
+	public List<Viaje> traerEnColectivo(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) {
+		return dao.traerEnColectivo(fechaInicio, fechaFin);
+	}
+	
+	public List<Viaje> traerEnTren(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) {
+		return dao.traerEnTren(fechaInicio, fechaFin);
+	}
+	
+	public List<Viaje> traerEnSubte(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) {
+		return dao.traerEnSubte(fechaInicio, fechaFin);
+	}
 }

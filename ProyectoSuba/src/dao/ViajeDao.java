@@ -106,4 +106,60 @@ public class ViajeDao {
 		}
 		return viajes;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Viaje> traerEnColectivo(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) {
+		List<Viaje> viajes = null;
+		try {
+			iniciaOperacion();
+			String hql = "from Viaje v "
+					+ "inner join fetch v.tarjeta "
+					+ "inner join fetch v.maquina "
+					+ "where v.fechaHora between :fechaI and :fechaF "
+					+ "and v.maquina.tipo = 1 "
+					+ "order by v.maquina.tipo desc, v.fechaHora asc";
+			viajes = session.createQuery(hql).setParameter("fechaI", fechaInicio).setParameter("fechaF", fechaFin).list();
+		} finally {
+			session.close();
+		}
+		return viajes;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Viaje> traerEnTren(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) {
+		List<Viaje> viajes = null;
+		try {
+			iniciaOperacion();
+			String hql = "from Viaje v "
+					+ "inner join fetch v.tarjeta "
+					+ "inner join fetch v.maquina "
+					+ "inner join fetch v.maquina.estacion "
+					+ "where v.fechaHora between :fechaI and :fechaF "
+					+ "and v.maquina.tipo = 2 "
+					+ "order by v.maquina.tipo desc, v.fechaHora asc, v.valor desc";
+			viajes = session.createQuery(hql).setParameter("fechaI", fechaInicio).setParameter("fechaF", fechaFin).list();
+		} finally {
+			session.close();
+		}
+		return viajes;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Viaje> traerEnSubte(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) {
+		List<Viaje> viajes = null;
+		try {
+			iniciaOperacion();
+			String hql = "from Viaje v "
+					+ "inner join fetch v.tarjeta "
+					+ "inner join fetch v.maquina "
+					+ "inner join fetch v.maquina.estacion "
+					+ "where v.fechaHora between :fechaI and :fechaF "
+					+ "and v.maquina.tipo = 3 "
+					+ "order by v.maquina.tipo desc, v.fechaHora asc, v.valor desc";
+			viajes = session.createQuery(hql).setParameter("fechaI", fechaInicio).setParameter("fechaF", fechaFin).list();
+		} finally {
+			session.close();
+		}
+		return viajes;
+	}
 }

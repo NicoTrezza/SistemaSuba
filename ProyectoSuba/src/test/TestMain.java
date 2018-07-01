@@ -256,6 +256,43 @@ public class TestMain {
 			}*/
 			/*-------Viajes por medio de transporte entre fechas-------*/
 			
+			/*int i;
+			GregorianCalendar fechaInicio = new GregorianCalendar(2018,5,1);
+			GregorianCalendar fechaFin = new GregorianCalendar(2018,5,28);
+			List<Viaje> lstViajes = viajeABM.traerEnColectivo(fechaInicio, fechaFin); 
+			for (i=0;i<lstViajes.size();i++) {
+				System.out.println(Funciones.traerFechaCortaHora(lstViajes.get(i).getFechaHora()) + "\n"
+						+ lstViajes.get(i).getTarjeta().getNroTarjeta() + "\n" + lstViajes.get(i).getValor() + "\n"
+						+ lstViajes.get(i).getMaquina().getTipo() + "\n");
+			}*/
+			/*-------Viajes en colectivo entre fechas-------*/
+			
+			/*int i;
+			GregorianCalendar fechaInicio = new GregorianCalendar(2018,5,1);
+			GregorianCalendar fechaFin = new GregorianCalendar(2018,5,28);
+			List<Viaje> lstViajes = viajeABM.traerEnTren(fechaInicio, fechaFin);
+			MaquinaTren maquinaTren;
+			for (i=0;i<lstViajes.size();i++) {
+				maquinaTren = (MaquinaTren)lstViajes.get(i).getMaquina();
+				System.out.println(Funciones.traerFechaCortaHora(lstViajes.get(i).getFechaHora()) + "\n"
+						+ lstViajes.get(i).getTarjeta().getNroTarjeta() + "\n" + maquinaTren.getEstacion().toString() + "\n"
+						+ lstViajes.get(i).getValor() + "\n" + lstViajes.get(i).getMaquina().getTipo() + "\n");
+			}*/
+			/*-------Viajes en tren entre fechas-------*/
+			
+			/*int i;
+			GregorianCalendar fechaInicio = new GregorianCalendar(2018,5,1);
+			GregorianCalendar fechaFin = new GregorianCalendar(2018,5,28);
+			List<Viaje> lstViajes = viajeABM.traerEnSubte(fechaInicio, fechaFin);
+			MaquinaTren maquinaTren;
+			for (i=0;i<lstViajes.size();i++) {
+				maquinaTren = (MaquinaTren)lstViajes.get(i).getMaquina();
+				System.out.println(Funciones.traerFechaCortaHora(lstViajes.get(i).getFechaHora()) + "\n"
+						+ lstViajes.get(i).getTarjeta().getNroTarjeta() + "\n" + maquinaTren.getEstacion().toString() + "\n"
+						+ lstViajes.get(i).getValor() + "\n" + lstViajes.get(i).getMaquina().getTipo() + "\n");
+			}*/
+			/*-------Viajes en subte entre fechas-------*/
+			
 			/*System.out.println(tarifaSocialABM.traerTarifaSocial(1).toString());
 			System.out.println(boletoEstudiantilABM.traerBoletoEstudiantil(1).toString());
 			System.out.println(redSubeABM.traerRedSube(1).toString());
