@@ -1,6 +1,7 @@
 package test;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import negocio.TarifaSocialABM;
 import negocio.BoletoEstudiantilABM;
 import negocio.RedSubeABM;
@@ -16,8 +17,11 @@ import negocio.LineaABM;
 import negocio.EstacionABM;
 import negocio.TarifaTrenABM;
 import negocio.BoletoTrenABM;
+import negocio.ViajeABM;
 import datos.Tarjeta;
 import datos.Usuario;
+import datos.Viaje;
+import funciones.Funciones;
 import datos.MaquinaColectivo;
 import datos.MaquinaTren;
 import datos.Maquina;
@@ -40,6 +44,7 @@ public class TestMain {
 		EstacionABM estacionABM = EstacionABM.getInstancia();
 		TarifaTrenABM tarifaTrenABM = TarifaTrenABM.getInstancia();
 		BoletoTrenABM boletoTrenABM = BoletoTrenABM.getInstancia();
+		ViajeABM viajeABM = ViajeABM.getInstancia();
 		
 		try {
 			//tipoIdentificacionABM.agregar("Documento Nacional de Identidad");
@@ -226,11 +231,12 @@ public class TestMain {
 			/*Tarjeta tarjeta = tarjetaABM.traerTarjetaPorNumero(1);
 			Usuario usuario = usuarioABM.traerUsuario(tarjeta.getUsuario().getIdUsuario());
 			if (usuario.getTarifaSocial()!=null) tarjeta.setTarifaSocial(usuario.getTarifaSocial());
+			GregorianCalendar fechaHora = new GregorianCalendar();
 			if (usuario.getBoletoEstudiantil()!=null) {
 				tarjeta.setBoletoEstudiantil(usuario.getBoletoEstudiantil());
 				tarjeta.setViajesGratisRestantes(tarjeta.getBoletoEstudiantil().getCantViajesGratis());
 			}
-			maquinaABM.cobrarTren(tarjeta,(MaquinaTren)maquinaABM.traerMaquina(26));
+			maquinaABM.cobrarTren(tarjeta,(MaquinaTren)maquinaABM.traerMaquina(26),fechaHora);
 			System.out.println(tarjeta.toString());*/
 			/*-------Cobro en MaquinaTren(Subte)-------*/
 			
@@ -239,13 +245,24 @@ public class TestMain {
 			System.out.println(tarjeta.toString());*/
 			/*-------Carga en Maquina-------*/
 			
+			/*int i;
+			GregorianCalendar fechaInicio = new GregorianCalendar(2018,5,1);
+			GregorianCalendar fechaFin = new GregorianCalendar(2018,5,28);
+			List<Viaje> lstViajes = viajeABM.traerPorTransporte(fechaInicio, fechaFin); 
+			for (i=0;i<lstViajes.size();i++) {
+				System.out.println(Funciones.traerFechaCortaHora(lstViajes.get(i).getFechaHora()) + "\n"
+						+ lstViajes.get(i).getTarjeta().getNroTarjeta() + "\n" + lstViajes.get(i).getValor() + "\n"
+						+ lstViajes.get(i).getMaquina().getTipo() + "\n");
+			}*/
+			/*-------Viajes por medio de transporte entre fechas-------*/
+			
 			/*System.out.println(tarifaSocialABM.traerTarifaSocial(1).toString());
 			System.out.println(boletoEstudiantilABM.traerBoletoEstudiantil(1).toString());
 			System.out.println(redSubeABM.traerRedSube(1).toString());
 			System.out.println(redSubeABM.traerRedSube(2).toString());*/
 			//System.out.println(tarjeta.toString());
-			System.out.println(usuarioABM.traerUsuario(1).toString());
-			System.out.println(usuarioBoletoEstudiantilABM.traerUltimoPorUsuario(1).toString());
+			//System.out.println(usuarioABM.traerUsuario(1).toString());
+			//System.out.println(usuarioBoletoEstudiantilABM.traerUltimoPorUsuario(1).toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

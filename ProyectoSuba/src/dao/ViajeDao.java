@@ -1,7 +1,7 @@
 package dao;
 
+import java.util.GregorianCalendar;
 import java.util.List;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -87,6 +87,23 @@ public class ViajeDao {
 			session.close();
 		}
 		
+		return viajes;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Viaje> traerPorTransporte(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) {
+		List<Viaje> viajes = null;
+		try {
+			iniciaOperacion();
+			String hql = "from Viaje v "
+					+ "inner join fetch v.tarjeta "
+					+ "inner join fetch v.maquina "
+					+ "where v.fechaHora between :fechaI and :fechaF "
+					+ "order by v.maquina.tipo desc, v.fechaHora asc";
+			viajes = session.createQuery(hql).setParameter("fechaI", fechaInicio).setParameter("fechaF", fechaFin).list();
+		} finally {
+			session.close();
+		}
 		return viajes;
 	}
 }

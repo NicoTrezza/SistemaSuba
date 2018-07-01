@@ -1,5 +1,6 @@
 package datos;
 import java.util.GregorianCalendar;
+import funciones.Funciones;
 
 public class Viaje {
 	protected int idViaje;
@@ -59,7 +60,7 @@ public class Viaje {
 
 	@Override
 	public String toString() {
-		return "Viaje [idViaje=" + idViaje + ", fechaHora=" + fechaHora + ", valor=" + valor + "]";
+		return "Viaje [idViaje=" + idViaje + ", fechaHora=" + Funciones.traerFechaCortaHora(fechaHora) + ", valor=" + valor + "]";
 	}
  
 }

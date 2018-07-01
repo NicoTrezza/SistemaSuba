@@ -113,4 +113,8 @@ public class ViajeABM {
 		if (viaje==null) throw new Exception("Movimiento de viaje no existente");
 		dao.eliminar(viaje);
 	}
+	
+	public List<Viaje> traerPorTransporte(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) {
+		return dao.traerPorTransporte(fechaInicio, fechaFin);
+	}
 }
