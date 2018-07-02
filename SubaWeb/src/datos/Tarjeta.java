@@ -25,6 +25,13 @@ public class Tarjeta {
 		this.activa = true;
 	}
 	
+	public Tarjeta(int nroTarjeta, Usuario usuario) {
+		this.nroTarjeta = nroTarjeta;
+		this.saldo = 0;
+		this.activa = true;
+		this.usuario = usuario;
+	}
+	
 	public Tarjeta(int nroTarjeta, float saldo, boolean activa, Usuario usuario, int numeroViaje,
 			int viajesGratisRestantes, GregorianCalendar ultHoraViaje, TarifaSocial tarifaSocial,
 			BoletoEstudiantil boletoEstudiantil, RedSube estadoRedSube, Estacion estacionIngreso) {

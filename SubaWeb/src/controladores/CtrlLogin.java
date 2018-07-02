@@ -30,24 +30,26 @@ public class CtrlLogin extends HttpServlet {
 			
 			if (email.equals(usu.getEmail())) {
 				Tarjeta t = TarjetaABM.getInstancia().traerTarjetaPorUsuario(usu);
+				
 				request.getSession().setAttribute("usuario", usu);
 		      	request.getSession().setAttribute("tarjeta", t);
 		      	request.getSession().setAttribute("saldo", 1);
 			
-		      	
-		      	
 		      	if (usu.getTarifaSocial() != null) 
 		      		t.setTarifaSocial(usu.getTarifaSocial());
 				if (usu.getBoletoEstudiantil() != null) {
 					t.setBoletoEstudiantil(BoletoEstudiantilABM.getInstancia().traerBoletoEstudiantil(usu.getBoletoEstudiantil().getIdBoletoEstudiantil()));
 					t.setViajesGratisRestantes(t.getBoletoEstudiantil().getCantViajesGratis());
 				}
-		      	
-				request.getRequestDispatcher("/index.jsp").forward(request, response);
+				
+				if (usu.getPermiso().getIdPermiso() == 1) 			
+					request.getRequestDispatcher("/preIndex.jsp").forward(request, response);
+				else 
+					request.getRequestDispatcher("/index.jsp").forward(request, response);
+
 			}
-			else {
-				request.getRequestDispatcher("/login.jsp").forward(request, response);
-			}		
+			else 
+				request.getRequestDispatcher("/login.jsp").forward(request, response);	
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

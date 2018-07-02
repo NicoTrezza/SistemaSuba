@@ -73,6 +73,10 @@ public class Funciones {
 		return f;
 	}
 	
+	public static GregorianCalendar traerFechaInput(String fecha) {		
+		return new GregorianCalendar(Integer.parseInt(fecha.substring(6,10)), Integer.parseInt(fecha.substring(0,2)) - 1, Integer.parseInt(fecha.substring(3,5)));
+	}
+		
 	public static GregorianCalendar traerFecha (String fecha) {
 		int anio,mes,dia;
 		GregorianCalendar f = new GregorianCalendar();
@@ -90,8 +94,11 @@ public class Funciones {
 	public static String traerFechaCorta (GregorianCalendar f){
 		String fechaCorta=null;
 		if (f!=null) {
-			fechaCorta = traerDia(f) + "/";
-			if (traerMes(f) < 9) 
+			if (traerDia(f) <= 9)
+				fechaCorta = "0" + traerDia(f) + "/";
+			else
+				fechaCorta = traerDia(f) + "/";
+			if (traerMes(f) <= 9) 
 				fechaCorta += "0" + traerMes(f) + "/" + traerAnio(f);
 			else
 				fechaCorta += traerMes(f) + "/" + traerAnio(f);
@@ -102,7 +109,13 @@ public class Funciones {
 	public static String traerFechaCortaHora (GregorianCalendar f){
 		String fechaCorta=null;
 		if (f!=null) {
-			fechaCorta = traerFechaCorta(f) + " " + f.get(Calendar.HOUR_OF_DAY) + ":";
+			fechaCorta = traerFechaCorta(f) + " ";
+			
+			if (f.get(Calendar.HOUR_OF_DAY) <=9)
+				fechaCorta += "0" + f.get(Calendar.HOUR_OF_DAY) + ":";
+			else
+				fechaCorta += f.get(Calendar.HOUR_OF_DAY) + ":";
+			
 			if (f.get(Calendar.MINUTE) <= 9) 
 				fechaCorta += "0" + f.get(Calendar.MINUTE) + ":";
 			else

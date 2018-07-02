@@ -43,6 +43,12 @@ public class TarjetaABM {
 		return dao.agregar(tarjeta);
 	}
 	
+	public int agregar(int nroTarjeta, Usuario usuario) throws Exception {
+		Tarjeta tarjeta = new Tarjeta(nroTarjeta, usuario);
+		if (dao.traerPorNumero(tarjeta.getNroTarjeta())!=null) throw new Exception("Tarjeta duplicada");
+		return dao.agregar(tarjeta);
+	}
+	
 	public void modificar(Tarjeta tarjeta) throws Exception {
 		Tarjeta tarjeta1 = dao.traerPorNumero(tarjeta.getNroTarjeta());
 		if (tarjeta1!=null && (tarjeta1.getIdTarjeta()!=tarjeta.getIdTarjeta()) ) throw new Exception("Tarjeta duplicada");
@@ -63,6 +69,11 @@ public class TarjetaABM {
 	
 	public void darDeBaja(Tarjeta tarjeta) throws Exception {
 		tarjeta.setActiva(false);
+		TarjetaABM.getInstancia().modificar(tarjeta);
+	}
+	
+	public void darDeAlta(Tarjeta tarjeta) throws Exception {
+		tarjeta.setActiva(true);
 		TarjetaABM.getInstancia().modificar(tarjeta);
 	}
 }

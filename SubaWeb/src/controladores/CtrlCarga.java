@@ -33,8 +33,11 @@ public class CtrlCarga extends HttpServlet {
 			Maquina maq = MaquinaABM.getInstancia().traerMaquinaPorEstacion(estacion);
 			
 			Tarjeta tar = (Tarjeta) request.getSession().getAttribute("tarjeta");
-			maq.cargar(tar, s);
-						
+			
+			
+			if(tar.isActiva())
+				MaquinaABM.getInstancia().cargar(tar, s, maq);
+			
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

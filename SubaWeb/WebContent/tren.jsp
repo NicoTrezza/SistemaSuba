@@ -25,11 +25,15 @@
   <script src="js/jquery-3.3.1.js"></script>
   <script type="text/javascript">
   	$(document).ready(function() {
-  		<% int saldo = (int) request.getSession().getAttribute("saldo"); 
+  		<% int saldo = (int) request.getSession().getAttribute("saldo");
+  		Tarjeta t = (Tarjeta) request.getSession().getAttribute("tarjeta");
 			if (saldo == 0) {%>
 				alert('Saldo insuficiente');
 				<%request.getSession().setAttribute("saldo", 1);
-			} %>
+			} 
+			if (!t.isActiva()) {%>
+				alert('Tarjeta desactivada');
+			<% } %>
   	});
   </script>
 </head>

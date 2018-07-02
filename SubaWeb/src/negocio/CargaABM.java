@@ -1,5 +1,6 @@
 package negocio;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -30,6 +31,17 @@ public class CargaABM {
 	
 	public List<Carga> traerCargas() {
 		return dao.traer();
+	}
+	
+	public List<Carga> traerViajes(Tarjeta tarjeta) {
+		List<Carga> cargas = new ArrayList<Carga>();
+		
+		for (Carga carga : dao.traer()) {
+			if (carga.getTarjeta().getIdTarjeta() == tarjeta.getIdTarjeta())
+				cargas.add(carga);
+		}
+		
+		return cargas;
 	}
 	
 	public int agregar(Carga carga) {

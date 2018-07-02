@@ -33,11 +33,33 @@ public class ViajeABM {
 		return dao.traer();
 	}
 	
+	public List<Viaje> traerViajes(Tarjeta tarjeta) {
+		List<Viaje> viajes = new ArrayList<Viaje>();
+		
+		for (Viaje viaje : dao.traer()) {
+			if (viaje.getTarjeta().getIdTarjeta() == tarjeta.getIdTarjeta())
+				viajes.add(viaje);
+		}
+		
+		return viajes;
+	}
+	
 	public List<Viaje> traerViajesEnTren() throws Exception {
 		List<Viaje> viajes = new ArrayList<Viaje>();
 		
 		for (Viaje viaje : dao.traer()) {
 			if (MaquinaABM.getInstancia().traerMaquina(viaje.getMaquina().getIdMaquina()).getTipo() == 1)
+				viajes.add(viaje);
+		}
+		
+		return viajes;
+	}
+	
+	public List<Viaje> traerViajes(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
+		List<Viaje> viajes = new ArrayList<Viaje>();
+		
+		for (Viaje viaje : dao.traer()) {
+			if (!fechaInicio.after(viaje.getFechaHora()) && !fechaFin.before(viaje.getFechaHora()))
 				viajes.add(viaje);
 		}
 		
@@ -117,4 +139,5 @@ public class ViajeABM {
 	public List<Viaje> traerPorTransporte(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) {
 		return dao.traerPorTransporte(fechaInicio, fechaFin);
 	}
+	
 }

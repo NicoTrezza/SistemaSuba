@@ -12,6 +12,7 @@ import datos.Tarjeta;
 import datos.Usuario;
 import funciones.Funciones;
 import negocio.BoletoEstudiantilABM;
+import negocio.UsuarioABM;
 import negocio.UsuarioBoletoEstudiantilABM;
 
 public class CtrlBoletoE extends HttpServlet {
@@ -30,9 +31,10 @@ public class CtrlBoletoE extends HttpServlet {
 			Usuario u = (Usuario) request.getSession().getAttribute("usuario");
 			Tarjeta t = (Tarjeta) request.getSession().getAttribute("tarjeta");
 			
-			u.solicitarBoletoEstudiantil(BoletoEstudiantilABM.getInstancia().traerBoletoEstudiantil(e));
+			UsuarioABM.getInstancia().solicitarBoletoEstudiantil(u, BoletoEstudiantilABM.getInstancia().traerBoletoEstudiantil(e));
+		
 			
-			UsuarioBoletoEstudiantilABM.getInstancia().agregar(Funciones.traerFechaProximo(new GregorianCalendar(), 30), u, BoletoEstudiantilABM.getInstancia().traerBoletoEstudiantil(e));
+			UsuarioBoletoEstudiantilABM.getInstancia().agregar(u, new GregorianCalendar());
 			
 			if (u.getBoletoEstudiantil() != null) {
 				t.setBoletoEstudiantil(BoletoEstudiantilABM.getInstancia().traerBoletoEstudiantil(u.getBoletoEstudiantil().getIdBoletoEstudiantil()));

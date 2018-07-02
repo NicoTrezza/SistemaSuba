@@ -1,3 +1,4 @@
+<%@page import="negocio.TarjetaABM"%>
 <%@page import="negocio.UsuarioBoletoEstudiantilABM"%>
 <%@page import="negocio.BoletoEstudiantilABM"%>
 <%@page import="datos.BoletoEstudiantil"%>
@@ -30,11 +31,11 @@
   	$(document).ready(function() {
   		$('#mostrarTarjeta').hide();
   		$('#mostrarSaldo').hide();
-  		$('#tarjeta').mouseover(function() {
+  		$('#tarjeta').click(function() {
   			$('#mostrarTarjeta').show();
   			$('#mostrarSaldo').hide();
   		});
-  		$('#saldo').mouseover(function() {
+  		$('#saldo').click(function() {
   			$('#mostrarSaldo').show();
   			$('#mostrarTarjeta').hide();
   		});
@@ -100,7 +101,7 @@
 			              	<div class="card mb-3">
 					            <div class="card-header" style="background:#81BEF7;">
 				            	  <i class="fa fa-child"></i> Boleto Estudiantil</div>
-				            	  <% if (UsuarioBoletoEstudiantilABM.getInstancia().traerPorUsuario(usu.getIdUsuario()) == null) { %>
+				            	  <% if (UsuarioBoletoEstudiantilABM.getInstancia().traerUltimoPorUsuario(usu.getIdUsuario()) == null) { %>
 							  		<h3>Desactivado</h3>
 									<select name="boleto">
 							      		<% List<BoletoEstudiantil> boletos = BoletoEstudiantilABM.getInstancia().traerBoletos();
@@ -111,7 +112,7 @@
 							      	<input id="boton" type="submit" value="Activar">
 							  	<%} else { %>
 							  		<h3>Activado</h3>
-							  		<h4>Nivel Educativo: <%= UsuarioBoletoEstudiantilABM.getInstancia().traerPorUsuario(usu.getIdUsuario()).getBoletoEstudiantil().getNivelEducativo() %></h4>
+							  		<h4>Nivel Educativo: <%= UsuarioBoletoEstudiantilABM.getInstancia().traerUltimoPorUsuario(usu.getIdUsuario()).getBoletoEstudiantil().getNivelEducativo() %></h4>
 							  	<% } %>
 							  </div>
 							</form>
@@ -124,6 +125,19 @@
 							  		<input id="boton" type="submit" value="Activar">
 							  	<%} else { %>
 							  		<h3>Activado</h3>
+							  	<% } %>
+				          	</div>
+				          </form>
+				          <form method="post" action="/SubaWeb/Tarjeta">
+							  <div class="card mb-3">
+						      	<div class="card-header" style="background:#81BEF7;">
+				            	  <i class="fa fa-child"></i> Tarjeta</div>
+				            	  <% if (TarjetaABM.getInstancia().traerTarjeta(tar.getIdTarjeta()).isActiva()) { %>
+							  		<h3>Activada</h3>
+							  		<input id="boton" type="submit" value="Desactivar">
+							  	<%} else { %>
+							  		<h3>Desactivada</h3>
+							  		<input id="boton" type="submit" value="Activar">
 							  	<% } %>
 				          	</div>
 				          </form>

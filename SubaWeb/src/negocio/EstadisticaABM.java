@@ -21,7 +21,7 @@ public class EstadisticaABM {
 			instancia = new EstadisticaABM();
 		return instancia;
 	}
-	
+		
 	public List<Viaje> traerViajesEnTren(Tarjeta t, GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
 		List<Viaje> viajes = new ArrayList<Viaje>();
 		

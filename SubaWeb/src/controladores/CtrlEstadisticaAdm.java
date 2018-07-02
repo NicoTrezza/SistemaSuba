@@ -7,12 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import datos.Tarjeta;
-import datos.Usuario;
-import negocio.TarifaSocialABM;
-import negocio.UsuarioABM;
+import funciones.Funciones;
+import negocio.ViajeABM;
 
-public class CtrlTarifaS extends HttpServlet {
+
+public class CtrlEstadisticaAdm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		procesarPeticion(request, response);
 	}
@@ -23,18 +22,14 @@ public class CtrlTarifaS extends HttpServlet {
 	
 	private void procesarPeticion(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		try {
-			Usuario u = (Usuario) request.getSession().getAttribute("usuario");
-			Tarjeta t = (Tarjeta) request.getSession().getAttribute("tarjeta");
+			String fecha1 = request.getParameter("fechaInicio");
+			String fecha2 = request.getParameter("fechaFin");
 			
-			UsuarioABM.getInstancia().solicitarTarifaSocial(u, TarifaSocialABM.getInstancia().traerTarifaSocial(1));
+			ViajeABM.getInstancia().traerPorTransporte(Funciones.traerFechaInput(fecha1), Funciones.traerFechaInput(fecha2));
 			
-			if (u.getTarifaSocial() != null) 
-	      		t.setTarifaSocial(u.getTarifaSocial());
-			
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
+			request.getRequestDispatcher("/estadisticaAdm.jsp").forward(request, response);
 		}
 	}
 

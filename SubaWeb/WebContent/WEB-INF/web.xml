@@ -80,4 +80,24 @@
   	<url-pattern>/TarifaS</url-pattern>
   </servlet-mapping>
   
+  <display-name>Web</display-name>
+  <servlet>
+  	<servlet-name>CtrlTarjeta</servlet-name>
+  	<servlet-class>controladores.CtrlTarjeta</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CtrlTarjeta</servlet-name>
+  	<url-pattern>/Tarjeta</url-pattern>
+  </servlet-mapping>
+  
+  <display-name>Web</display-name>
+  <servlet>
+  	<servlet-name>CtrlEstadisticaAdm</servlet-name>
+  	<servlet-class>controladores.CtrlEstadisticaAdm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CtrlEstadisticaAdm</servlet-name>
+  	<url-pattern>/EstadisticaAdm</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

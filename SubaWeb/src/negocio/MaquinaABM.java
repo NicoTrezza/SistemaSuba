@@ -92,6 +92,7 @@ public class MaquinaABM {
 			TarjetaABM.getInstancia().modificar(tarjeta);
 		}
 		else tarjeta.setViajesGratisRestantes(tarjeta.getViajesGratisRestantes()-1);
+		tarjeta.setEstacionIngreso(null);
 		ViajeABM.getInstancia().agregar(fechaHora,tarifa,tarjeta,maquinaColectivo);
 	}
 	
@@ -99,11 +100,11 @@ public class MaquinaABM {
 		if (tarjeta.getEstacionIngreso()!=null &&
 				(fechaHora.getTime().getTime()-tarjeta.getUltHoraViaje().getTime().getTime())>7200000)
 			tarjeta.setEstacionIngreso(null);
-		else if (maquinaTren.getTipo()==2) {
+		else if (maquinaTren.getTipo()==1) {
 			if (tarjeta.getEstacionIngreso()!=null) devolucionMolinete(tarjeta, maquinaTren, fechaHora);
 			else cobroMolinete(tarjeta, maquinaTren, fechaHora);
 		}
-		else if (maquinaTren.getTipo()==3) cobroMolineteSubte(tarjeta, maquinaTren, fechaHora);
+		else if (maquinaTren.getTipo()==2) cobroMolineteSubte(tarjeta, maquinaTren, fechaHora);
 	}
 	
 	private void cobroMolinete(Tarjeta tarjeta, MaquinaTren maquinaTren, GregorianCalendar fechaHora) throws Exception {
@@ -187,6 +188,7 @@ public class MaquinaABM {
 			TarjetaABM.getInstancia().modificar(tarjeta);
 		}
 		else tarjeta.setViajesGratisRestantes(tarjeta.getViajesGratisRestantes()-1);
+		tarjeta.setEstacionIngreso(null);
 		ViajeABM.getInstancia().agregar(fechaHora,tarifa,tarjeta,maquinaTren);
 	}
 	

@@ -57,7 +57,7 @@ public class UsuarioBoletoEstudiantilABM {
 	
 	public UsuarioBoletoEstudiantil traerUltimoPorUsuario(int idUsuario) throws Exception {
 		UsuarioBoletoEstudiantil usuarioBoletoEstudiantil = dao.traerUltimoPorUsuario(idUsuario);
-		if (usuarioBoletoEstudiantil==null) throw new Exception("El registro seleccionado no existe");
+		//if (usuarioBoletoEstudiantil==null) throw new Exception("El registro seleccionado no existe");
 		return usuarioBoletoEstudiantil;
 	}
 }

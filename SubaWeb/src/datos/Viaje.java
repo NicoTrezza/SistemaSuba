@@ -1,5 +1,6 @@
 package datos;
 import java.util.GregorianCalendar;
+
 import funciones.Funciones;
 
 public class Viaje {

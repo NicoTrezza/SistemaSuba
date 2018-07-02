@@ -8,11 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import datos.Tarjeta;
-import datos.Usuario;
-import negocio.TarifaSocialABM;
-import negocio.UsuarioABM;
+import negocio.TarjetaABM;
 
-public class CtrlTarifaS extends HttpServlet {
+public class CtrlTarjeta extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		procesarPeticion(request, response);
 	}
@@ -23,13 +21,12 @@ public class CtrlTarifaS extends HttpServlet {
 	
 	private void procesarPeticion(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		try {
-			Usuario u = (Usuario) request.getSession().getAttribute("usuario");
 			Tarjeta t = (Tarjeta) request.getSession().getAttribute("tarjeta");
 			
-			UsuarioABM.getInstancia().solicitarTarifaSocial(u, TarifaSocialABM.getInstancia().traerTarifaSocial(1));
-			
-			if (u.getTarifaSocial() != null) 
-	      		t.setTarifaSocial(u.getTarifaSocial());
+			if (t.isActiva())
+				TarjetaABM.getInstancia().darDeBaja(t);
+			else 
+				TarjetaABM.getInstancia().darDeAlta(t);
 			
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		} catch (Exception e) {
@@ -37,5 +34,4 @@ public class CtrlTarifaS extends HttpServlet {
 			request.getRequestDispatcher("/index.jsp").forward(request, response);
 		}
 	}
-
 }
