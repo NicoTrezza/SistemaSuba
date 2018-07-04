@@ -7,11 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import funciones.Funciones;
-import negocio.ViajeABM;
-
-
-public class CtrlEstadisticaAdm extends HttpServlet {
+public class CtrlTablaAdm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		procesarPeticion(request, response);
 	}
@@ -27,7 +23,7 @@ public class CtrlEstadisticaAdm extends HttpServlet {
 			
 			request.setAttribute("fecha1", fecha1);
 			request.setAttribute("fecha2", fecha2);
-			request.getRequestDispatcher("/vistaGraficos.jsp").forward(request, response);
+			request.getRequestDispatcher("/vistaTabla.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

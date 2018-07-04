@@ -1,3 +1,7 @@
+<%@page import="negocio.ViajeABM"%>
+<%@page import="negocio.EstadisticaABM"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="funciones.Funciones"%>
 <%@page import="datos.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -19,6 +23,27 @@
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="js/jquery-3.3.1.js"></script>
+  <script type="text/javascript">
+  	$(document).ready(function() {
+  		$('#mostrar').click(function() {
+  			var fecha1 = $('#calendario').val();
+  			var fecha2 = $('#calendario2').val();
+  			$.ajax({
+  				method: 'POST',
+  				url: 'EstadisticaAdm',
+  				data: { 
+  					fecha1: fecha1, 
+  					fecha2: fecha2
+  				},
+  				async: false
+  			}).done(function(data) {
+  				$('#charts').html(data);
+  			})
+  		});
+  	});
+  </script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -32,12 +57,12 @@
 	        	</li>
 	        	<li class="breadcrumb-item active"> <%= usu.getNombre() %> <%= usu.getApellido() %> </li>
 	      	</ol>
+		
+			<label>Fecha inicial: </label> <input type="text" id="calendario">
+			<label>Fecha final: </label> <input type="text" id="calendario2">
+			<input id="mostrar" type="submit" value="Mostrar">
 			
-			<form method="post" action="/SubaWeb/EstadisticaAdm">
-				<label>Fecha inicial: </label> <input type="text" id="calendario" name="fechaInicio">
-				<label>Fecha final: </label> <input type="text" id="calendario2" name="fechaFin">
-				<input id="boton" type="submit" value="Mostrar">
-			</form>
+			<div id="charts"></div>
 			
 	     </div>
 		<%@include file="pie.jsp" %>
@@ -47,11 +72,11 @@
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script>
 	 $( function() {
-	 	$( "#calendario" ).datepicker();
+	 	$("#calendario").datepicker();
 	 } );
 	 
 	 $( function() {
-		$( "#calendario2" ).datepicker();
+		$("#calendario2").datepicker();
 	 } );
 	</script>
 </body>

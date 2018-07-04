@@ -8,6 +8,7 @@ import dao.ViajeDao;
 import datos.Maquina;
 import datos.Tarjeta;
 import datos.Viaje;
+import funciones.Funciones;
 
 public class ViajeABM {
 	private static ViajeABM instancia;
@@ -77,6 +78,17 @@ public class ViajeABM {
 		return viajes;
 	}
 	
+	public List<Viaje> traerViajesEnTren(GregorianCalendar fecha) throws Exception {
+		List<Viaje> viajes = new ArrayList<Viaje>();
+		
+		for (Viaje viaje : dao.traer()) {
+			if (Funciones.sonFechasIguales(fecha, viaje.getFechaHora()) && MaquinaABM.getInstancia().traerMaquina(viaje.getMaquina().getIdMaquina()).getTipo() == 1)
+				viajes.add(viaje);
+		}
+		
+		return viajes;
+	}
+	
 	public List<Viaje> traerViajesEnSubte() throws Exception {
 		List<Viaje> viajes = new ArrayList<Viaje>();
 	
@@ -99,6 +111,17 @@ public class ViajeABM {
 		return viajes;
 	}
 	
+	public List<Viaje> traerViajesEnSubte(GregorianCalendar fecha) throws Exception {
+		List<Viaje> viajes = new ArrayList<Viaje>();
+		
+		for (Viaje viaje : dao.traer()) {
+			if (Funciones.sonFechasIguales(fecha, viaje.getFechaHora()) && MaquinaABM.getInstancia().traerMaquina(viaje.getMaquina().getIdMaquina()).getTipo() == 2)
+				viajes.add(viaje);
+		}
+		
+		return viajes;
+	}
+	
 	public List<Viaje> traerViajesEnColectivo() throws Exception {
 		List<Viaje> viajes = new ArrayList<Viaje>();
 		
@@ -115,6 +138,17 @@ public class ViajeABM {
 		
 		for (Viaje viaje : dao.traer()) {
 			if (!fechaInicio.after(viaje.getFechaHora()) && !fechaFin.before(viaje.getFechaHora()) && MaquinaABM.getInstancia().traerMaquina(viaje.getMaquina().getIdMaquina()).getTipo() == 0)
+				viajes.add(viaje);
+		}
+		
+		return viajes;
+	}
+	
+	public List<Viaje> traerViajesEnColectivo(GregorianCalendar fecha) throws Exception {
+		List<Viaje> viajes = new ArrayList<Viaje>();
+		
+		for (Viaje viaje : dao.traer()) {
+			if (Funciones.sonFechasIguales(fecha, viaje.getFechaHora()) && MaquinaABM.getInstancia().traerMaquina(viaje.getMaquina().getIdMaquina()).getTipo() == 0)
 				viajes.add(viaje);
 		}
 		

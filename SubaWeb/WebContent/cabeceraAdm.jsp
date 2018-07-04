@@ -10,22 +10,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
       <form class="navbar-nav navbar-sidenav" id="exampleAccordion">
-      	<div class="nav-item" data-toggle="tooltip" data-placement="right" title="Menú principal">
-          <a class="nav-link" href="indexAdm.jsp">
-            <i class="fa fa-fw fa-home"></i>
-            <span class="nav-link-text">Menú principal</span>
+      	<div class="nav-item" data-toggle="tooltip" data-placement="right" title="Movimientos realizados">
+          <a class="nav-link" href="tablaAdm.jsp">
+            <i class="fa fa-fw fa-table"></i>
+            <span class="nav-link-text">Movimientos</span>
           </a>
         </div>
         <div class="nav-item" data-toggle="tooltip" data-placement="right" title="Estadisticas de viajes">
           <a class="nav-link" href="estadisticaAdm.jsp">
             <i class="fa fa-fw fa-area-chart"></i>
             <span class="nav-link-text">Estadísticas</span>
-          </a>
-        </div>
-        <div class="nav-item" data-toggle="tooltip" data-placement="right" title="Movimientos realizados">
-          <a class="nav-link" href="tablaAdm.jsp">
-            <i class="fa fa-fw fa-table"></i>
-            <span class="nav-link-text">Movimientos</span>
           </a>
         </div>
       </form>

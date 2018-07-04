@@ -24,7 +24,7 @@
     <% Usuario usu = (Usuario) request.getSession().getAttribute("usuario");  %>
       <div class="card-header"> Bienvenido <%= usu.getNombre() %> <%= usu.getApellido() %></div>
       <div class="card-body">
-          <a class="nav-link" href="indexAdm.jsp">
+          <a class="nav-link" href="tablaAdm.jsp">
             <i class="fa fa-fw fa-home"></i>
             <span class="nav-link-text">Entrar como Administrador</span>
           </a>

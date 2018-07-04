@@ -39,6 +39,10 @@
   			$('#mostrarSaldo').show();
   			$('#mostrarTarjeta').hide();
   		});
+  		<%Tarjeta t = (Tarjeta) request.getSession().getAttribute("tarjeta");
+  		if (!t.isActiva()) {%>
+			alert('Tarjeta desactivada');
+		<% } %>
   	});
   </script>
 </head>

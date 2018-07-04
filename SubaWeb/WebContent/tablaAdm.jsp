@@ -29,77 +29,61 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
   <link href="css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <script src="js/jquery-3.3.1.js"></script>
+  <script type="text/javascript">
+  	$(document).ready(function() {
+  		$('#mostrar').click(function() {
+  			var fecha1 = $('#calendario').val();
+  			var fecha2 = $('#calendario2').val();
+  			$.ajax({
+  				method: 'POST',
+  				url: 'TablaAdm',
+  				data: { 
+  					fecha1: fecha1, 
+  					fecha2: fecha2
+  				},
+  				async: false
+  			}).done(function(data) {
+  				$('#tabla').html(data);
+  			})
+  		});
+  	});
+  </script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<%@include file="cabeceraAdm.jsp" %>
 	<div class="content-wrapper">
 	    <div class="container-fluid">
-			<% Usuario usu = (Usuario) request.getSession().getAttribute("usuario");
-	    	List<Viaje> viajes = ViajeABM.getInstancia().traerViajes();%>
+			<% Usuario usu = (Usuario) request.getSession().getAttribute("usuario");%>
 			<ol class="breadcrumb">
 	      		<li class="breadcrumb-item">
 	          		<a href="#">Tablas</a>
 	        	</li>
 	        	<li class="breadcrumb-item active"> <%= usu.getNombre() %> <%= usu.getApellido() %> </li>
 	      	</ol>
-	      	<div class="card mb-3">
-	        <div class="card-header" style="background:#81BEF7;">
-	          <i class="fa fa-table"></i> Movimientos de todos los pasajeros realizados</div>
-		        <div class="card-body">
-		          <div class="table-responsive">
-		            <table class="table table-bordered" id="dataTable">
-		              <thead>
-		                <tr>
-		                  <th>Id viaje</th>
-		                  <th>Usuario</th>
-		                  <th>Tarjeta</th>
-		                  <th>Fecha Hora</th>
-		                  <th>Valor</th>
-		                  <th>Máquina</th>
-		                  <th>Estacion / Colectivo</th>	
-		                </tr>
-		              </thead>
-		              <tfoot>
-		                <tr>
-		                  <th>Id viaje</th>
-		                  <th>Usuario</th>
-		                  <th>Tarjeta</th>
-		                  <th>Fecha Hora</th>
-		                  <th>Valor</th>
-		                  <th>Máquina</th>
-		                  <th>Estacion / Colectivo</th>
-		                </tr>
-		              </tfoot>
-		              <tbody>
-		              <% for (Viaje viaje: viajes) { %>
-		              	<tr>
-		              	  <td><%= viaje.getIdViaje() %></td>
-		              	  <td><%= UsuarioABM.getInstancia().traerUsuario(TarjetaABM.getInstancia().traerTarjeta(viaje.getTarjeta().getIdTarjeta()).getUsuario().getIdUsuario()).getApellido()%></td>
-		                  <td><%= TarjetaABM.getInstancia().traerTarjeta(viaje.getTarjeta().getIdTarjeta()).getNroTarjeta()%></td>
-		                  <td><%= Funciones.traerFechaCortaHora(viaje.getFechaHora())%></td>
-		                  <% if (viaje.getValor() >= 0) { %>
-		                  	<td style="color:red;"><%= viaje.getValor() * -1 %></td>
-		                  <% }  else {%>
-		                  	<td style="color:green;"><%= viaje.getValor() * -1 %></td>
-		                  <% } %>
-		                  <td><%= viaje.getMaquina().getIdMaquina() %></td>
-		                  <% Maquina m = MaquinaABM.getInstancia().traerMaquina(viaje.getMaquina().getIdMaquina());
-		                  	if (m.getTipo() == 0) { %>
-		                  		<td><%= LineaColectivoABM.getInstancia().traerLineaColectivoPorMaquina(m).getLinea() %></td>
-		                  <% } else { %>
-		                  		<td><%= EstacionABM.getInstancia().traerEstacionPorMaquina(m).getNombre() %></td>
-		                  <% } %>
-		                 </tr>
-		             	<% } %>
-		              </tbody>
-		            </table>
-		          </div>
-		        </div>
-	        <div class="card-footer small text-muted">Última actualización <%= Funciones.traerFechaCortaHora(new GregorianCalendar()) %></div>
-	      </div>
+	      	
+	      	<label>Fecha inicial: </label> <input type="text" id="calendario">
+			<label>Fecha final: </label> <input type="text" id="calendario2">
+			<input id="mostrar" type="submit" value="Mostrar">
+	      	
+	      	<div id="tabla"></div>
+	      	
 	     </div>
 		<%@include file="pie.jsp" %>
 	</div>
+	
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script>
+	 $( function() {
+	 	$("#calendario").datepicker();
+	 } );
+	 
+	 $( function() {
+		$("#calendario2").datepicker();
+	 } );
+	</script>
 </body>
 </html>

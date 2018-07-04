@@ -21,7 +21,49 @@ public class EstadisticaABM {
 			instancia = new EstadisticaABM();
 		return instancia;
 	}
+	
+	public float traerMontoEnTren(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
+		float monto = 0;
 		
+		for (Viaje v : ViajeABM.getInstancia().traerViajesEnTren(fechaInicio, fechaFin)) {
+			monto += v.getValor();
+		}
+		
+		return monto;
+	}
+	
+	public float traerMontoEnColectivo(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
+		float monto = 0;
+		
+		for (Viaje v : ViajeABM.getInstancia().traerViajesEnColectivo(fechaInicio, fechaFin)) {
+			monto += v.getValor();
+		}
+		
+		return monto;
+	}
+	
+	public float traerMontoEnSubte(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
+		float monto = 0;
+		
+		for (Viaje v : ViajeABM.getInstancia().traerViajesEnSubte(fechaInicio, fechaFin)) {
+			monto += v.getValor();
+		}
+		
+		return monto;
+	}
+	
+	public int traerViajesEnTren(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
+		return ViajeABM.getInstancia().traerViajesEnTren(fechaInicio, fechaFin).size();
+	}
+	
+	public int traerViajesEnColectivo(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
+		return ViajeABM.getInstancia().traerViajesEnColectivo(fechaInicio, fechaFin).size();
+	}
+	
+	public int traerViajesEnSubte(GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
+		return ViajeABM.getInstancia().traerViajesEnSubte(fechaInicio, fechaFin).size();
+	}
+	
 	public List<Viaje> traerViajesEnTren(Tarjeta t, GregorianCalendar fechaInicio, GregorianCalendar fechaFin) throws Exception {
 		List<Viaje> viajes = new ArrayList<Viaje>();
 		

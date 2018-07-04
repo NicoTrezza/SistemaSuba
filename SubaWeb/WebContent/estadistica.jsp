@@ -28,7 +28,7 @@
       
       google.charts.load('current', {packages: ['corechart', 'bar']});
       google.charts.setOnLoadCallback(drawChart);
-
+      
       function drawChart() {
     	  var data = google.visualization.arrayToDataTable([
               ['Dia', 'Viajes'],

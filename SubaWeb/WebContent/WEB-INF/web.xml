@@ -100,4 +100,14 @@
   	<url-pattern>/EstadisticaAdm</url-pattern>
   </servlet-mapping>
   
+  <display-name>Web</display-name>
+  <servlet>
+  	<servlet-name>CtrlTablaAdm</servlet-name>
+  	<servlet-class>controladores.CtrlTablaAdm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CtrlTablaAdm</servlet-name>
+  	<url-pattern>/TablaAdm</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
